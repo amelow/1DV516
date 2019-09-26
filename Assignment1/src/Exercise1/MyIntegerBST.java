@@ -22,6 +22,9 @@ public class MyIntegerBST implements A1Tree {
 	}
 
 	public int getNodeValue() {
+		/*
+		 * Should return current node value
+		 */
 		return root.value;
 	}
 
