@@ -2,9 +2,14 @@ package Exercise1;
 
 public class MyIntegerBST implements A1Tree {
 
-	// MyIntegerBST BST = new MyIntegerBST();
 	private Node root;
 	private int size;
+
+	public MyIntegerBST() {
+		this.size = 0;
+		this.root = null;
+		
+	}
 
 	@Override
 	public void insert(Integer value) {
