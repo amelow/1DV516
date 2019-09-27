@@ -8,24 +8,20 @@ public class MyIntegerBST implements A1Tree {
 	public MyIntegerBST() {
 		this.size = 0;
 		this.root = null;
-
 	}
 
 	@Override
 	public void insert(Integer value) {
 		if (root == null) {
-			
-			root = new Node(value, null, null);
+			root = new Node(value);
 
 		} else {
 			root.add(value, root);
 
 		}
-		
 	}
 
 	public Integer getValue() {
-
 		return root.value;
 	}
 
@@ -34,9 +30,29 @@ public class MyIntegerBST implements A1Tree {
 
 		return null;
 	}
+	/*
+	 * if (root == null) return; if (level == 1) System.out.print(root.key + "  ");
+	 * else if (level > 1) { printLevel(root.left, level-1); printLevel(root.right,
+	 * level-1);
+	 */
 
 	@Override
 	public void printByLevels() {
+		int d = size;
+		for (int i = 1; i <= d; i++) {
+			System.out.println("Depth " + (i - 1) + ":");
+			printingLeafs(root, d);
+
+		}
+
+	}
+
+	/*
+	 * int d = 0; int m; for (int i = 1; i < size; i++) { if (i % m == 0) { d++; }
+	 * else { System.out.println(m); } }
+	 */
+
+	private void printingLeafs(Node root, int level) {
 
 	}
 
@@ -45,36 +61,37 @@ public class MyIntegerBST implements A1Tree {
 	}
 
 	private class Node {
-		int value;
-		Node left;
-		Node right;
+		Integer value;
+		Node left = null;
+		Node right = null;
 
-		Node(int v, Node l, Node r) {
+		Node(int v) {
 			value = v;
-			left = l;
-			right = r;
 		}
 
-		Node add(Integer n, Node current) {
+		Node add(Integer n, Node node) {
+
+//			Node current = root;
 			int comp = n - value;
-
-			if (current == null) {
+//			if (comp == 0) {
+//				return null;
+//			}
+			if (node == null) {
 				size++;
-				return new Node(n, null, null);
+				return new Node(n);
 			}
-
-			if (comp == 0) {
-				return null;
-			} else if (comp < 0) {
-				current.left = add(n, current.left);
+			if (comp < 0) {
+				node = add(n, node.left);
 
 			} else if (comp > 0) {
-				current.right = add(n, current.right);
-
+				node = add(n, node.right);
+			} else {
+				return null;
 			}
-			
-			current.value = n;
-			return current;
+
+			value = n;
+
+			return null;
 		}
 
 	}
