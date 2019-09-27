@@ -14,17 +14,18 @@ public class MyIntegerBST implements A1Tree {
 	@Override
 	public void insert(Integer value) {
 		if (root == null) {
-			root = new Node(value);
+			
+			root = new Node(value, null, null);
+
 		} else {
-			root.add(value);
+			root.add(value, root);
+
 		}
-		size++;
+		
 	}
 
-	public int getNodeValue() {
-		/*
-		 * Should return current node value
-		 */
+	public Integer getValue() {
+
 		return root.value;
 	}
 
@@ -48,35 +49,32 @@ public class MyIntegerBST implements A1Tree {
 		Node left;
 		Node right;
 
-		Node(int v) {
+		Node(int v, Node l, Node r) {
 			value = v;
-			left = null;
-			right = null;
+			left = l;
+			right = r;
 		}
 
-		void add(Integer n) {
-			int comp = value - root.value;
+		Node add(Integer n, Node current) {
+			int comp = n - value;
+
+			if (current == null) {
+				size++;
+				return new Node(n, null, null);
+			}
 
 			if (comp == 0) {
-				return;
-			}
-			if (comp < 0) {
-				if (left == null) {
-					left = new Node(n);
-				} else {
-					left.add(n);
-				}
+				return null;
+			} else if (comp < 0) {
+				current.left = add(n, current.left);
+
 			} else if (comp > 0) {
-				if (right == null) {
-					right = new Node(n);
-				} else {
-					right.add(n);
-				}
+				current.right = add(n, current.right);
 
 			}
-
-			size++;
-
+			
+			current.value = n;
+			return current;
 		}
 
 	}
