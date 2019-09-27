@@ -14,7 +14,7 @@ public class MyIntegerBST implements A1Tree {
 	public void insert(Integer value) {
 		if (root == null) {
 			root = new Node(value);
-
+			size++;
 		} else {
 			root.add(value, root);
 
@@ -27,32 +27,75 @@ public class MyIntegerBST implements A1Tree {
 
 	@Override
 	public Integer mostSimilarValue(Integer value) {
+		int s0 = value;
+		int min = Math.abs(root.value - value);
+		int temp;
+		if (min == 0) {
+			return value;
+		}
 
-		return null;
+		if (root.value == null) {
+			return s0;
+//			s0 = root.right.value;
+//			System.out.println("TESST"+root.right.value);
+		} else if(Math.abs(root.left.value - value) >= Math.abs(root.right.value - value)){
+//			System.out.println("TESST"+root.right.value);
+//			s0 = root.right.value;
+			root = root.right;
+			return mostSimilarValue(root.right.value);
+		}
+		else {
+			s0 = root.left.value;
+			root = root.left;
+			return mostSimilarValue(root.left.value);
+//			return mostSimilarValue(root.right.value);
+			
+		}
+//		return s0;
 	}
-	
 
+	/*
+	 * Change printByLevels,printNodes, computeDepth to make it iterative
+	 */
 	@Override
 	public void printByLevels() {
-		int d = size;
-		for (int i = 1; i <= d; i++) {
-			System.out.println("Depth " + (i - 1) + ":");
-			printingLeafs(root, d);
-
+		int depth = computeDepth(root);
+		for (int i = 1; i <= depth; i++) {
+			System.out.print("Depth " + (i - 1) + ": ");
+			printNodes(root, i);
+			System.out.print("\n");
 		}
 
 	}
 
-	/*
-	 * int d = 0; int m; for (int i = 1; i < size; i++) { if (i % m == 0) { d++; }
-	 * else { System.out.println(m); } }
-	 */
-
-	private void printingLeafs(Node root, int level) {
+	private void printNodes(Node root, int i) {
+		if (root == null)
+			return;
+		if (i == 1)
+			System.out.print(root.value + " ");
+		else if (i > 1) {
+			printNodes(root.left, i - 1);
+			printNodes(root.right, i - 1);
+		}
 
 	}
 
-	public int size() {
+	private int computeDepth(Node root) {
+		if (root == null)
+			return 0;
+		else {
+
+			int calcLeft = computeDepth(root.left);
+			int calcRight = computeDepth(root.right);
+
+			if (calcLeft > calcRight)
+				return (calcLeft + 1);
+			else
+				return (calcRight + 1);
+		}
+	}
+
+	public int getSize() {
 		return size;
 	}
 
@@ -65,29 +108,24 @@ public class MyIntegerBST implements A1Tree {
 			value = v;
 		}
 
-		Node add(Integer n, Node node) {
+		void add(Integer n, Node node) {
 
-//			Node current = root;
-			int comp = n - value;
-//			if (comp == 0) {
-//				return null;
-//			}
-			if (node == null) {
-				size++;
-				return new Node(n);
-			}
-			if (comp < 0) {
-				node = add(n, node.left);
-
-			} else if (comp > 0) {
-				node = add(n, node.right);
-			} else {
-				return null;
+			if (n < value) {
+				if (left == null) {
+//					size++;
+					left = new Node(n);
+				} else {
+					left.add(n, node);
+				}
+			} else if (n > value) {
+				if (right == null) {
+//					size++;
+					right = new Node(n);
+				} else {
+					right.add(n, node);
+				}
 			}
 
-			value = n;
-
-			return null;
 		}
 
 	}
