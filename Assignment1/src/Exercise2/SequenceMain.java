@@ -1,6 +1,6 @@
 package Exercise2;
 
-public class Main {
+public class SequenceMain {
 
 	public static void main(String[] args) {
 		 MySequenceWithMinimum seq = new MySequenceWithMinimum();
