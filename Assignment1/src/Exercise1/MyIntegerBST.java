@@ -20,13 +20,11 @@ public class MyIntegerBST implements A1Tree {
 
 		}
 	}
-
 	
 	@Override
 	public Integer mostSimilarValue(Integer value) {
 		if (root.right == null) {
 			return root.value;
-
 		} 
 		/*
 		 * Fix this shit

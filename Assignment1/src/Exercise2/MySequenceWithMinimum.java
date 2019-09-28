@@ -1,6 +1,10 @@
 package Exercise2;
 
 public class MySequenceWithMinimum implements A1SequenceWithMinimum {
+	private Node head = null;
+	private Node tail = null;
+	private int next;
+	private int prev;
 
 	public MySequenceWithMinimum() {
 
@@ -8,6 +12,14 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	@Override
 	public void insertRight(Integer value) {
+		if (head == null) {
+			head = new Node(value);
+			  tail = null;
+		} else if(tail== null){
+			  tail = new Node(value);
+			System.out.println("hej"+ value);
+
+		}
 
 	}
 
@@ -34,4 +46,14 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		return null;
 	}
 
+	public class Node {
+		Integer value;
+		Node left = null;
+		Node right = null;
+
+		Node(int v) {
+			value = v;
+		}
+
+	}
 }
