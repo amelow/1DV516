@@ -19,8 +19,8 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			head = temp;
 			tail = temp;
 		} else {
-			temp = new Node(value, null, tail.prev);
-			tail.prev = tail;
+			temp = new Node(value, tail, tail.next);
+			tail.next = tail;
 			tail = temp;
 		}
 		size++;
@@ -40,8 +40,8 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			head = temp;
 			tail = temp;
 		} else {
-			temp = new Node(value, head, null);
-			head.next = head;
+			temp = new Node(value, head.prev, head);
+			head.prev = head;
 			head = temp;
 
 		}
@@ -62,10 +62,11 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	private class LinkedIterator implements Iterator<Object> {
 		private Node current = head;
+		int count = 0;
 
 		@Override
 		public boolean hasNext() {
-			return current != null;
+			return count < size;
 		}
 
 		@Override
@@ -73,11 +74,10 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			if (hasNext() == false) {
 				throw new IndexOutOfBoundsException();
 			}
-//			Node currentNode = current;
-			Integer temp = current.value;
+//			Node current = head.next;
+			int temp = current.value;
 			current = current.next;
-//			currentNode = current;
-			System.out.println("Current: " + temp);
+			count++;
 			return temp;
 		}
 
@@ -89,14 +89,12 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		build.append("{");
 		while (iter.hasNext()) {
 			build.append(iter.next() + ",");
-			System.out.println(build.toString());
 		}
 		build.deleteCharAt(build.length() - 1);
 		build.append("}");
 		return build.toString();
 
 	}
-
 
 	public class Node {
 		Integer value;
