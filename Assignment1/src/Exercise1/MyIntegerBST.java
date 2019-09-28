@@ -21,61 +21,38 @@ public class MyIntegerBST implements A1Tree {
 		}
 	}
 
-	public Integer getValue() {
-		return root.value;
-	}
-
+	
 	@Override
 	public Integer mostSimilarValue(Integer value) {
-		int s0 = value;
-		int min = Math.abs(root.value - value);
-//		int temp;
-		if (min == 0) {
-			System.out.println("Test likadan: " + s0);
-			return s0;
-		}
-		
-		if (Math.abs(root.right.value - value) < Math.abs(root.left.value)) {
-			if(root.right == null) {
-				System.out.println("Base 1: " + s0);
-				return s0;
-				
-			}else {
-				s0 = root.right.value;
-				return mostSimilarValue(s0);
-			}
-		}else {
-			if(root.left == null) {
-				System.out.println("Base 2: " + s0);
-				return s0;
-			}else {
-				s0 = root.left.value;
-				return mostSimilarValue(s0);
-			}
-		}
-//		if (root.right == null || root.left == null) {
+		if (root.right == null) {
+			return root.value;
+
+		} 
+		/*
+		 * Fix this shit
+		 */
+		else if (root.left == null) {
+			return root.value;
+
+		} else if (Math.abs(value - root.right.value) <= Math.abs(value - root.left.value) && root.right != null
+				|| root.left != null) {
+
+			System.out.print("hej");
+			root = root.right;
+			
+
+			System.out.println("|s0 - value| = " + Math.abs(root.value - value));
+			return mostSimilarValue(value);
+
+		} else {
 //			System.out.println("hej");
-//			return s0;
-//
-//		} else if(Math.abs(root.left.value - value) < min){
-////			System.out.println("TESST"+root.right.value);
-//			
-//			s0 = root.value;
-//			System.out.println("hej else if: " + s0);
-////			root = root.right;
-//			return mostSimilarValue(root.right.value);
-//		}
-//		else if(Math.abs(root.right.value - value) < min) {
-//			
-//			s0 = root.right.value;
-//			System.out.println("hej else: " + s0);
-////			root = root.left;
-//			return mostSimilarValue(root.right.value);
-////			return mostSimilarValue(root.right.value);
-//			
-//		}
-//		return s0;
+			root = root.left;
+			return mostSimilarValue(value);
+
+		}
+
 	}
+//	}
 
 	/*
 	 * Change printByLevels,printNodes, computeDepth to make it iterative
