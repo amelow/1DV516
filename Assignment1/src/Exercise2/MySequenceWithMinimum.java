@@ -2,6 +2,10 @@ package Exercise2;
 
 public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
+	public MySequenceWithMinimum() {
+
+	}
+
 	@Override
 	public void insertRight(Integer value) {
 
