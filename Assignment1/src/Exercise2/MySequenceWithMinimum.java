@@ -1,6 +1,6 @@
 package Exercise2;
 
-public class MyADT implements A1SequenceWithMinimum {
+public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	@Override
 	public void insertRight(Integer value) {
