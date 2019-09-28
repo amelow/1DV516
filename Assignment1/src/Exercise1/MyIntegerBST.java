@@ -29,28 +29,51 @@ public class MyIntegerBST implements A1Tree {
 	public Integer mostSimilarValue(Integer value) {
 		int s0 = value;
 		int min = Math.abs(root.value - value);
-		int temp;
+//		int temp;
 		if (min == 0) {
-			return value;
-		}
-
-		if (root.value == null) {
+			System.out.println("Test likadan: " + s0);
 			return s0;
-//			s0 = root.right.value;
-//			System.out.println("TESST"+root.right.value);
-		} else if(Math.abs(root.left.value - value) >= Math.abs(root.right.value - value)){
-//			System.out.println("TESST"+root.right.value);
-//			s0 = root.right.value;
-			root = root.right;
-			return mostSimilarValue(root.right.value);
 		}
-		else {
-			s0 = root.left.value;
-			root = root.left;
-			return mostSimilarValue(root.left.value);
+		
+		if (Math.abs(root.right.value - value) < Math.abs(root.left.value)) {
+			if(root.right == null) {
+				System.out.println("Base 1: " + s0);
+				return s0;
+				
+			}else {
+				s0 = root.right.value;
+				return mostSimilarValue(s0);
+			}
+		}else {
+			if(root.left == null) {
+				System.out.println("Base 2: " + s0);
+				return s0;
+			}else {
+				s0 = root.left.value;
+				return mostSimilarValue(s0);
+			}
+		}
+//		if (root.right == null || root.left == null) {
+//			System.out.println("hej");
+//			return s0;
+//
+//		} else if(Math.abs(root.left.value - value) < min){
+////			System.out.println("TESST"+root.right.value);
+//			
+//			s0 = root.value;
+//			System.out.println("hej else if: " + s0);
+////			root = root.right;
 //			return mostSimilarValue(root.right.value);
-			
-		}
+//		}
+//		else if(Math.abs(root.right.value - value) < min) {
+//			
+//			s0 = root.right.value;
+//			System.out.println("hej else: " + s0);
+////			root = root.left;
+//			return mostSimilarValue(root.right.value);
+////			return mostSimilarValue(root.right.value);
+//			
+//		}
 //		return s0;
 	}
 
