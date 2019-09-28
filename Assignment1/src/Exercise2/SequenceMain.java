@@ -10,7 +10,7 @@ public class SequenceMain {
 		seq.insertRight(5);
 		seq.insertRight(4);
 		seq.insertRight(15);
-		System.out.print(seq.toString());
+		System.out.print("Test:" + seq.toString());
 
 		/*
 		 * System.out.println("Expected Output of removeRight() method: 5,4,15");
