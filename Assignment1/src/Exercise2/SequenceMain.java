@@ -9,7 +9,11 @@ public class SequenceMain {
 		System.out.println("- Output of insertRight() method - " + "\n");
 		seq.insertRight(5);
 		seq.insertRight(4);
-		seq.insertRight(15);
+	seq.insertRight(15);
+//		seq.insertLeft(7);
+//		seq.insertRight(5);
+//		seq.insertLeft(8);
+//		seq.insertLeft(99);
 		System.out.print("Test:" + seq.toString());
 
 		/*
