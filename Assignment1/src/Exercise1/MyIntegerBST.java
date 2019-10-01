@@ -12,8 +12,9 @@ public class MyIntegerBST implements A1Tree {
 	}
 
 	/*
-	 * The insert method checks if the root is empty and then adds a new node. If
-	 * the tree already has a root, it calls the
+	 * The insert method checks if the root is empty, then adds a new node.
+	 * Otherwise it calls the add method from the node class and updates the root
+	 * node.
 	 */
 	@Override
 	public void insert(Integer value) {
@@ -25,15 +26,19 @@ public class MyIntegerBST implements A1Tree {
 		}
 	}
 
+	/*
+	 * Method for computing the most similar is found in the static class at the end
+	 * of the code.
+	 */
 	@Override
 	public Integer mostSimilarValue(Integer value) {
 		return Compute.mostSimilar(root, value);
 	}
 
-	public Integer mostSimilarValue(Node n, Integer value) {
-		return Math.abs(n.value - value);
-	}
-
+	/*
+	 * Method prints the levels of the tree structure. Calls upon the computeHeight
+	 * method in the static Compute class.
+	 */
 	@Override
 	public void printByLevels() {
 		int heightOfTree = Compute.computeHeight(root);
@@ -45,6 +50,9 @@ public class MyIntegerBST implements A1Tree {
 
 	}
 
+	/*
+	 * Recursive help method, which prints the left and right nodes of the tree
+	 */
 	private void printNodes(Node root, int i) {
 		if (root == null) {
 			return;
@@ -58,6 +66,10 @@ public class MyIntegerBST implements A1Tree {
 		}
 	}
 
+	/*
+	 * Code for this inner class is inspired by the slides in this course (1DV516)
+	 * as well as the slides of the Java 2 course 1DV507.
+	 */
 	private class Node {
 		Integer value;
 		Node left = null;
@@ -85,10 +97,16 @@ public class MyIntegerBST implements A1Tree {
 		}
 	}
 
+	/*
+	 * Inner class for various computations throughout the class.
+	 */
 	private static class Compute {
 		static Integer s0;
 		static Integer diff;
 
+		/*
+		 * Recursive help method for computing the minimum difference.
+		 */
 		static void minDifference(Node n, Integer i) {
 			if (n == null) {
 				return;
@@ -106,12 +124,19 @@ public class MyIntegerBST implements A1Tree {
 			}
 		}
 
+		/*
+		 * Recursive method that calculates the most similar value. This method calls
+		 * the recursive help method minDifference
+		 */
 		static Integer mostSimilar(Node n, Integer i) {
 			diff = Integer.MAX_VALUE;
 			minDifference(n, i);
 			return s0;
 		}
 
+		/*
+		 * Recursive method to compute the height of the tree.
+		 */
 		static int computeHeight(Node node) {
 			int calcRight;
 			int calcLeft;
