@@ -20,35 +20,14 @@ public class MyIntegerBST implements A1Tree {
 
 		}
 	}
-	
+
 	@Override
 	public Integer mostSimilarValue(Integer value) {
-		if (root.right == null) {
-			return root.value;
-		} 
-		/*
-		 * Fix this shit
-		 */
-		else if (root.left == null) {
-			return root.value;
+		return Compute.mostSimilar(root, value);
+	}
 
-		} else if (Math.abs(value - root.right.value) <= Math.abs(value - root.left.value) && root.right != null
-				|| root.left != null) {
-
-			System.out.print("hej");
-			root = root.right;
-			
-
-			System.out.println("|s0 - value| = " + Math.abs(root.value - value));
-			return mostSimilarValue(value);
-
-		} else {
-//			System.out.println("hej");
-			root = root.left;
-			return mostSimilarValue(value);
-
-		}
-
+	public Integer mostSimilarValue(Node n, Integer value) {
+		return Math.abs(n.value - value);
 	}
 //	}
 
@@ -124,6 +103,37 @@ public class MyIntegerBST implements A1Tree {
 				}
 			}
 
+		}
+
+	}
+
+	private static class Compute {
+		static Integer s0;
+		static Integer diff;
+
+		static void minDifference(Node n, Integer i) {
+			if (n == null) {
+				return;
+			}
+
+			if (diff >= Math.abs(n.value - i)) {
+
+				System.out.println(n.value);
+				s0 = n.value;
+				diff = Math.abs(n.value - i);
+			}
+
+			if (i < n.value) {
+				minDifference(n.left, i);
+			} else {
+				minDifference(n.right, i);
+			}
+		}
+
+		static Integer mostSimilar(Node n, Integer i) {
+			diff = Integer.MAX_VALUE;
+			minDifference(n, i);
+			return s0;
 		}
 
 	}

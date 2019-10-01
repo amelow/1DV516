@@ -19,8 +19,8 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			head = temp;
 			tail = temp;
 		} else {
-			temp = new Node(value, tail, tail.next);
-			tail.next = tail;
+			temp = new Node(value, tail, null);
+			tail.next = temp;
 			tail = temp;
 		}
 		size++;
@@ -29,8 +29,17 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	@Override
 	public Integer removeRight() {
+		if (tail == null) {
+			return null;
+		}
+		temp = tail.prev;
+		tail = temp;
+		tail.prev = temp.prev;
 
-		return null;
+		System.out.println(head.value);
+//		System.out.println(head.prev.value);
+		size--;
+		return this.temp.value;
 	}
 
 	@Override
@@ -40,8 +49,8 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			head = temp;
 			tail = temp;
 		} else {
-			temp = new Node(value, head.prev, head);
-			head.prev = head;
+			temp = new Node(value, null, head);
+			head.prev = temp;
 			head = temp;
 
 		}
@@ -50,14 +59,33 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	@Override
 	public Integer removeLeft() {
+		if (head == null) {
+			return null;
+		}
+		temp = head.next;
+		head = temp;
+		head.next = temp.next;
 
-		return null;
+		System.out.println(head.value);
+//		System.out.println(head.prev.value);
+		size--;
+		return this.temp.value;
+
 	}
 
 	@Override
 	public Integer findMinimum() {
+		Node current = head;
+		int min = Integer.MAX_VALUE;
 
-		return null;
+		while (current != null) {
+			if (current.value < min) {
+				min = current.value;
+			}
+
+			current = current.next;
+		}
+		return min;
 	}
 
 	private class LinkedIterator implements Iterator<Object> {
@@ -96,7 +124,7 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	}
 
-	public class Node {
+	private class Node {
 		Integer value;
 		Node next = null;
 		Node prev = null;
