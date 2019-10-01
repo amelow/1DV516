@@ -1,4 +1,7 @@
 package Exercise1;
+/*
+ * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ */
 
 public class MyIntegerBST implements A1Tree {
 

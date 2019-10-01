@@ -1,6 +1,10 @@
 package Exercise2;
 
 import java.util.Iterator;
+/*
+ * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ */
+
 
 public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 	private Node head = null;
