@@ -37,7 +37,6 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		tail.prev = temp.prev;
 
 		System.out.println(head.value);
-//		System.out.println(head.prev.value);
 		size--;
 		return this.temp.value;
 	}
@@ -67,7 +66,6 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		head.next = temp.next;
 
 		System.out.println(head.value);
-//		System.out.println(head.prev.value);
 		size--;
 		return this.temp.value;
 
@@ -102,7 +100,6 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			if (hasNext() == false) {
 				throw new IndexOutOfBoundsException();
 			}
-//			Node current = head.next;
 			int temp = current.value;
 			current = current.next;
 			count++;

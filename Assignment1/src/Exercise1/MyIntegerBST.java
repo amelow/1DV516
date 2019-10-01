@@ -72,10 +72,6 @@ public class MyIntegerBST implements A1Tree {
 		}
 	}
 
-	public int getSize() {
-		return size;
-	}
-
 	private class Node {
 		Integer value;
 		Node left = null;
@@ -89,14 +85,12 @@ public class MyIntegerBST implements A1Tree {
 
 			if (n < value) {
 				if (left == null) {
-//					size++;
 					left = new Node(n);
 				} else {
 					left.add(n, node);
 				}
 			} else if (n > value) {
 				if (right == null) {
-//					size++;
 					right = new Node(n);
 				} else {
 					right.add(n, node);
@@ -135,6 +129,12 @@ public class MyIntegerBST implements A1Tree {
 			minDifference(n, i);
 			return s0;
 		}
+
+	}
+
+	private static class ComputeHeight {
+		static int calcLeft;
+		static int calcRight;
 
 	}
 
