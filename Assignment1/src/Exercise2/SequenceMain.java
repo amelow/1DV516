@@ -1,4 +1,5 @@
 package Exercise2;
+
 /*
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
