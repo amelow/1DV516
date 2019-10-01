@@ -4,23 +4,24 @@ package Exercise1;
  */
 
 public class MyIntegerBST implements A1Tree {
-
 	private Node root;
-	private int size;
 
+	/* Constructor for the BST class */
 	public MyIntegerBST() {
-		this.size = 0;
 		this.root = null;
 	}
 
+	/*
+	 * The insert method checks if the root is empty and then adds a new node. If
+	 * the tree already has a root, it calls the
+	 */
 	@Override
 	public void insert(Integer value) {
 		if (root == null) {
 			root = new Node(value);
-			size++;
+
 		} else {
 			root.add(value, root);
-
 		}
 	}
 
@@ -32,46 +33,28 @@ public class MyIntegerBST implements A1Tree {
 	public Integer mostSimilarValue(Node n, Integer value) {
 		return Math.abs(n.value - value);
 	}
-//	}
 
-	/*
-	 * Change printByLevels,printNodes, computeDepth to make it iterative
-	 */
 	@Override
 	public void printByLevels() {
-		int depth = computeDepth(root);
-		for (int i = 1; i <= depth; i++) {
+		int heightOfTree = Compute.computeHeight(root);
+		for (int i = 1; i <= heightOfTree; i++) {
 			System.out.print("Depth " + (i - 1) + ": ");
 			printNodes(root, i);
-			System.out.print("\n");
+			System.out.println();
 		}
 
 	}
 
 	private void printNodes(Node root, int i) {
-		if (root == null)
+		if (root == null) {
 			return;
+		}
 		if (i == 1)
 			System.out.print(root.value + " ");
-		else if (i > 1) {
-			printNodes(root.left, i - 1);
+		else if (i >= 0) {
 			printNodes(root.right, i - 1);
-		}
+			printNodes(root.left, i - 1);
 
-	}
-
-	private int computeDepth(Node root) {
-		if (root == null)
-			return 0;
-		else {
-
-			int calcLeft = computeDepth(root.left);
-			int calcRight = computeDepth(root.right);
-
-			if (calcLeft > calcRight)
-				return (calcLeft + 1);
-			else
-				return (calcRight + 1);
 		}
 	}
 
@@ -85,7 +68,6 @@ public class MyIntegerBST implements A1Tree {
 		}
 
 		void add(Integer n, Node node) {
-
 			if (n < value) {
 				if (left == null) {
 					left = new Node(n);
@@ -101,7 +83,6 @@ public class MyIntegerBST implements A1Tree {
 			}
 
 		}
-
 	}
 
 	private static class Compute {
@@ -114,8 +95,6 @@ public class MyIntegerBST implements A1Tree {
 			}
 
 			if (diff >= Math.abs(n.value - i)) {
-
-				System.out.println(n.value);
 				s0 = n.value;
 				diff = Math.abs(n.value - i);
 			}
@@ -133,12 +112,23 @@ public class MyIntegerBST implements A1Tree {
 			return s0;
 		}
 
+		static int computeHeight(Node node) {
+			int calcRight;
+			int calcLeft;
+			if (node == null) {
+				return 0;
+			} else {
+				calcRight = computeHeight(node.right);
+				calcLeft = computeHeight(node.left);
+
+				if (calcLeft >= calcRight) {
+					return (calcLeft + 1);
+				} else {
+					return (calcRight + 1);
+				}
+
+			}
+		}
+
 	}
-
-	private static class ComputeHeight {
-		static int calcLeft;
-		static int calcRight;
-
-	}
-
 }

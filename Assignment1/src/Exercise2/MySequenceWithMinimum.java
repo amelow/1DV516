@@ -5,12 +5,12 @@ import java.util.Iterator;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 
-
 public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 	private Node head = null;
 	private Node tail = null;
 	private Node temp = null;
 	private int size = 0;
+	private int minimum = Integer.MAX_VALUE;
 
 	public MySequenceWithMinimum() {
 
@@ -22,10 +22,15 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			temp = new Node(value, null, null);
 			head = temp;
 			tail = temp;
+			minimum = temp.value;
 		} else {
 			temp = new Node(value, tail, null);
 			tail.next = temp;
 			tail = temp;
+
+			if (temp.value < minimum) {
+				minimum = temp.value;
+			}
 		}
 		size++;
 
@@ -40,7 +45,6 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		tail = temp;
 		tail.prev = temp.prev;
 
-		System.out.println(head.value);
 		size--;
 		return this.temp.value;
 	}
@@ -51,10 +55,15 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 			temp = new Node(value, null, null);
 			head = temp;
 			tail = temp;
+			minimum = temp.value;
 		} else {
 			temp = new Node(value, null, head);
 			head.prev = temp;
 			head = temp;
+
+			if (temp.value < minimum) {
+				minimum = temp.value;
+			}
 
 		}
 		size++;
@@ -68,8 +77,6 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 		temp = head.next;
 		head = temp;
 		head.next = temp.next;
-
-		System.out.println(head.value);
 		size--;
 		return this.temp.value;
 
@@ -77,17 +84,7 @@ public class MySequenceWithMinimum implements A1SequenceWithMinimum {
 
 	@Override
 	public Integer findMinimum() {
-		Node current = head;
-		int min = Integer.MAX_VALUE;
-
-		while (current != null) {
-			if (current.value < min) {
-				min = current.value;
-			}
-
-			current = current.next;
-		}
-		return min;
+		return minimum;
 	}
 
 	private class LinkedIterator implements Iterator<Object> {
