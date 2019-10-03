@@ -3,16 +3,29 @@ package Exercise2;
 import java.util.Iterator;
 /*
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ * 
+ * Methods concerning operations on the right side are coming first, then right after is 
+ * the methods of the left operations.
+ * 
+ * The method for finding the minimum value in the list is after the right and left methods.
+ * 
+ * At the end we have a toString method and a Node class.
  */
 
 public class MySequenceWithMinimum implements A1SequenceWithMinimum {
-	private Node head = null;
-	private Node tail = null;
-	private Node temp = null;
-	private int size = 0;
-	private int minimum = Integer.MAX_VALUE;
+
+	private Node head;
+	private Node tail;
+	private Node temp;
+	private int size;
+	private int minimum;
 
 	public MySequenceWithMinimum() {
+		head = null;
+		tail = null;
+		temp = null;
+		size = 0;
+		minimum = Integer.MAX_VALUE;// Makes sure that the minimum value is updated in the initial step
 
 	}
 

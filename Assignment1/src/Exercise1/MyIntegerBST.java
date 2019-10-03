@@ -37,31 +37,43 @@ public class MyIntegerBST implements A1Tree {
 
 	/*
 	 * Method prints the levels of the tree structure. Calls upon the computeHeight
-	 * method in the static Compute class.
+	 * method in the static Compute class. The printByLevels method is inspired by
+	 * https://www.geeksforgeeks.org/level-order-tree-traversal/
 	 */
 	@Override
 	public void printByLevels() {
-		int heightOfTree = Compute.computeHeight(root);
-		for (int i = 1; i <= heightOfTree; i++) {
-			System.out.print("Depth " + (i - 1) + ": ");
+		int depthOfTree = Compute.computeDepth(root);
+		for (int i = 0; i < depthOfTree; i++) {
+			System.out.print("Depth " + (i) + ": ");
 			printNodes(root, i);
 			System.out.println();
+
 		}
 
 	}
 
 	/*
-	 * Recursive help method, which prints the left and right nodes of the tree
+	 * Recursive help method, which prints the left and right nodes of the parent
+	 * node.
+	 * 
+	 * 1) Base case: Continue till root is null
+	 * 
+	 * 2) Print the root value when i is equal to 0.
+	 * 
+	 * 3) Recursive call: Update root of each subtree. If right or left child is
+	 * null, that recursive call quits.
 	 */
 	private void printNodes(Node root, int i) {
 		if (root == null) {
 			return;
 		}
-		if (i == 1)
-			System.out.print(root.value + " ");
-		else if (i >= 0) {
-			printNodes(root.right, i - 1);
-			printNodes(root.left, i - 1);
+		if (i == 0) {
+			System.out.print(" " + root.value);
+
+		} else if (i >= 0) {
+			i--;
+			printNodes(root.right, i);
+			printNodes(root.left, i);
 
 		}
 	}
@@ -137,22 +149,12 @@ public class MyIntegerBST implements A1Tree {
 		/*
 		 * Recursive method to compute the height of the tree.
 		 */
-		static int computeHeight(Node node) {
-			int calcRight;
-			int calcLeft;
-			if (node == null) {
+		static int computeDepth(Node node) {
+			if (node == null)
 				return 0;
-			} else {
-				calcRight = computeHeight(node.right);
-				calcLeft = computeHeight(node.left);
 
-				if (calcLeft >= calcRight) {
-					return (calcLeft + 1);
-				} else {
-					return (calcRight + 1);
-				}
+			return Math.max(computeDepth(node.left), computeDepth(node.right)) + 1;
 
-			}
 		}
 
 	}

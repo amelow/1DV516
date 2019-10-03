@@ -15,6 +15,8 @@ public class TreeMain {
 		tree.insert(4);
 		tree.insert(5);
 		tree.insert(7);
+		
+		
 
 		System.out.println("- Output of PrintByLevels() method - " + "\n");
 		tree.printByLevels();
