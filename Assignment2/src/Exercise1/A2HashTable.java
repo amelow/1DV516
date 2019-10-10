@@ -1,4 +1,4 @@
-package assignment2AADS.assignment2;
+package Exercise1;
 
 public interface A2HashTable<T> {
 
