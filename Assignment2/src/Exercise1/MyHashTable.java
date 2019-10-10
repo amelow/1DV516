@@ -1,6 +1,7 @@
 package Exercise1;
 
 public class MyHashTable<T> implements A2HashTable<T> {
+
 	private Object[] hashTable;
 	private int size;
 	private int count;
@@ -13,7 +14,7 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	
 	@Override
 	public void insert(Object element) {
-
+		
 	}
 
 	@Override
@@ -32,6 +33,13 @@ public class MyHashTable<T> implements A2HashTable<T> {
 
 		return 0;
 	}
+	public int computeHashCode(int value) {
+		return value % size;
+	}
+	
+	public int quadraticProbing(int value, int i) {
+		return (int)(value + Math.pow(i, 2)) % size;
+	}
 
 	private class Node {
 		Object value;
@@ -42,11 +50,16 @@ public class MyHashTable<T> implements A2HashTable<T> {
 			numeric = (int)Math.random()*size;
 		}
 	}
-
+/*
 	private static class ComputeHash {
-		static int hashcode;
+		static int hashCode;
 		static int i;
 		static int m;
-
+		
+		int computeHashCode() {
+			hashCode = (int)Math.floorMod(i, m);
+			return hashCode;
+		}
 	}
+	*/
 }
