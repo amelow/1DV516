@@ -1,7 +1,16 @@
 package Exercise1;
 
 public class MyHashTable<T> implements A2HashTable<T> {
-
+	private Object[] hashTable;
+	private int size;
+	private int count;
+	
+	public MyHashTable() {
+		count = 0;
+		size = 10;
+		hashTable = new Object[size];
+	}
+	
 	@Override
 	public void insert(Object element) {
 
@@ -25,11 +34,12 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	}
 
 	private class Node {
+		Object value;
+		int numeric;
 
-		Object value = null;
-
-		Node(int v) {
+		Node(Object v, int n) {
 			value = v;
+			numeric = (int)Math.random()*size;
 		}
 	}
 

@@ -4,8 +4,9 @@ package Exercise1;
 public class TestHashTable {
 	public static void main(String[]args) {
 		Object o ='o';
+//		int i = (o.toString()).();
+//		System.out.println(i);
 		
-		System.out.println();
 	}
  /*   private static final int NUM_INSERTIONS = 10000;
     private static final double MAX_LOAD = 0.75;
