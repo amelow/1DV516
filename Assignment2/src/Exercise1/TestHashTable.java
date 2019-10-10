@@ -1,13 +1,13 @@
-package tests;
+package Exercise1;
 
 
-
-import assignment2AADS.assignment2.A2HashTable;
-import assignment2AADS.assignment2.MyHashTable;
-
-class TestHashTable {
-
-    private static final int NUM_INSERTIONS = 10000;
+public class TestHashTable {
+	public static void main(String[]args) {
+		Object o ='o';
+		
+		System.out.println();
+	}
+ /*   private static final int NUM_INSERTIONS = 10000;
     private static final double MAX_LOAD = 0.75;
 
 
@@ -25,5 +25,6 @@ class TestHashTable {
 	    table.insert(i);
 	}
 	
-    }   
+    }*/
+  
 }
