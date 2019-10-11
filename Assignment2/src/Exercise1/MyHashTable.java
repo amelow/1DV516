@@ -3,26 +3,22 @@ package Exercise1;
 /*
  * Authors: Håkan Johansson, Amelie Löwe.
  */
-import java.util.Hashtable;
-
 public class MyHashTable<T> implements A2HashTable<T> {
 
 	private Object[] hashTable;
 	private int size;
 	private int count;
+	private double max_load;
 
-	public MyHashTable() {
+	public MyHashTable(double max_load) {
 		count = 0;
 		size = 11;
+		this.max_load = max_load;
 		hashTable = new Object[size];
 	}
 
 	public int getCount() {
 		return count;
-	}
-
-	public int getSize() {
-		return size;
 	}
 
 	public Object getHashTable() {
@@ -31,147 +27,121 @@ public class MyHashTable<T> implements A2HashTable<T> {
 
 	@Override
 	public void insert(Object element) {
+		int pos_start = computeHashCode(element);
 		int pos = computeHashCode(element);
-		int i = 0;
-		if (count == size - 1) {
+		int i = 1;
 
-			System.out.println("rehash1");
-			hashTable = rehash();
+		if (pos_start < 0 || pos < 0) {
+			pos_start = -pos_start;
+			pos = -pos;
 		}
 
 		while (hashTable[pos] != null) {
-			i++;
 
-			pos = quadraticProbing(pos, i);
-			System.out.println("Pos: " + pos);
-			if (i == (int) Math.sqrt(size)) {
-				System.out.println("rehash2");
+			pos = quadraticProbing(pos_start, i);
 
-//				hashTable.rehash();
+			if (pos_start == pos || max_load <= count / size) {
+				count = 0;
+				pos_start = computeHashCode(element);
+				rehash();
 			}
-//			System.out.println(pos);
-//			System.out.println(size);
-//			System.out.println("Size: " + size);
-//			System.out.println("Position: " + pos);
-
+			i++;
 		}
 
 		hashTable[pos] = element;
 		count++;
+
 	}
 
 	@Override
 	public void delete(Object element) {
+		int pos_start = computeHashCode(element);
+		int pos = computeHashCode(element);
+		for (int i = 0; i < hashTable.length; i++) {
+			pos = quadraticProbing(pos_start, i);
+			if (hashTable[pos] == null) {
+				continue;
+			}
 
+			if (hashTable[pos].equals(element)) {
+				hashTable[pos] = null;
+			}
+		}
+		count--;
 	}
 
 	@Override
 	public boolean contains(Object element) {
-		/*
-		 * Update to fit quadratic probing
-		 */
-		int pos = computeHashCode(element);
-		return hashTable[pos] == element;
+		int pos_start = computeHashCode(element);
+		boolean found = false;
+
+		for (int i = 0; i < size; i++) {
+			int pos = quadraticProbing(pos_start, i);
+			if (hashTable[pos] == null) {
+				continue;
+			} else if (hashTable[pos].equals(element)) {
+				found = true;
+				return found;
+			}
+
+		}
+		return found;
 	}
 
 	@Override
 	public int getLengthOfArray() {
-
-		return 0;
+		return size;
 	}
 
 	public int computeHashCode(Object element) {
-		return element.hashCode() % size;
+		int hash = element.hashCode() % size;
+
+		if (hash < 0) {
+			hash = -hash;
+		}
+		return hash;
 	}
 
 	public int quadraticProbing(int pos, int i) {
-		System.out.println("Quad and size: " + (int) ((pos + Math.pow(i, 2)) % size) + ", " + size);
-//		int quad = (int)((pos + Math.pow(i, 2)) % size);
+		int hash = ((int) (pos + Math.pow(i, 2))) % size;
+
+		if (hash < 0) {
+			hash = -hash;
+		}
 		return ((int) (pos + Math.pow(i, 2))) % size;
-//		return (int)(element.hashCode() + Math.pow(i, 2)) % size;
+
 	}
-
-	/*
-	 * This code is taken from Håkans Java 2 assignment.
-	 */
-//	public static int gcd(int a, int b) {
-//		int r = 0;
-//		if (a < 0) {
-//			a = (-1) * a;
-//		}
-//		if (b < 0) {
-//			b = (-1) * b;
-//		}
-//		if (a % b == 0) {
-//			return b;
-//		} else {
-//			r = a % b;
-//			return gcd(b, r);
-//		}
-//
-//	}
-
-//	private Object[] rehash() {
-//		Object[] tempHash = hashTable;
-////		hashTable = new Object[size*2];
-//		count = 0;
-//		size = size * 2;
-//
-//		hashTable = new Object[size];
-//		int i = 0;
-//		int pos = 0;
-//
-//		for (int j = 0; j < hashTable.length; j++) {
-//
-//			if (tempHash[j] == null) {
-//
-//				continue;
-//			}
-//
-////			Object temp = hashTable[j];
-//
-////			newHash[]
-////			if (temp != null) {
-////				pos = computeHashCode(temp);
-////			}
-//			pos = computeHashCode(tempHash[j]);
-//			while (hashTable[pos] != null) {
-////				i++;
-//				pos = quadraticProbing(pos, i);
-//
-//			}
-//			System.out.println("hej");
-////			newHash[pos] = temp;
-//			insert(tempHash[j]);
-//			count++;
-//		}
-//		return hashTable;
-//	}
-
-//	private boolean isPrime(int n) {
-//		int p = 2;
-//		
-//		for (int i = 0; i < (int) Math.sqrt(p); i++) {
-//			p = p + 2;
-//			if (p % 2 == 0 || p % 5 == 0) {
-//				p++;
-//			}
-//			
-//		}
-//		return true;
-//
-//	}
 
 	public String toString() {
 		StringBuilder build = new StringBuilder();
 		build.append('{');
-		for (int i = 0; i < hashTable.length - 1; i++) {
+		for (int i = 0; i < hashTable.length; i++) {
+			if (hashTable[i] == null) {
+				continue;
+			}
 			build.append(hashTable[i] + ", ");
 		}
 
-		build.append(hashTable[hashTable.length - 1] + "}");
+		build.delete(build.length() - 2, build.length() - 1);
+
+		build.append("}");
 		return build.toString();
 
 	}
 
+	private void rehash() {
+		size = size * 2 + 1;
+		Object[] temp = hashTable;
+		hashTable = new Object[size];
+
+		for (int i = 0; i < temp.length; i++) {
+			if (temp[i] == null) {
+				continue;
+			}
+
+			insert(temp[i]);
+
+		}
+
+	}
 }

@@ -1,4 +1,4 @@
-package assignment2AADS.assignment2;
+package Exercise2;
 
 public enum A2Direction {
 

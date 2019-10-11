@@ -1,9 +1,9 @@
 package Exercise2;
 
-public class MyItinerary implements A2Itinerary {
+public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
-	public Object[] rotateRight() {
+	public A2Direction[] rotateRight() {
 		// TODO Auto-generated method stub
 		return null;
 	}
