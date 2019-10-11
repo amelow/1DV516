@@ -3,12 +3,13 @@ package Exercise1;
 public class HashMain {
 
 	public static <T> void main(String[] args) {
+		final int NUM_INSERTIONS = 10000;
+		final double MAX_LOAD = 0.75;
 
-		double max_load = 0.5;
 		Object o = "Håkan";
-		MyHashTable<T> hash = new MyHashTable<T>(max_load);
+		MyHashTable<T> hash = new MyHashTable<T>(MAX_LOAD);
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < NUM_INSERTIONS; i++) {
 			System.out.println("Size: " + hash.getLengthOfArray());
 			hash.insert(Math.random() * 100);
 		}
