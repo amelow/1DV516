@@ -4,6 +4,7 @@ package Exercise1;
  * Authors: Håkan Johansson, Amelie Löwe.
  */
 import java.util.Hashtable;
+
 public class MyHashTable<T> implements A2HashTable<T> {
 
 	private Object[] hashTable;
@@ -45,7 +46,7 @@ public class MyHashTable<T> implements A2HashTable<T> {
 			System.out.println("Pos: " + pos);
 			if (i == (int) Math.sqrt(size)) {
 				System.out.println("rehash2");
-				
+
 //				hashTable.rehash();
 			}
 //			System.out.println(pos);
@@ -57,11 +58,6 @@ public class MyHashTable<T> implements A2HashTable<T> {
 
 		hashTable[pos] = element;
 		count++;
-	}
-
-	private Object[] rehash() {
-		
-		return null;
 	}
 
 	@Override
