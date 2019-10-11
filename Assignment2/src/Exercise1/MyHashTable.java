@@ -3,6 +3,7 @@ package Exercise1;
 /*
  * Authors: Håkan Johansson, Amelie Löwe.
  */
+import java.util.Hashtable;
 public class MyHashTable<T> implements A2HashTable<T> {
 
 	private Object[] hashTable;
@@ -44,7 +45,8 @@ public class MyHashTable<T> implements A2HashTable<T> {
 			System.out.println("Pos: " + pos);
 			if (i == (int) Math.sqrt(size)) {
 				System.out.println("rehash2");
-				rehash();
+				
+//				hashTable.rehash();
 			}
 //			System.out.println(pos);
 //			System.out.println(size);
@@ -55,6 +57,11 @@ public class MyHashTable<T> implements A2HashTable<T> {
 
 		hashTable[pos] = element;
 		count++;
+	}
+
+	private Object[] rehash() {
+		
+		return null;
 	}
 
 	@Override
@@ -91,72 +98,73 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	/*
 	 * This code is taken from Håkans Java 2 assignment.
 	 */
-	public static int gcd(int a, int b) {
-		int r = 0;
-		if (a < 0) {
-			a = (-1) * a;
-		}
-		if (b < 0) {
-			b = (-1) * b;
-		}
-		if (a % b == 0) {
-			return b;
-		} else {
-			r = a % b;
-			return gcd(b, r);
-		}
+//	public static int gcd(int a, int b) {
+//		int r = 0;
+//		if (a < 0) {
+//			a = (-1) * a;
+//		}
+//		if (b < 0) {
+//			b = (-1) * b;
+//		}
+//		if (a % b == 0) {
+//			return b;
+//		} else {
+//			r = a % b;
+//			return gcd(b, r);
+//		}
+//
+//	}
 
-	}
-
-	private Object[] rehash() {
-		Object[] tempHash = hashTable;
-//		hashTable = new Object[size*2];
-		count = 0;
-		size = size * 2;
-
-		hashTable = new Object[size];
-		int i = 0;
-		int pos = 0;
-
-		for (int j = 0; j < hashTable.length; j++) {
-
-			if (tempHash[j] == null) {
-
-				continue;
-			}
-
-//			Object temp = hashTable[j];
-
-//			newHash[]
-//			if (temp != null) {
-//				pos = computeHashCode(temp);
+//	private Object[] rehash() {
+//		Object[] tempHash = hashTable;
+////		hashTable = new Object[size*2];
+//		count = 0;
+//		size = size * 2;
+//
+//		hashTable = new Object[size];
+//		int i = 0;
+//		int pos = 0;
+//
+//		for (int j = 0; j < hashTable.length; j++) {
+//
+//			if (tempHash[j] == null) {
+//
+//				continue;
 //			}
-			pos = computeHashCode(tempHash[j]);
-			while (hashTable[pos] != null) {
-//				i++;
-				pos = quadraticProbing(pos, i);
+//
+////			Object temp = hashTable[j];
+//
+////			newHash[]
+////			if (temp != null) {
+////				pos = computeHashCode(temp);
+////			}
+//			pos = computeHashCode(tempHash[j]);
+//			while (hashTable[pos] != null) {
+////				i++;
+//				pos = quadraticProbing(pos, i);
+//
+//			}
+//			System.out.println("hej");
+////			newHash[pos] = temp;
+//			insert(tempHash[j]);
+//			count++;
+//		}
+//		return hashTable;
+//	}
 
-			}
-			System.out.println("hej");
-//			newHash[pos] = temp;
-			insert(tempHash[j]);
-			count++;
-		}
-		return hashTable;
-	}
-
-	private boolean isPrime(int n) {
-		int p = 2;
-		for (int i = 0; i < (int) Math.sqrt(p); i++) {
-			p = p + 2;
-			if (p % 2 == 0 || p % 5 == 0) {
-				p++;
-			}
-
-		}
-		return true;
-
-	}
+//	private boolean isPrime(int n) {
+//		int p = 2;
+//		
+//		for (int i = 0; i < (int) Math.sqrt(p); i++) {
+//			p = p + 2;
+//			if (p % 2 == 0 || p % 5 == 0) {
+//				p++;
+//			}
+//			
+//		}
+//		return true;
+//
+//	}
 
 	public String toString() {
 		StringBuilder build = new StringBuilder();
