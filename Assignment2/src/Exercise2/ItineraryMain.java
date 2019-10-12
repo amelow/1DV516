@@ -25,6 +25,6 @@ public class ItineraryMain {
 
 	private void createItinerary() {
 		itinerary = new MyItinerary(array);
-
+	
 	}
 }
