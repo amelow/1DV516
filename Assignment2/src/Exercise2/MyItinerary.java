@@ -2,9 +2,12 @@ package Exercise2;
 
 public class MyItinerary implements A2Itinerary<A2Direction> {
 
+	public MyItinerary(A2Direction[] array) {
+
+	}
+
 	@Override
 	public A2Direction[] rotateRight() {
-
 		return null;
 	}
 
