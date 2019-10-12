@@ -17,7 +17,19 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public A2Direction[] rotateRight() {
-		return null;
+		for (int i = 0; i < grid.length; i++) {
+			if (grid[i] == A2Direction.LEFT) {
+				grid[i] = A2Direction.UP;
+			} else if (grid[i] == A2Direction.RIGHT) {
+				grid[i] = A2Direction.DOWN;
+
+			} else if (grid[i] == A2Direction.UP) {
+				grid[i] = A2Direction.RIGHT;
+			} else if (grid[i] == A2Direction.DOWN) {
+				grid[i] = A2Direction.LEFT;
+			}
+		}
+		return grid;
 	}
 
 	@Override
@@ -47,7 +59,6 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int[] getIntersections() {
-
 		return null;
 	}
 

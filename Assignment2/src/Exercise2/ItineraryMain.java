@@ -20,8 +20,7 @@ public class ItineraryMain {
 		array[3] = A2Direction.RIGHT;
 		array[4] = A2Direction.UP;
 		array[5] = A2Direction.LEFT;
-		
-	
+
 	}
 
 	private void createItinerary() {
@@ -29,6 +28,8 @@ public class ItineraryMain {
 		System.out.println("Directions: " + itinerary.toString());
 		System.out.println("Width: " + itinerary.widthOfItinerary());
 		System.out.println("Height: " + itinerary.heightOfItinerary());
+		itinerary.rotateRight();
+		System.out.println("Rotate: " + itinerary.toString());
 
 	}
 }
