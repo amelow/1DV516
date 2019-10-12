@@ -1,10 +1,18 @@
 package Exercise1;
 
 /*
- * Authors: Håkan Johansson, Amelie Löwe.
+ * Authors: H�kan Johansson, Amelie L�we.
+ * 
+ * 1) Fields, constructor, getCount().
+ * 
+ * 2) insert(), delete(), contains, getLengthOfArray().
+ * 
+ * 3) computeHashCode(), quadraticProbing(), toString(), rehash().
  */
 public class MyHashTable<T> implements A2HashTable<T> {
-
+	/*
+	 * 1)
+	 */
 	private Object[] hashTable;
 	private int size;
 	private int count;
@@ -20,11 +28,9 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	public int getCount() {
 		return count;
 	}
-
-	public Object getHashTable() {
-		return hashTable;
-	}
-
+	/*
+	 * 2)
+	 */
 	@Override
 	public void insert(Object element) {
 		int pos_start = computeHashCode(element);
@@ -65,9 +71,10 @@ public class MyHashTable<T> implements A2HashTable<T> {
 
 			if (hashTable[pos].equals(element)) {
 				hashTable[pos] = null;
+				count--;
 			}
 		}
-		count--;
+
 	}
 
 	@Override
@@ -92,7 +99,9 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	public int getLengthOfArray() {
 		return size;
 	}
-
+	/*
+	 * 3)
+	 */
 	public int computeHashCode(Object element) {
 		int hash = element.hashCode() % size;
 
