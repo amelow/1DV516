@@ -6,7 +6,7 @@ public class HashMain {
 		final int NUM_INSERTIONS = 10000;
 		final double MAX_LOAD = 0.75;
 
-		Object o = "H�kan";
+		Object o = "Håkan";
 		MyHashTable<T> hash = new MyHashTable<T>(MAX_LOAD);
 
 		for (int i = 0; i < NUM_INSERTIONS; i++) {

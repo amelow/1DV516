@@ -1,5 +1,8 @@
 package Exercise2;
 
+/*
+ * Authors: Håkan Johansson, Amelie Löwe.
+ */
 public class MyItinerary implements A2Itinerary<A2Direction> {
 	private int height, width;
 	private int left, right, up, down;
