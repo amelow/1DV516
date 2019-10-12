@@ -9,7 +9,6 @@ public class ItineraryMain {
 		ItineraryMain example = new ItineraryMain();
 		example.fillSix();
 		example.createItinerary();
-
 	}
 
 	private void fillSix() {
@@ -25,6 +24,7 @@ public class ItineraryMain {
 
 	private void createItinerary() {
 		itinerary = new MyItinerary(array);
-	
+		System.out.println(itinerary.toString());
+
 	}
 }

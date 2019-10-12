@@ -3,6 +3,7 @@ package Exercise2;
 public class MyItinerary implements A2Itinerary<A2Direction> {
 	private int height, width;
 	private int left, right, up, down;
+	private A2Direction[] grid;
 
 	public MyItinerary(A2Direction[] array) {
 		height = 0;
@@ -11,6 +12,7 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		right = 0;
 		up = 0;
 		down = 0;
+		grid = array;
 	}
 
 	@Override
@@ -20,6 +22,9 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int widthOfItinerary() {
+		for (int i = 0; i < grid.length; i++) {
+
+		}
 
 		return 0;
 	}
@@ -36,4 +41,20 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		return null;
 	}
 
+	public String toString() {
+		StringBuilder build = new StringBuilder();
+		build.append('{');
+		for (int i = 0; i < grid.length-1; i++) {
+			build.append(grid[i] + ", ");
+		}
+	
+		build.append(grid[grid.length - 1] + "}");
+		return build.toString();
+
+	}
+
+	public A2Direction[] getDirections() {
+		return grid;
+
+	}
 }
