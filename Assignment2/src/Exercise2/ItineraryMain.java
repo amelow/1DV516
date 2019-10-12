@@ -5,7 +5,6 @@ public class ItineraryMain {
 	private A2Itinerary<A2Direction> itinerary;
 
 	public static void main(String[] args) {
-
 		ItineraryMain example = new ItineraryMain();
 		example.fillSix();
 		example.createItinerary();
@@ -13,7 +12,6 @@ public class ItineraryMain {
 
 	private void fillSix() {
 		array = new A2Direction[6];
-
 		array[0] = A2Direction.LEFT;
 		array[1] = A2Direction.DOWN;
 		array[2] = A2Direction.DOWN;

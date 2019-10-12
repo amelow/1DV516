@@ -53,7 +53,6 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		} else {
 			height = down;
 		}
-
 		return height;
 	}
 
