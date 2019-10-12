@@ -24,7 +24,8 @@ public class ItineraryMain {
 
 	private void createItinerary() {
 		itinerary = new MyItinerary(array);
-		System.out.println(itinerary.toString());
+		System.out.println("Directions: " + itinerary.toString());
+		System.out.println("Width: " + itinerary.widthOfItinerary());
 
 	}
 }

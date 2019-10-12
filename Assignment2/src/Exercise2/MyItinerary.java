@@ -22,17 +22,25 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int widthOfItinerary() {
-		for (int i = 0; i < grid.length; i++) {
-
+		calculateDirections();
+		if (right > 0 || left > 0) {
+			System.out.println("Left: " + left + "\n Right: " + right);
+			width++;
 		}
 
-		return 0;
+		return width;
+
 	}
 
 	@Override
 	public int heightOfItinerary() {
+		calculateDirections();
+		if (right > 0 || left > 0) {
+			System.out.println("Left: " + left + "\n Right: " + right);
+			height++;
+		}
 
-		return 0;
+		return height;
 	}
 
 	@Override
@@ -44,10 +52,10 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 	public String toString() {
 		StringBuilder build = new StringBuilder();
 		build.append('{');
-		for (int i = 0; i < grid.length-1; i++) {
+		for (int i = 0; i < grid.length - 1; i++) {
 			build.append(grid[i] + ", ");
 		}
-	
+
 		build.append(grid[grid.length - 1] + "}");
 		return build.toString();
 
@@ -56,5 +64,21 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 	public A2Direction[] getDirections() {
 		return grid;
 
+	}
+
+	private void calculateDirections() {
+		for (int i = 0; i < grid.length; i++) {
+			if (grid[i] == A2Direction.LEFT) {
+				left++;
+				right--;
+			} else if (grid[i] == A2Direction.RIGHT) {
+				right++;
+				left--;
+			} else if (grid[i] == A2Direction.UP) {
+				up++;
+			} else if (grid[i] == A2Direction.DOWN) {
+				down++;
+			}
+		}
 	}
 }
