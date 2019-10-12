@@ -1,7 +1,7 @@
 package Exercise1;
 
 /*
- * Authors: H�kan Johansson, Amelie L�we.
+ * Authors: Håkan Johansson, Amelie Löwe.
  * 
  * 1) Fields, constructor, getCount().
  * 
@@ -28,6 +28,7 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	public int getCount() {
 		return count;
 	}
+
 	/*
 	 * 2)
 	 */
@@ -99,6 +100,7 @@ public class MyHashTable<T> implements A2HashTable<T> {
 	public int getLengthOfArray() {
 		return size;
 	}
+
 	/*
 	 * 3)
 	 */
