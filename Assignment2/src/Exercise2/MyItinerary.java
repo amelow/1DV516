@@ -61,19 +61,41 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int[] getIntersections() {
+		int countLeft = 0;
+		int countRight = 0;
+		int countUp = 0;
+		int countDown = 0;
 		int[] intersections = new int[grid.length];
 		for (int i = 0; i < grid.length; i++) {
-			if (width - right != 0 || width - left != 0) {
-				System.out.println(height-down);
-				if (height - down == 0 || height - up == 0) {
+			if (grid[i] == A2Direction.LEFT) {
+				countLeft++;
+				countRight--;
+			}
+			if (grid[i] == A2Direction.RIGHT) {
+				countRight++;
+				countLeft--;
+			}
+			if (grid[i] == A2Direction.UP) {
+				countUp++;
+				countDown--;
+			}
+			if (grid[i] == A2Direction.DOWN) {
+				countDown++;
+				countUp--;
+			}
+
+			if (width - countRight != 0 || width - countLeft != 0) {
+				System.out.println(height - down);
+				if (countUp - countDown <= 0) {
 					intersections[i] = i;
-					System.out.print("intersections[i]:" + intersections[i]);
+					System.out.println("intersections[i]:" + intersections[i]);
 				}
 
-			} if (up - down != 0) {
-				if (left - right == 0) {
+			}
+			if (height - countUp != 0 || height - countDown != 0) {
+				if (countLeft - countRight <= 0) {
 					intersections[i] = i;
-					System.out.print("intersections[i]2:" + intersections[i]);
+					System.out.println("intersections[i] 2 :" + intersections[i]);
 				}
 
 			}
