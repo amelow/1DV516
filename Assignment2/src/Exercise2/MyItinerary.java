@@ -58,52 +58,72 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		}
 		return height;
 	}
-
+	
+	/*
+	 * The variables horisontal and vertical will be compared to startH and startV. That is, we initiate
+	 * startH and startV to know where the line to be intersection will be drawn.
+	 */
 	@Override
 	public int[] getIntersections() {
-		int countLeft = 0;
-		int countRight = 0;
-		int countUp = 0;
-		int countDown = 0;
+		
 		int[] intersections = new int[grid.length];
+		int horisontal = 0;
+		int vertical = 0;
+		int count = 0;
+		int startH = 0;
+		int startV = 0;
+		/*
+		 * 1)
+		 */
 		for (int i = 0; i < grid.length; i++) {
-			if (grid[i] == A2Direction.LEFT) {
-				countLeft++;
-				countRight--;
-			}
-			if (grid[i] == A2Direction.RIGHT) {
-				countRight++;
-				countLeft--;
-			}
-			if (grid[i] == A2Direction.UP) {
-				countUp++;
-				countDown--;
-			}
-			if (grid[i] == A2Direction.DOWN) {
-				countDown++;
-				countUp--;
-			}
-
-			if (width - countRight != 0 || width - countLeft != 0) {
-				System.out.println(height - down);
-				if (countUp - countDown <= 0) {
-					intersections[i] = i;
-					System.out.println("intersections[i]:" + intersections[i]);
+			if (startH != 0 && startV != 0) {
+				if (grid[i] == A2Direction.LEFT) {
+					horisontal--;
+					
+				} else if (grid[i] == A2Direction.RIGHT) {
+					horisontal++;
+					
+				} else if (grid[i] == A2Direction.DOWN) {
+					vertical--;
+					
+				} else if (grid[i] == A2Direction.UP) {
+					vertical++;
+					
 				}
-
-			}
-			if (height - countUp != 0 || height - countDown != 0) {
-				if (countLeft - countRight <= 0) {
-					intersections[i] = i;
-					System.out.println("intersections[i] 2 :" + intersections[i]);
+				
+				if(horisontal == startH && vertical == startV) {
+					intersections[count] = i; 
+					count++;
 				}
+				/*
+				 * 2)
+				 */
+			} else {
+				if (grid[i] == A2Direction.LEFT) {
+					horisontal--;
+					startH--;
 
+				} else if (grid[i] == A2Direction.RIGHT) {
+					horisontal++;
+					startH++;
+
+				} else if (grid[i] == A2Direction.DOWN) {
+					vertical--;
+					startV--;
+
+				} else if (grid[i] == A2Direction.UP) {
+					vertical++;
+					startV++;
+				}
 			}
+
 		}
+
 		return intersections;
 
 	}
-
+	
+	
 	public String toString() {
 		StringBuilder build = new StringBuilder();
 		build.append('{');
