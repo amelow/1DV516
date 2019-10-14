@@ -1,5 +1,7 @@
 package Exercise2;
-
+/*
+ * Authors: Håkan Johansson, Amelie Löwe.
+ */
 public class ItineraryMain {
 	private A2Direction[] array;
 	private A2Itinerary<A2Direction> itinerary;

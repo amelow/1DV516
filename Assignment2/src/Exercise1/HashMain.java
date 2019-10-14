@@ -1,5 +1,8 @@
 package Exercise1;
 
+/*
+ * Authors: Håkan Johansson, Amelie Löwe.
+ */
 public class HashMain {
 
 	public static <T> void main(String[] args) {
