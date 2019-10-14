@@ -61,7 +61,25 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int[] getIntersections() {
-		return null;
+		int[] intersections = new int[grid.length];
+		for (int i = 0; i < grid.length; i++) {
+			if (width - right != 0 || width - left != 0) {
+				System.out.println(height-down);
+				if (height - down == 0 || height - up == 0) {
+					intersections[i] = i;
+					System.out.print("intersections[i]:" + intersections[i]);
+				}
+
+			} if (up - down != 0) {
+				if (left - right == 0) {
+					intersections[i] = i;
+					System.out.print("intersections[i]2:" + intersections[i]);
+				}
+
+			}
+		}
+		return intersections;
+
 	}
 
 	public String toString() {

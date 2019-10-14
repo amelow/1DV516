@@ -28,6 +28,11 @@ public class ItineraryMain {
 		System.out.println("Height: " + itinerary.heightOfItinerary());
 		itinerary.rotateRight();
 		System.out.println("Rotate: " + itinerary.toString());
+		int[] ints = itinerary.getIntersections();
+		for(int i = 0; i < ints.length;  i++) {
+			System.out.println("Get intersections: " + ints[i]);
+		}
+		System.out.println("Get intersections: " + ints.toString());
 
 	}
 }
