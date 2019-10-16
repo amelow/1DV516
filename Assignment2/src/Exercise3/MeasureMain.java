@@ -24,25 +24,25 @@ public class MeasureMain {
 
 		// Prinout Case 1
 		if (measure.isSameCollection(array1, array2))
-			System.out.println("Case 1: Same integers in arrays ");
+			System.out.println("Case 1: Same integers in the arrays ");
 		else
 			System.out.println("Case 1: Different integers in the arrays");
 
 		// Prinout Case 2
 		if (measure.isSameCollection(array3, array4))
-			System.out.println("Case 2: Same integers in arrays \"");
+			System.out.println("Case 2: Same integers in the arrays");
 		else
 			System.out.println("Case 2: Different integers in the arrays");
 
 		// Prinout Case 3
 		if (measure.isSameCollection(array5, array6))
-			System.out.println("Case 3: Same integers in arrays \"");
+			System.out.println("Case 3: Same integers in the arrays");
 		else
 			System.out.println("Case 3: Different integers in the arrays");
 
 		// Prinout Case 4
 		if (measure.isSameCollection(array7, array8))
-			System.out.println("Case 4: Same integers in arrays \"");
+			System.out.println("Case 4: Same integers in the arrays");
 		else
 			System.out.println("Case 4: Different integers in the arrays");
 	}
