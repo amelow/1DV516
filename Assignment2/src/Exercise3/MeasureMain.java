@@ -6,12 +6,33 @@ package Exercise3;
 public class MeasureMain {
 	public static void main(String[] args) {
 		MyMeasure measure = new MyMeasure();
-		int array1[] = { 3, 5, 2, 5, 2 };
-		int array2[] = { 2, 3, 5, 5, 2 };
+		// Case 1
+		int array1[] = { 1, 2, 4, 5 }; // same input, same order
+		int array2[] = { 1, 2, 4, 5 };
 
+		// Case 2
+		int array3[] = { 1, 2 }; // different sized arrays
+		int array4[] = { 1, 2, 4, 5, 3 };
+
+		// Case 3
+		int array5[] = { 1, 2, 3, 5 }; // same input but different order
+		int array6[] = { 1, 3, 5, 2 };
+
+		// Case 4
+		int array7[] = { 8, 4, 3, 5 }; // different input, same size
+		int array8[] = { 1, 3, 5, 2 };
+
+		// Prinout Case 1
 		if (measure.isSameCollection(array1, array2))
-			System.out.println("Yes");
+			System.out.println("Case 1: Same integers in arrays ");
 		else
-			System.out.println("No");
+			System.out.println("Case 1: Different integers in the arrays");
+
+		// Prinout Case 2
+		if (measure.isSameCollection(array3, array4))
+			System.out.println("Case 2: Same integers in arrays \"");
+		else
+			System.out.println("Case 2: Different integers in the arrays");
 	}
+
 }
