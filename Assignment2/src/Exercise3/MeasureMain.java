@@ -33,6 +33,12 @@ public class MeasureMain {
 			System.out.println("Case 2: Same integers in arrays \"");
 		else
 			System.out.println("Case 2: Different integers in the arrays");
+
+		// Prinout Case 3
+		if (measure.isSameCollection(array5, array6))
+			System.out.println("Case 3: Same integers in arrays \"");
+		else
+			System.out.println("Case 3: Different integers in the arrays");
 	}
 
 }
