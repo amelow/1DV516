@@ -10,6 +10,7 @@ public class MyMeasure implements A2Measure {
 		if (array1.length != array2.length) {
 			return false;
 		}
+		
 
 		return false;
 	}
