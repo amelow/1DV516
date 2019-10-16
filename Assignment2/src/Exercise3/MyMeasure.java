@@ -1,5 +1,7 @@
 package Exercise3;
 
+import java.util.Arrays;
+
 /*
  * Authors: Håkan Johansson, Amelie Löwe.
  */
@@ -28,14 +30,36 @@ public class MyMeasure implements A2Measure {
 
 	@Override
 	public int minDifferences(int[] array1, int[] array2) {
+		int sumOfDiff = 0;
+		if (array1.length != array2.length) {
+			System.err.println("Not the same sized array");
+		}
+		insertionSort(array1);
+		insertionSort(array2);
+		for (int i = 0; i < array1.length; i++) {
+			sumOfDiff += Math.pow(array1[i] - array2[i], 2);
+		}
 
-		return 0;
+		return sumOfDiff;
 	}
 
 	@Override
 	public int[] getPercentileRange(int[] arr, int lower, int upper) {
 
 		return null;
+	}
+
+	private static int[] insertionSort(int[] in) {
+		for (int i = 0; i < in.length; i++) {
+			int temp = in[i];
+			int j = i;
+			while (j > 0 && in[j - 1] > temp) {
+				in[j] = in[j - 1];
+				j = j - 1;
+			}
+			in[j] = temp;
+		}
+		return in;
 	}
 
 }

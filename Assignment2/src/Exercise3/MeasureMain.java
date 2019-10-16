@@ -45,6 +45,11 @@ public class MeasureMain {
 			System.out.println("Case 4: Same integers in the arrays");
 		else
 			System.out.println("Case 4: Different integers in the arrays");
+
+		int array9[] = { 2, 5, 3, 9 };
+		int array10[] = { 15, 12, 1, 3 };
+		System.out.println(measure.minDifferences(array9, array10));
+
 	}
 
 }
