@@ -53,11 +53,18 @@ public class MeasureMain {
 
 		int array9[] = { 2, 5, 3, 9 };
 		int array10[] = { 15, 12, 1, 3 };
-		System.out.println(measure.minDifferences(array9, array10));
-		
-		/* Testing the minDifferences() method */
+		System.out.println("Min difference: " + measure.minDifferences(array9, array10));
 
-
+		/* Testing the getPercentileRange() method */
+		int array11[] = { 15, 12, 1, 3, 15, 12, 1, 3, 15, 12, 12, 1, 3, 15, 12 };
+		int[] array13 = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+		System.out.println("Array 11: " + array11.length);
+		int[] array12 = measure.getPercentileRange(array11, 10, 100);
+		int[] array14 = measure.getPercentileRange(array13, 10, 100);
+		System.out.println("Array 12: " + array12.length);
+		for (int i = 0; i < array12.length; i++) {
+			System.out.println(array12[i]);
+		}
 	}
 
 }

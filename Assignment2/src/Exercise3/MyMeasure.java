@@ -45,15 +45,19 @@ public class MyMeasure implements A2Measure {
 
 	@Override
 	public int[] getPercentileRange(int[] arr, int lower, int upper) {
-		int size = arr.length;
-		int pos = 0;
+
 		if (upper < lower) {
 			throw new RuntimeException("Lower cannot be bigger than upper");
 		}
+		int percentPerElement = (int) Math.ceil(100.0 / arr.length);
+		double size1 = (upper - lower) / percentPerElement;
+		int size2 = (int) Math.ceil(size1);
 		insertionSort(arr);
-		int[] range = new int[size];
-		while (lower <= upper) {
-
+		int[] range = new int[size2];
+		for (int i = lower / percentPerElement, pos = 0; i < Math.ceil(upper / percentPerElement)
+				&& pos < size2; i++, pos++) {
+			range[pos] = arr[i];
+			lower += percentPerElement;
 		}
 		return range;
 	}
