@@ -62,9 +62,12 @@ public class MeasureMain {
 		int[] array12 = measure.getPercentileRange(array11, 10, 100);
 		int[] array14 = measure.getPercentileRange(array13, 10, 100);
 		System.out.println("Array 12: " + array12.length);
+		System.out.print("PercentileRange: ");
+		System.out.print("[ ");
 		for (int i = 0; i < array12.length; i++) {
-			System.out.println(array12[i]);
+			System.out.print(array12[i] + " ");
 		}
+		System.out.println("]");
 	}
 
 }
