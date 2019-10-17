@@ -1,7 +1,5 @@
 package Exercise2;
-/*
- * Authors: Håkan Johansson, Amelie Löwe.
- */
+
 public class ItineraryMain {
 	private A2Direction[] array;
 	private A2Itinerary<A2Direction> itinerary;
@@ -32,12 +30,10 @@ public class ItineraryMain {
 		itinerary.rotateRight();
 		System.out.println("Rotate: " + itinerary.toString());
 		int[] ints = itinerary.getIntersections();
-		for(int i = 0; i < ints.length;  i++) {
-			if(ints[i] != 0) {
+		for (int i = 0; i < ints.length; i++) {
+			if (ints[i] != 0) {
 				System.out.println("Get intersections: " + ints[i]);
 			}
 		}
-		System.out.println("Get intersections: " + ints.toString());
-
 	}
 }
