@@ -6,6 +6,9 @@ package Exercise3;
 public class MeasureMain {
 	public static void main(String[] args) {
 		MyMeasure measure = new MyMeasure();
+
+		/* Testing the isSameCollection() method */
+
 		// Case 1
 		int array1[] = { 1, 2, 4, 5 }; // same input, same order
 		int array2[] = { 1, 2, 4, 5 };
@@ -45,6 +48,8 @@ public class MeasureMain {
 			System.out.println("Case 4: Same integers in the arrays");
 		else
 			System.out.println("Case 4: Different integers in the arrays");
+
+		/* Testing the minDifferences() method */
 
 		int array9[] = { 2, 5, 3, 9 };
 		int array10[] = { 15, 12, 1, 3 };
