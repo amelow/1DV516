@@ -30,7 +30,7 @@ public class MyMeasure implements A2Measure {
 	public int minDifferences(int[] array1, int[] array2) {
 		int sumOfDiff = 0;
 		if (array1.length != array2.length) {
-			throw new ArithmeticException("Array1 and Array2 arent the same size");
+			throw new ArithmeticException("Array1 and Array2 arent the same size!");
 		}
 		insertionSort(array1);
 		insertionSort(array2);
