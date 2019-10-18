@@ -1,6 +1,6 @@
 package Exercise3;
 
-import java.util.Arrays;
+
 
 /*
  * Authors: Håkan Johansson, Amelie Löwe.
