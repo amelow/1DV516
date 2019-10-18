@@ -1,7 +1,5 @@
 package Exercise3;
 
-
-
 /*
  * Authors: Håkan Johansson, Amelie Löwe.
  */
