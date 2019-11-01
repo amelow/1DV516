@@ -1,10 +1,10 @@
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MyUndirectedGraph implements A3Graph {
-	ArrayList<Node> verticeList = new ArrayList<Node>();
+	private List<Node> verticeList;
+	private int numOfNodes = 0;
+	private int numOfEdges = 0;
 
 	MyUndirectedGraph() {
 
@@ -12,16 +12,31 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addVertex(int vertex) {
+		Node newV = new Node(vertex);
+		verticeList.add(newV);
 
+		numOfNodes++;
+
+	}
+
+	public int getAmountOfNodes() {
+		return numOfNodes;
+	}
+
+	public int getAmountOfEdges() {
+
+		return numOfEdges;
 	}
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 
+		numOfEdges++;
 	}
 
 	@Override
 	public boolean isConnected() {
+		boolean isConnected = false;
 
 		return false;
 	}
@@ -51,12 +66,12 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	private class Node {
+		public List<Integer> edgeList;
+		int connected;
 		Integer value;
-		private LinkedList<Integer> nodeList = new LinkedList<>();
 
 		public Node(int v) {
 			this.value = v;
 		}
-
 	}
 }
