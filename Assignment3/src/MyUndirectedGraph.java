@@ -1,51 +1,64 @@
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyUndirectedGraph implements A3Graph {
+	ArrayList<Node> verticeList = new ArrayList<Node>();
 
-    @Override
-    public void addVertex(int vertex) {
-	// TODO Auto-generated method stub
+	MyUndirectedGraph() {
 
-    }
+	}
 
-    @Override
-    public void addEdge(int sourceVertex, int targetVertex) {
-	// TODO Auto-generated method stub
+	@Override
+	public void addVertex(int vertex) {
 
-    }
+	}
 
-    @Override
-    public boolean isConnected() {
-	// TODO Auto-generated method stub
-	return false;
-    }
+	@Override
+	public void addEdge(int sourceVertex, int targetVertex) {
 
-    @Override
-    public boolean isAcyclic() {
-	// TODO Auto-generated method stub
-	return false;
-    }
+	}
 
-    @Override
-    public List<List<Integer>> connectedComponents() {
-	// TODO Auto-generated method stub
-	return null;
-    }
+	@Override
+	public boolean isConnected() {
 
-    @Override
-    public boolean hasEulerPath() {
-	// TODO Auto-generated method stub
-	return A3Graph.super.hasEulerPath();
-    }
+		return false;
+	}
 
-    @Override
-    public List<Integer> eulerPath() {
-	// TODO Auto-generated method stub
-	return A3Graph.super.eulerPath();
-    }
-    
-    
+	@Override
+	public boolean isAcyclic() {
 
+		return false;
+	}
+
+	@Override
+	public List<List<Integer>> connectedComponents() {
+
+		return null;
+	}
+
+	@Override
+	public boolean hasEulerPath() {
+
+		return A3Graph.super.hasEulerPath();
+	}
+
+	@Override
+	public List<Integer> eulerPath() {
+
+		return A3Graph.super.eulerPath();
+	}
+
+	private class Node {
+		Integer value;
+		Node next = null;
+		Node prev = null;
+
+		Node(int v, Node previous, Node next) {
+			value = v;
+			this.next = next;
+			this.prev = previous;
+		}
+
+	}
 }
