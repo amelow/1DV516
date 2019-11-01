@@ -7,12 +7,10 @@ public class UndirectedGraphTest {
 	}
 
 	private static void Test() {
-		MyUndirectedGraph graph = new MyUndirectedGraph();
-		graph.addVertex(0);
-		graph.addVertex(1);
-		graph.addVertex(2);
-		graph.addVertex(3);
-		System.out.print("Vertices in graph: " + graph.verticeList.size());
+	//	MyUndirectedGraph graph = new MyUndirectedGraph(3);
+	//	graph.addEdge(0, 1);
+	
+	
 
 	}
 

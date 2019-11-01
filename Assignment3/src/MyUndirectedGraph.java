@@ -2,20 +2,26 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ */
 public class MyUndirectedGraph implements A3Graph {
-	public List<Node> verticeList;
+	public ArrayList<Node> verticeList;
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
-	MyUndirectedGraph() {
-
+	MyUndirectedGraph(int size) {
+		for (int i = 1; i <= size; i++)
+			addVertex(i);
 	}
 
 	@Override
 	public void addVertex(int vertex) {
-		Node newV = new Node(vertex);
-		verticeList.add(newV);
+//		Node newV = new Node(vertex);
+//		 verticeList.add(newV);
+		verticeList.add(new Node(vertex));
 
+		System.out.println("VerticeList: " + verticeList.size());
 		numOfNodes++;
 
 	}
@@ -31,12 +37,14 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		for (Node node : verticeList) {
-			if (sourceVertex == node.value) {
-
-			}
-
-		}
+		System.out.println("Edge between vertex " + sourceVertex + " and vertex " + targetVertex);
+		/*
+		 * for (Node node : verticeList) { if (sourceVertex == node.value) {
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
 		numOfEdges++;
 	}
 
@@ -79,6 +87,5 @@ public class MyUndirectedGraph implements A3Graph {
 		public Node(int v) {
 			this.value = v;
 		}
-
 	}
 }
