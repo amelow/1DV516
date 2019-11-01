@@ -6,24 +6,25 @@ import java.util.List;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyUndirectedGraph implements A3Graph {
-	public ArrayList<Node> verticeList;
+	private ArrayList<Node> verticeList = new ArrayList<>();
+//	private List<Node> verticeList;
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
 	MyUndirectedGraph(int size) {
-		for (int i = 1; i <= size; i++)
-			addVertex(i);
+		for (int vertex = 0; vertex <= size; vertex++) {
+			addVertex(vertex);
+		}
+
 	}
 
 	@Override
 	public void addVertex(int vertex) {
-//		Node newV = new Node(vertex);
-//		 verticeList.add(newV);
-		verticeList.add(new Node(vertex));
-
-		System.out.println("VerticeList: " + verticeList.size());
+		 Node newV = new Node(vertex);
+		 verticeList.add(newV);
 		numOfNodes++;
-
+		System.out.println("VerticeList: "+ verticeList.size());
+		//System.out.println("NumOfVertices: "+ numOfNodes);
 	}
 
 	public int getAmountOfNodes() {

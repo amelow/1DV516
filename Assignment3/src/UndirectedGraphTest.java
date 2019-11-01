@@ -7,8 +7,8 @@ public class UndirectedGraphTest {
 	}
 
 	private static void Test() {
-	//	MyUndirectedGraph graph = new MyUndirectedGraph(3);
-	//	graph.addEdge(0, 1);
+		MyUndirectedGraph graph = new MyUndirectedGraph(3);
+		graph.addEdge(0, 1);
 	
 	
 
