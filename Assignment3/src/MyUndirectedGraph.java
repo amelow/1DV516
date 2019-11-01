@@ -1,8 +1,9 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyUndirectedGraph implements A3Graph {
-	private List<Node> verticeList;
+	public List<Node> verticeList;
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
@@ -30,7 +31,12 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
+		for (Node node : verticeList) {
+			if (sourceVertex == node.value) {
 
+			}
+
+		}
 		numOfEdges++;
 	}
 
@@ -66,12 +72,13 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	private class Node {
-		public List<Integer> edgeList;
+		public List<Integer> edgeList = new ArrayList<Integer>();
 		int connected;
 		Integer value;
 
 		public Node(int v) {
 			this.value = v;
 		}
+
 	}
 }
