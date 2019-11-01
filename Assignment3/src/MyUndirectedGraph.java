@@ -20,11 +20,13 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addVertex(int vertex) {
-		 Node newV = new Node(vertex);
-		 verticeList.add(newV);
+		Node newVertex = new Node(vertex);
+		if (newVertex != null) {
+			verticeList.add(newVertex);
+		}
+
 		numOfNodes++;
-		System.out.println("VerticeList: "+ verticeList.size());
-		//System.out.println("NumOfVertices: "+ numOfNodes);
+
 	}
 
 	public int getAmountOfNodes() {
@@ -39,13 +41,7 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		System.out.println("Edge between vertex " + sourceVertex + " and vertex " + targetVertex);
-		/*
-		 * for (Node node : verticeList) { if (sourceVertex == node.value) {
-		 * 
-		 * }
-		 * 
-		 * }
-		 */
+
 		numOfEdges++;
 	}
 
