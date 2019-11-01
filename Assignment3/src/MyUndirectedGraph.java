@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MyUndirectedGraph implements A3Graph {
@@ -51,13 +52,10 @@ public class MyUndirectedGraph implements A3Graph {
 
 	private class Node {
 		Integer value;
-		Node next = null;
-		Node prev = null;
+		private LinkedList<Integer> nodeList = new LinkedList<>();
 
-		Node(int v, Node previous, Node next) {
-			value = v;
-			this.next = next;
-			this.prev = previous;
+		public Node(int v) {
+			this.value = v;
 		}
 
 	}
