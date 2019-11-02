@@ -41,6 +41,13 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		System.out.println("Edge between vertex " + sourceVertex + " and vertex " + targetVertex);
+		for (int i = 0; i < verticeList.size(); i++) {
+			if (i == sourceVertex) {
+
+			} else if (i == targetVertex) {
+			//	newConnection(sourceVertex);
+			}
+		}
 
 		numOfEdges++;
 	}
@@ -76,13 +83,24 @@ public class MyUndirectedGraph implements A3Graph {
 		return A3Graph.super.eulerPath();
 	}
 
-	private class Node {
+	public static class Node {
 		public List<Integer> edgeList = new ArrayList<Integer>();
+		// public List<Integer> outList = new ArrayList<Integer>();
 		int connected;
 		Integer value;
 
 		public Node(int v) {
 			this.value = v;
+		}
+
+		void newConnection(int connection) {
+			if (edgeList.contains(connection)) {
+				System.out.println("already exists");
+
+			} else {
+				edgeList.add(connection);
+			}
+
 		}
 	}
 }
