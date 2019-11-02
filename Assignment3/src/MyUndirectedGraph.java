@@ -41,13 +41,19 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		System.out.println("Edge between vertex " + sourceVertex + " and vertex " + targetVertex);
-		for (int i = 0; i < verticeList.size(); i++) {
+		for (Node n : verticeList) {
+			int i = n.value;
 			if (i == sourceVertex) {
-
 			} else if (i == targetVertex) {
-			//	newConnection(sourceVertex);
+
 			}
 		}
+		/*
+		 * for (int i = 0; i < verticeList.size(); i++) { if (i == sourceVertex) {
+		 * 
+		 * } else if (i == targetVertex) { // newConnection(sourceVertex);
+		 * 
+		 */
 
 		numOfEdges++;
 	}
@@ -59,9 +65,18 @@ public class MyUndirectedGraph implements A3Graph {
 		return false;
 	}
 
+//An acyclic graph is a graph with no cycles.
 	@Override
 	public boolean isAcyclic() {
-
+		/*
+		 * PsudoCode 1: If graph !contain nodes== acyclic 2: if graph !contain leafs
+		 * ==cyclic
+		 * 
+		 * 
+		 */
+		if (numOfEdges == 0) {
+			return false;
+		}
 		return false;
 	}
 
@@ -84,8 +99,8 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	public static class Node {
-		public List<Integer> edgeList = new ArrayList<Integer>();
-		// public List<Integer> outList = new ArrayList<Integer>();
+		public List<Integer> inList = new ArrayList<Integer>();
+		public List<Integer> outList = new ArrayList<Integer>();
 		int connected;
 		Integer value;
 
@@ -94,11 +109,11 @@ public class MyUndirectedGraph implements A3Graph {
 		}
 
 		void newConnection(int connection) {
-			if (edgeList.contains(connection)) {
+			if (inList.contains(connection)) {
 				System.out.println("already exists");
 
 			} else {
-				edgeList.add(connection);
+				inList.add(connection);
 			}
 
 		}
