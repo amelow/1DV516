@@ -44,7 +44,10 @@ public class MyUndirectedGraph implements A3Graph {
 		for (Node n : verticeList) {
 			int i = n.value;
 			if (i == sourceVertex) {
+				List<Integer> inList = new ArrayList<Integer>();
+				inList.add(targetVertex);
 			} else if (i == targetVertex) {
+				List<Integer> outList = new ArrayList<Integer>();
 
 			}
 		}
