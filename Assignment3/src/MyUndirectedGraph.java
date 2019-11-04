@@ -7,12 +7,11 @@ import java.util.List;
  */
 public class MyUndirectedGraph implements A3Graph {
 	private ArrayList<Node> verticeList = new ArrayList<>();
-//	private List<Node> verticeList;
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
 	MyUndirectedGraph(int size) {
-		for (int vertex = 0; vertex <= size; vertex++) {
+		for (int vertex = 0; vertex < size; vertex++) {
 			addVertex(vertex);
 		}
 
@@ -48,6 +47,7 @@ public class MyUndirectedGraph implements A3Graph {
 				inList.add(targetVertex);
 			} else if (i == targetVertex) {
 				List<Integer> outList = new ArrayList<Integer>();
+				outList.add(sourceVertex);
 
 			}
 		}
@@ -102,22 +102,12 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	public static class Node {
-		public List<Integer> inList = new ArrayList<Integer>();
-		public List<Integer> outList = new ArrayList<Integer>();
+
 		int connected;
 		Integer value;
 
 		public Node(int v) {
 			this.value = v;
-		}
-
-		void newConnection(int connection) {
-			if (inList.contains(connection)) {
-				System.out.println("already exists");
-
-			} else {
-				inList.add(connection);
-			}
 
 		}
 	}

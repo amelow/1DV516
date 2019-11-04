@@ -8,7 +8,7 @@ public class UndirectedGraphTest {
 
 	private static void Test() {
 		// New Undirected Graph with 4 nodes
-		MyUndirectedGraph graph = new MyUndirectedGraph(3);
+		MyUndirectedGraph graph = new MyUndirectedGraph(5);
 		System.out.println("Amount of Vertices in Graph: " + graph.getAmountOfNodes());
 		// Adding edges between the vertices in the graph
 		graph.addEdge(0, 1);
