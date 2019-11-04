@@ -10,8 +10,8 @@ public class MyUndirectedGraph implements A3Graph {
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
-	MyUndirectedGraph(int size) {
-		for (int vertex = 0; vertex < size; vertex++) {
+	MyUndirectedGraph(int amountOfVertices) {
+		for (int vertex = 0; vertex < amountOfVertices; vertex++) {
 			addVertex(vertex);
 		}
 
@@ -39,26 +39,23 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		System.out.println("Edge between vertex " + sourceVertex + " and vertex " + targetVertex);
-		for (Node n : verticeList) {
-			int i = n.value;
-			if (i == sourceVertex) {
-				List<Integer> inList = new ArrayList<Integer>();
-				inList.add(targetVertex);
-			} else if (i == targetVertex) {
-				List<Integer> outList = new ArrayList<Integer>();
-				outList.add(sourceVertex);
 
-			}
-		}
-		/*
-		 * for (int i = 0; i < verticeList.size(); i++) { if (i == sourceVertex) {
-		 * 
-		 * } else if (i == targetVertex) { // newConnection(sourceVertex);
-		 * 
-		 */
-
+		verticeList.get(sourceVertex).connectionList.add(verticeList.get(targetVertex));
+		verticeList.get(targetVertex).connectionList.add(verticeList.get(sourceVertex));
+		System.out.println("Source: " + sourceVertex);
+		System.out.println("Target: " + targetVertex);
 		numOfEdges++;
+	}
+
+	public void removeEdge(int sourceVertex, int targetVertex) {
+		System.out.println("----------------");
+
+		verticeList.get(sourceVertex).connectionList.remove(verticeList.get(targetVertex));
+		verticeList.get(targetVertex).connectionList.remove(verticeList.get(sourceVertex));
+		System.out.println("Source: " + sourceVertex);
+		System.out.println("Target: " + targetVertex);
+
+		numOfEdges--;
 	}
 
 	@Override
@@ -68,19 +65,23 @@ public class MyUndirectedGraph implements A3Graph {
 		return false;
 	}
 
-//An acyclic graph is a graph with no cycles.
 	@Override
 	public boolean isAcyclic() {
-		/*
-		 * PsudoCode 1: If graph !contain nodes== acyclic 2: if graph !contain leafs
-		 * ==cyclic
-		 * 
-		 * 
-		 */
+		boolean isVisited = false;
 		if (numOfEdges == 0) {
 			return false;
+		} else if (numOfNodes == 0) {
+			return true;
+		}
+		for (int i = 0; i < verticeList.size(); i++) {
+			for (int j = 0; j < verticeList.get(i).connectionList.size(); j++) {
+
+				removeEdge(verticeList.get(i).connected, verticeList.get(i).connectionList.get(j).connected);
+			}
+
 		}
 		return false;
+
 	}
 
 	@Override
@@ -102,6 +103,7 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	public static class Node {
+		ArrayList<Node> connectionList = new ArrayList<>();
 
 		int connected;
 		Integer value;
@@ -110,5 +112,6 @@ public class MyUndirectedGraph implements A3Graph {
 			this.value = v;
 
 		}
+
 	}
 }
