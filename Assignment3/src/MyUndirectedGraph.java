@@ -61,25 +61,21 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean isConnected() {
 		boolean isConnected = false;
-
+		if (numOfEdges == 0 || numOfNodes == 0) {
+			return false;
+		}
 		return isConnected;
 	}
 
 	@Override
 	public boolean isAcyclic() {
-		boolean isVisited = false;
-		if (numOfEdges == 0) {
-			return false;
-		} else if (numOfNodes == 0) {
-			return true;
-		}
+		boolean isAcyclic = false;
+		// boolean[] isVisited = new boolean[verticeList.size()];
+		int currentVertex;
 
 		for (int i = 0; i < verticeList.size(); i++) {
-			if (verticeList.get(i).connectionList.size() < 2) {
-				continue;
-			}
 			for (int j = 0; j < verticeList.get(i).connectionList.size(); j++) {
-				removeEdge(verticeList.get(i).connected, verticeList.get(i).connectionList.get(j).connected);
+//				removeEdge(verticeList.get(i).connected, verticeList.get(i).connectionList.get(j).connected);
 
 			}
 
