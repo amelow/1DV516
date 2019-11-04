@@ -19,7 +19,6 @@ public class MyDirectedGraph implements A3Graph {
 		if (newVertex != null) {
 			verticeList.add(newVertex);
 		}
-
 	}
 
 	@Override
@@ -31,8 +30,14 @@ public class MyDirectedGraph implements A3Graph {
 	public boolean isConnected() {
 		if (numOfEdges == 0 || numOfNodes == 0) {
 			return false;
-
-		return false;
+		} else {
+			for (int i = 0; i < numOfNodes; i++) {
+				if (verticeList.get(i).connectionList.size() == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -43,13 +48,13 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public List<List<Integer>> connectedComponents() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public static class Node {
 		ArrayList<Node> inList = new ArrayList<>();
 		ArrayList<Node> outList = new ArrayList<>();
+		ArrayList<Node> connectionList = new ArrayList<>();
 
 		int connected;
 		Integer value;
