@@ -81,7 +81,7 @@ public class MyUndirectedGraph implements A3Graph {
 	/*
 	 * The solution is based on the definition of the Eulers path: "A graph has an
 	 * Euler path if and only if there are at most two vertices with odd degree."
-	 * found on the webpage: http://discrete.openmathbooks.org/dmoi2/sec_paths.html
+	 * found on the web-page: http://discrete.openmathbooks.org/dmoi2/sec_paths.html
 	 */
 	@Override
 	public boolean hasEulerPath() {

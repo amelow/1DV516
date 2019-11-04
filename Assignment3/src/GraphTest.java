@@ -9,6 +9,7 @@ public class GraphTest {
 
 	// New Undirected Graph
 	private static void TestUndirected() {
+
 		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(5);
 
 		// Adding edges between the vertices in the graph
@@ -25,13 +26,21 @@ public class GraphTest {
 		// Checking if the undirected graph is connected
 		System.out.println("Is Connected: " + undirectedGraph.isConnected());
 
-		// Checking if the undirected graph has a Eulerspath
+		// Checking if the undirected graph has a Euler path
 		System.out.println("Has a Euler path: " + undirectedGraph.hasEulerPath());
+
+		// Returning the Euler path
+		System.out.println("Euler path list: " + undirectedGraph.eulerPath());
+
+		// The connected Components list
+		System.out.println("Connected Components: " + undirectedGraph.connectedComponents());
 	}
 
 	// New directed Graph
 	private static void TestDirected() {
+
 		MyDirectedGraph directedGraph = new MyDirectedGraph(5);
+
 		// Adding edges between the vertices in the graph
 		directedGraph.addEdge(0, 1);
 		directedGraph.addEdge(0, 3);
@@ -43,6 +52,9 @@ public class GraphTest {
 
 		// Checking if the directed graph is connected
 		System.out.println("Is Connected: " + directedGraph.isConnected());
+
+		// The connected Components list
+		System.out.println("Connected Components: " + directedGraph.connectedComponents());
 	}
 
 }
