@@ -4,6 +4,8 @@ import java.util.List;
 
 public class MyDirectedGraph implements A3Graph {
 	private ArrayList<Node> verticeList = new ArrayList<>();
+	private int numOfNodes = 0;
+	private int numOfEdges = 0;
 
 	public MyDirectedGraph(int amountOfVertices) {
 		for (int vertex = 0; vertex < amountOfVertices; vertex++) {
@@ -27,6 +29,8 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isConnected() {
+		if (numOfEdges == 0 || numOfNodes == 0) {
+			return false;
 
 		return false;
 	}

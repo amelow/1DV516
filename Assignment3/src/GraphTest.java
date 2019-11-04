@@ -2,7 +2,7 @@
 public class GraphTest {
 
 	public static void main(String[] args) {
-		TestUndirected();
+		// TestUndirected();
 		TestDirected();
 
 	}
@@ -37,8 +37,12 @@ public class GraphTest {
 		directedGraph.addEdge(0, 3);
 		directedGraph.addEdge(1, 2);
 		directedGraph.addEdge(2, 3);
+
 		// Checking if the directed graph is acyclic
-		directedGraph.isAcyclic();
+		System.out.println("Is Acyclic: " + directedGraph.isAcyclic());
+
+		// Checking if the directed graph is connected
+		System.out.println("Is Connected: " + directedGraph.isConnected());
 	}
 
 }

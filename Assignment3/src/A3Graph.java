@@ -14,12 +14,10 @@ public interface A3Graph {
 	public List<List<Integer>> connectedComponents();
 
 	default public boolean hasEulerPath() {
-		
 		return false;
 	}
 
 	default public List<Integer> eulerPath() {
-		System.out.println("Not implemented");
 		return null;
 	}
 

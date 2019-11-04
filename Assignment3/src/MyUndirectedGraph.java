@@ -37,8 +37,6 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	public void removeEdge(int sourceVertex, int targetVertex) {
-		System.out.println("----------------");
-
 		verticeList.get(sourceVertex).connectionList.remove(verticeList.get(targetVertex));
 		verticeList.get(targetVertex).connectionList.remove(verticeList.get(sourceVertex));
 		System.out.println("Source: " + sourceVertex);
@@ -103,12 +101,14 @@ public class MyUndirectedGraph implements A3Graph {
 		}
 		result = false;
 		return result;
-
 	}
 
+	/*
+	 * Returns a list of vertices of length |E|+1. The vertices in the list
+	 * represent how to traverse the graph to complete an Euler path.
+	 */
 	@Override
 	public List<Integer> eulerPath() {
-
 		return A3Graph.super.eulerPath();
 	}
 
