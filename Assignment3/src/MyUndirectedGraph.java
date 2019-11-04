@@ -75,19 +75,12 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean isAcyclic() {
 		boolean isAcyclic = false;
-		// boolean[] isVisited = new boolean[verticeList.size()];
+
 		int currentVertex;
 		for (int i = 0; i < verticeList.size() - 1; i++) {
 			Node current = verticeList.get(i);
 			Node nextOfStart = verticeList.get(i - (i - 1));
 			for (int j = 0; j < current.connectionList.size(); j++) {
-				// if(current!=nextOfStart&&current)
-
-//				if (current == verticeList.get(j) && vert) {
-
-//				}
-//				removeEdge(verticeList.get(i).connected, verticeList.get(i).connectionList.get(j).connected);
-
 			}
 
 		}
