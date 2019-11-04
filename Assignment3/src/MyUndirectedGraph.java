@@ -60,11 +60,16 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isConnected() {
-		boolean isConnected = false;
 		if (numOfEdges == 0 || numOfNodes == 0) {
 			return false;
+		} else {
+			for (int i = 0; i < numOfNodes; i++) {
+				if (verticeList.get(i).connectionList.size() == 0) {
+					return false;
+				}
+			}
 		}
-		return isConnected;
+		return true;
 	}
 
 	@Override
@@ -76,9 +81,8 @@ public class MyUndirectedGraph implements A3Graph {
 			Node current = verticeList.get(i);
 			Node nextOfStart = verticeList.get(i - (i - 1));
 			for (int j = 0; j < current.connectionList.size(); j++) {
-				//if(current!=nextOfStart&&current)
-				
-				
+				// if(current!=nextOfStart&&current)
+
 //				if (current == verticeList.get(j) && vert) {
 
 //				}
