@@ -22,19 +22,18 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean isConnected() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public boolean isAcyclic() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
