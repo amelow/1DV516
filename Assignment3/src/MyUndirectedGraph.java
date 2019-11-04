@@ -62,7 +62,7 @@ public class MyUndirectedGraph implements A3Graph {
 	public boolean isConnected() {
 		boolean isConnected = false;
 
-		return false;
+		return isConnected;
 	}
 
 	@Override
@@ -73,10 +73,14 @@ public class MyUndirectedGraph implements A3Graph {
 		} else if (numOfNodes == 0) {
 			return true;
 		}
-		for (int i = 0; i < verticeList.size(); i++) {
-			for (int j = 0; j < verticeList.get(i).connectionList.size(); j++) {
 
+		for (int i = 0; i < verticeList.size(); i++) {
+			if (verticeList.get(i).connectionList.size() < 2) {
+				continue;
+			}
+			for (int j = 0; j < verticeList.get(i).connectionList.size(); j++) {
 				removeEdge(verticeList.get(i).connected, verticeList.get(i).connectionList.get(j).connected);
+
 			}
 
 		}
