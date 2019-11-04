@@ -81,17 +81,15 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	/*
-	 * A graph has an Euler circuit if and only if the degree of every vertex is
-	 * even.
-	 * 
-	 * A graph has an Euler path if and only if there are at most two vertices with
-	 * odd degree.
+	 * The solution is based on the definition of the Eulers path: "A graph has an
+	 * Euler path if and only if there are at most two vertices with odd degree."
+	 * found on the webpage: http://discrete.openmathbooks.org/dmoi2/sec_paths.html
 	 */
 	@Override
 	public boolean hasEulerPath() {
 		int amountOfOddVertices = 0;
 		boolean result = false;
-		if (isConnected() == false) {
+		if (!isConnected()) {
 			return result;
 		}
 		for (int i = 0; i < verticeList.size(); i++) {
@@ -103,7 +101,8 @@ public class MyUndirectedGraph implements A3Graph {
 				return result;
 			}
 		}
-		return result = false;
+		result = false;
+		return result;
 
 	}
 

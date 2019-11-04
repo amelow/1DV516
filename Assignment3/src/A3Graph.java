@@ -14,7 +14,7 @@ public interface A3Graph {
 	public List<List<Integer>> connectedComponents();
 
 	default public boolean hasEulerPath() {
-		System.out.println("Not implemented");
+		
 		return false;
 	}
 
