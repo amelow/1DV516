@@ -94,8 +94,17 @@ public class MyUndirectedGraph implements A3Graph {
 		if (isConnected() == false) {
 			return result;
 		}
+		for (int i = 0; i < verticeList.size(); i++) {
+			if (verticeList.get(i).connectionList.size() % 2 == 1) {
+				amountOfOddVertices++;
+			}
+			if (amountOfOddVertices <= 2) {
+				result = true;
+				return result;
+			}
+		}
+		return result = false;
 
-		return A3Graph.super.hasEulerPath();
 	}
 
 	@Override
