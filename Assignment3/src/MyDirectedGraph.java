@@ -1,7 +1,9 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyDirectedGraph implements A3Graph {
+	private ArrayList<Node> verticeList = new ArrayList<>();
 
 	public MyDirectedGraph(int amountOfVertices) {
 		for (int vertex = 0; vertex < amountOfVertices; vertex++) {
@@ -11,6 +13,10 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public void addVertex(int vertex) {
+		Node newVertex = new Node(vertex);
+		if (newVertex != null) {
+			verticeList.add(newVertex);
+		}
 
 	}
 
@@ -36,6 +42,19 @@ public class MyDirectedGraph implements A3Graph {
 	public List<List<Integer>> connectedComponents() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static class Node {
+		ArrayList<Node> connectionList = new ArrayList<>();
+
+		int connected;
+		Integer value;
+
+		public Node(int v) {
+			this.value = v;
+
+		}
+
 	}
 
 }

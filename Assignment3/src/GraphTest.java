@@ -16,10 +16,11 @@ public class GraphTest {
 		undirectedGraph.addEdge(0, 1);
 		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
-//		undirectedGraph.addEdge(2, 3);
+		undirectedGraph.addEdge(2, 3);
+		
 		// Checking if the undirected graph is acyclic
 		undirectedGraph.isAcyclic();
-		System.out.println("Is Acyclic? "+undirectedGraph.isAcyclic());
+		System.out.println("Is Acyclic? " + undirectedGraph.isAcyclic());
 		// Checking if the undirected graph is connected
 		undirectedGraph.isConnected();
 	}
