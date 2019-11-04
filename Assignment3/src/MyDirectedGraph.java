@@ -44,7 +44,8 @@ public class MyDirectedGraph implements A3Graph {
 	}
 
 	public static class Node {
-		ArrayList<Node> connectionList = new ArrayList<>();
+		ArrayList<Node> inList = new ArrayList<>();
+		ArrayList<Node> outList = new ArrayList<>();
 
 		int connected;
 		Integer value;

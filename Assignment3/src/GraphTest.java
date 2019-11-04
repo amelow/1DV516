@@ -10,7 +10,7 @@ public class GraphTest {
 	// New Undirected Graph
 	private static void TestUndirected() {
 		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(5);
-		System.out.println("Amount of Vertices in Graph: " + undirectedGraph.getAmountOfNodes());
+
 		// Adding edges between the vertices in the graph
 		System.out.println("Edges in graph:");
 		undirectedGraph.addEdge(0, 1);
@@ -20,10 +20,13 @@ public class GraphTest {
 		undirectedGraph.addEdge(3, 4);
 
 		// Checking if the undirected graph is acyclic
-		undirectedGraph.isAcyclic();
-		System.out.println("Is Acyclic? " + undirectedGraph.isAcyclic());
+		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
+
 		// Checking if the undirected graph is connected
-		System.out.println("Is Connected? " + undirectedGraph.isConnected());
+		System.out.println("Is Connected: " + undirectedGraph.isConnected());
+
+		// Checking if the undirected graph has a Eulerspath
+		System.out.println(" Has a Eulers Path: " + undirectedGraph.hasEulerPath());
 	}
 
 	// New directed Graph

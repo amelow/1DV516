@@ -23,18 +23,7 @@ public class MyUndirectedGraph implements A3Graph {
 		if (newVertex != null) {
 			verticeList.add(newVertex);
 		}
-
 		numOfNodes++;
-
-	}
-
-	public int getAmountOfNodes() {
-		return numOfNodes;
-	}
-
-	public int getAmountOfEdges() {
-
-		return numOfEdges;
 	}
 
 	@Override
@@ -74,9 +63,6 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-		boolean isAcyclic = false;
-
-		int currentVertex;
 		for (int i = 0; i < verticeList.size() - 1; i++) {
 			Node current = verticeList.get(i);
 			Node nextOfStart = verticeList.get(i - (i - 1));
@@ -94,8 +80,20 @@ public class MyUndirectedGraph implements A3Graph {
 		return null;
 	}
 
+	/*
+	 * A graph has an Euler circuit if and only if the degree of every vertex is
+	 * even.
+	 * 
+	 * A graph has an Euler path if and only if there are at most two vertices with
+	 * odd degree.
+	 */
 	@Override
 	public boolean hasEulerPath() {
+		int amountOfOddVertices = 0;
+		boolean result = false;
+		if (isConnected() == false) {
+			return result;
+		}
 
 		return A3Graph.super.hasEulerPath();
 	}
