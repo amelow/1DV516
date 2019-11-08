@@ -1,6 +1,3 @@
-package generic.tests;
-
-import generic.MySocialNetwork;
 
 public class TestSocialNetwork {
 
