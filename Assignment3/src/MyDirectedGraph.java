@@ -6,7 +6,7 @@ import java.util.List;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyDirectedGraph implements A3Graph {
-	private ArrayList<Node> verticeList = new ArrayList<>();
+	private List<List<Integer>> vertice = new ArrayList<List<Integer>>();
 	private int numOfNodes = 0;
 	private int numOfEdges = 0;
 
@@ -20,7 +20,7 @@ public class MyDirectedGraph implements A3Graph {
 	public void addVertex(int vertex) {
 		Node newVertex = new Node(vertex);
 		if (newVertex != null) {
-			verticeList.add(newVertex);
+			vertice.add(newVertex);
 		}
 	}
 
@@ -35,9 +35,9 @@ public class MyDirectedGraph implements A3Graph {
 			return false;
 		} else {
 			for (int i = 0; i < numOfNodes; i++) {
-				if (verticeList.get(i).connectionList.size() == 0) {
+//				if (vertice.get(i).connectionList.size() == 0) {
 					return false;
-				}
+//				}
 			}
 		}
 		return true;
@@ -52,21 +52,6 @@ public class MyDirectedGraph implements A3Graph {
 	@Override
 	public List<List<Integer>> connectedComponents() {
 		return null;
-	}
-
-	public static class Node {
-		ArrayList<Node> inList = new ArrayList<>();
-		ArrayList<Node> outList = new ArrayList<>();
-		ArrayList<Node> connectionList = new ArrayList<>();
-
-		int connected;
-		Integer value;
-
-		public Node(int v) {
-			this.value = v;
-
-		}
-
 	}
 
 }
