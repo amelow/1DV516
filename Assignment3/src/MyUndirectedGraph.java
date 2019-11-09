@@ -80,21 +80,6 @@ public class MyUndirectedGraph implements A3Graph {
 				}
 			}
 		}
-//		for (int i = 0; i < vertices.size(); i++) {
-//			visited[i] = true;
-//
-//			for (int j = 0; j < vertices.size(); j++) {
-//				if (vertices.get(i).get(j) == 1 && j != i) {
-//					for (int k = 0; k < vertices.size(); k++) {
-//						if (vertices.get(j).get(k) == 1 && visited[k] == true) {
-//							return false;
-//						}
-//					}
-//
-//				}
-//			}
-//		}
-
 		return true;
 
 	}
