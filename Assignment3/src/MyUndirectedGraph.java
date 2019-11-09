@@ -58,7 +58,6 @@ public class MyUndirectedGraph implements A3Graph {
 					count++;
 				}
 			}
-
 			if (count == numOfVertices) {
 				return false;
 			}
