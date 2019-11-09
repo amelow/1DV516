@@ -68,19 +68,32 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-
 		boolean[] visited = new boolean[numOfVertices];
-		int prev = 0;
+		int parent = 0;
+		boolean acyclic = false;
 
-		for (int i = 0; i < vertices.size(); i++) {
-			for (int j = 0; j < vertices.size(); j++) {
-				// prev =
-				if (vertices.get(i).get(j) == 1) {
+		for (int i = 0; i < vertices.size(); i++) { // vertices
+			parent = i;
+			visited[i] = true;
+			for (int j = 0; j < vertices.size(); j++) { // connections
+				if (vertices.get(i).get(j) == 1) { // if they have a connection
+					visited[j] = true;
 
+					for (int k = 0; k < vertices.size(); k++) {
+						parent = j;
+
+						// if(visited[k] == true && k != parent) {
+						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
+							return acyclic;
+						} else {
+							acyclic = true;
+						}
+					}
+//					vertices.get(j);
 				}
 			}
 		}
-		return true;
+		return acyclic;
 
 	}
 
