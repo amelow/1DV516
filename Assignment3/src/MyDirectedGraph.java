@@ -2,6 +2,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ */
 public class MyDirectedGraph implements A3Graph {
 	private ArrayList<Node> verticeList = new ArrayList<>();
 	private int numOfNodes = 0;

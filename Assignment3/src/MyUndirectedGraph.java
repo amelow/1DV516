@@ -16,9 +16,7 @@ public class MyUndirectedGraph implements A3Graph {
 			ArrayList<Integer> v = new ArrayList<Integer>();
 			for (int j = 0; j < amountOfVertices; j++) {
 				v.add(0);
-
 			}
-
 			vertices.add(v);
 		}
 
@@ -73,21 +71,30 @@ public class MyUndirectedGraph implements A3Graph {
 	public boolean isAcyclic() {
 
 		boolean[] visited = new boolean[numOfVertices];
+		int prev = 0;
 
 		for (int i = 0; i < vertices.size(); i++) {
-			visited[i] = true;
-
 			for (int j = 0; j < vertices.size(); j++) {
-				if (vertices.get(i).get(j) == 1 && j != i) {
-					for (int k = 0; k < vertices.size(); k++) {
-						if (vertices.get(j).get(k) == 1 && visited[k] == true) {
-							return false;
-						}
-					}
+				// prev =
+				if (vertices.get(i).get(j) == 1) {
 
 				}
 			}
 		}
+//		for (int i = 0; i < vertices.size(); i++) {
+//			visited[i] = true;
+//
+//			for (int j = 0; j < vertices.size(); j++) {
+//				if (vertices.get(i).get(j) == 1 && j != i) {
+//					for (int k = 0; k < vertices.size(); k++) {
+//						if (vertices.get(j).get(k) == 1 && visited[k] == true) {
+//							return false;
+//						}
+//					}
+//
+//				}
+//			}
+//		}
 
 		return true;
 
@@ -139,9 +146,15 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<Integer> eulerPath() {
+		List<Integer> eulerPath = new ArrayList<Integer>();
+		boolean[] visited = new boolean[numOfVertices];
+
 		if (!hasEulerPath()) {
 			return null;
+		} else {
+
 		}
+
 		return null;
 	}
 
