@@ -6,76 +6,117 @@ import java.util.List;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyUndirectedGraph implements A3Graph {
-	private ArrayList<Node> verticeList = new ArrayList<>();
-	private int numOfNodes = 0;
-	private int numOfEdges = 0;
+	List<List<Integer>> vertices = new ArrayList<List<Integer>>();
+	// private ArrayList<Node> verticeList = new ArrayList<>();
+//	private List<List<Integer>> connectedVertices;
+	private int numOfVertices;
+//	private int numOfEdges = 0;
 
 	MyUndirectedGraph(int amountOfVertices) {
-		for (int vertex = 0; vertex < amountOfVertices; vertex++) {
-			addVertex(vertex);
-		}
+		setNumOfVertices(amountOfVertices);
 
+		for (int i = 0; i < amountOfVertices; i++) {
+			ArrayList<Integer> v = new ArrayList<Integer>();
+			for (int j = 0; j < amountOfVertices; j++) {
+				v.add(0);
+//				System.out.println(v.get(j));
+			}
+//			System.out.println("hej");
+
+			vertices.add(v);
+//			System.out.print(vertices.toString());
+		}
+//		vertices = null;
+//		vertices.add(addVertex(amountOfVertices));
+
+//		for (int i = 0; i < amountOfVertices; i++) {
+//			System.out.println("hej");
+//		addVertex(numOfVertices);
+
+//			
+////			vertices.add(i);
+//		}
+//		
 	}
 
 	@Override
 	public void addVertex(int vertex) {
-		Node newVertex = new Node(vertex);
-		if (newVertex != null) {
-			verticeList.add(newVertex);
+
+		for (int i = 0; i < numOfVertices; i++) {
+			vertices.get(i).add(0);
 		}
-		numOfNodes++;
+
+		ArrayList<Integer> v = new ArrayList<Integer>();
+
+		numOfVertices++;
+
+		for (int i = 0; i < numOfVertices; i++) {
+			v.add(0);
+		}
+		vertices.add(v);
+
 	}
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-
-		verticeList.get(sourceVertex).connectionList.add(verticeList.get(targetVertex));
-		verticeList.get(targetVertex).connectionList.add(verticeList.get(sourceVertex));
-		System.out.println("Source: " + sourceVertex);
-		System.out.println("Target: " + targetVertex);
-		numOfEdges++;
+		vertices.get(sourceVertex).set(targetVertex, 1);
+		vertices.get(targetVertex).set(sourceVertex, 1);
 	}
 
-	public void removeEdge(int sourceVertex, int targetVertex) {
-		verticeList.get(sourceVertex).connectionList.remove(verticeList.get(targetVertex));
-		verticeList.get(targetVertex).connectionList.remove(verticeList.get(sourceVertex));
-		System.out.println("Source: " + sourceVertex);
-		System.out.println("Target: " + targetVertex);
-
-		numOfEdges--;
-	}
-
+	/*
+	 * Check whether or not there is a vertex with no edges connected.
+	 */
 	@Override
 	public boolean isConnected() {
-		if (numOfEdges == 0 || numOfNodes == 0) {
-			return false;
-		} else {
-			for (int i = 0; i < numOfNodes; i++) {
-				if (verticeList.get(i).connectionList.size() == 0) {
-					return false;
+
+		for (int i = 0; i < vertices.size(); i++) {
+			int count = 0;
+			for (int j = 0; j < vertices.get(i).size(); j++) {
+				if (vertices.get(i).get(j) == 0) {
+					count++;
 				}
 			}
+
+			if (count == numOfVertices) {
+				return false;
+			}
 		}
+
 		return true;
 	}
 
 	@Override
 	public boolean isAcyclic() {
-		for (int i = 0; i < verticeList.size() - 1; i++) {
-			Node current = verticeList.get(i);
-			Node nextOfStart = verticeList.get(i - (i - 1));
-			for (int j = 0; j < current.connectionList.size(); j++) {
-			}
+//		int vertexDegree = 0;
+		boolean[] visited = new boolean[numOfVertices];
 
+		for (int i = 0; i < vertices.size(); i++) {
+			visited[i] = true;
+
+			for (int j = 0; j < vertices.size(); j++) {
+				if (vertices.get(i).get(j) == 1 && j != i) {
+					for (int k = 0; k < vertices.size(); k++) {
+						if (vertices.get(j).get(k) == 1 && visited[k] == true) {
+							return false;
+						}
+					}
+
+				}
+			}
 		}
-		return false;
+
+		return true;
 
 	}
 
+	/*
+	 * Each component is represented by a list. For component 0, the first element
+	 * is always 0, since an element cannot be connected to itself. If an element is
+	 * connected to another, then the value is set to be 1.
+	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
-
-		return null;
+		return vertices;
 	}
 
 	/*
@@ -86,21 +127,28 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean hasEulerPath() {
 		int amountOfOddVertices = 0;
-		boolean result = false;
+
 		if (!isConnected()) {
-			return result;
+			return false;
 		}
-		for (int i = 0; i < verticeList.size(); i++) {
-			if (verticeList.get(i).connectionList.size() % 2 == 1) {
+		for (int i = 0; i < vertices.size(); i++) {
+			int connections = 0;
+			for (int j = 0; j < vertices.get(i).size(); j++) {
+				if (vertices.get(i).get(j) == 1) {
+					connections++;
+				}
+			}
+
+			if (connections % 2 == 1) {
 				amountOfOddVertices++;
 			}
 			if (amountOfOddVertices <= 2) {
-				result = true;
-				return result;
+
+				return true;
 			}
 		}
-		result = false;
-		return result;
+
+		return false;
 	}
 
 	/*
@@ -112,16 +160,12 @@ public class MyUndirectedGraph implements A3Graph {
 		return A3Graph.super.eulerPath();
 	}
 
-	public static class Node {
-		ArrayList<Node> connectionList = new ArrayList<>();
-
-		int connected;
-		Integer value;
-
-		public Node(int v) {
-			this.value = v;
-
-		}
-
+	public int getNumOfVertices() {
+		return numOfVertices;
 	}
+
+	public void setNumOfVertices(int numOfVertices) {
+		this.numOfVertices = numOfVertices;
+	}
+
 }
