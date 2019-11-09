@@ -7,10 +7,7 @@ import java.util.List;
  */
 public class MyUndirectedGraph implements A3Graph {
 	List<List<Integer>> vertices = new ArrayList<List<Integer>>();
-	// private ArrayList<Node> verticeList = new ArrayList<>();
-//	private List<List<Integer>> connectedVertices;
 	private int numOfVertices;
-//	private int numOfEdges = 0;
 
 	MyUndirectedGraph(int amountOfVertices) {
 		setNumOfVertices(amountOfVertices);
@@ -19,29 +16,16 @@ public class MyUndirectedGraph implements A3Graph {
 			ArrayList<Integer> v = new ArrayList<Integer>();
 			for (int j = 0; j < amountOfVertices; j++) {
 				v.add(0);
-//				System.out.println(v.get(j));
+
 			}
-//			System.out.println("hej");
 
 			vertices.add(v);
-//			System.out.print(vertices.toString());
 		}
-//		vertices = null;
-//		vertices.add(addVertex(amountOfVertices));
 
-//		for (int i = 0; i < amountOfVertices; i++) {
-//			System.out.println("hej");
-//		addVertex(numOfVertices);
-
-//			
-////			vertices.add(i);
-//		}
-//		
 	}
 
 	@Override
 	public void addVertex(int vertex) {
-
 		for (int i = 0; i < numOfVertices; i++) {
 			vertices.get(i).add(0);
 		}
@@ -87,7 +71,7 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-//		int vertexDegree = 0;
+
 		boolean[] visited = new boolean[numOfVertices];
 
 		for (int i = 0; i < vertices.size(); i++) {
@@ -138,12 +122,10 @@ public class MyUndirectedGraph implements A3Graph {
 					connections++;
 				}
 			}
-
 			if (connections % 2 == 1) {
 				amountOfOddVertices++;
 			}
 			if (amountOfOddVertices <= 2) {
-
 				return true;
 			}
 		}
@@ -157,7 +139,10 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<Integer> eulerPath() {
-		return A3Graph.super.eulerPath();
+		if (!hasEulerPath()) {
+			return null;
+		}
+		return null;
 	}
 
 	public int getNumOfVertices() {
