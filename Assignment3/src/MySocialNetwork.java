@@ -25,13 +25,14 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	 */
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
-		System.out.println("In numberOfPeopleAtFriendshipDistance method");
+		System.out.println("In numberOfPeopleAtFriendshipDistance method: ");
 		int friends = 0;
 		System.out.println("Size: " + amount);
 		System.out.println("Vertice Array: " + vertices);
+
 		for (int i = 0; i < vertices.size(); i++) {
 			for (int j = 0; j < vertices.size(); j++) {
-				if (vertices.get(i).get(j) == 1 && j != vertexIndex) {
+				if (vertices.get(i).get(j) == 1 && vertices.get(j).get(vertexIndex) != 1) {
 					if (j == distance) {
 						friends++;
 					}

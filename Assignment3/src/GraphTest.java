@@ -71,7 +71,7 @@ public class GraphTest {
 		network.addEdge(8, 4);
 		network.addEdge(9, 8);
 
-		System.out.println("NumberOfPeopleAtFriendshipDistance: " + network.numberOfPeopleAtFriendshipDistance(5, 2));
+		System.out.println("NumberOfPeopleAtFriendshipDistance: " + network.numberOfPeopleAtFriendshipDistance(0, 2));
 //		System.out.println(
 //				"FurthestDistanceInFriendshipRelationships: " + network.furthestDistanceInFriendshipRelationships(7));
 
