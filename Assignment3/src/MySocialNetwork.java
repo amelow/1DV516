@@ -5,8 +5,9 @@ import java.util.List;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwork {
-	private int friends = 0;
+	// private int friends = 0;
 	private int amount = getNumOfVertices();
+	private List<List<Integer>> vertices = getVerticeArray();
 
 	MySocialNetwork(int size) {
 		super(size);
@@ -25,10 +26,19 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
 		System.out.println("In numberOfPeopleAtFriendshipDistance method");
-		boolean[] visited = new boolean[amount];
+		int friends = 0;
 		System.out.println("Size: " + amount);
-
-		return 0;
+		System.out.println("Vertice Array: " + vertices);
+		for (int i = 0; i < vertices.size(); i++) {
+			for (int j = 0; j < vertices.size(); j++) {
+				if (vertices.get(i).get(j) == 1 && j != vertexIndex) {
+					if (j == distance) {
+						friends++;
+					}
+				}
+			}
+		}
+		return friends;
 	}
 
 	/*

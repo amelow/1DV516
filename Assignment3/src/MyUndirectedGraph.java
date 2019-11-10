@@ -167,4 +167,9 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
+	public List<List<Integer>> getVerticeArray() {
+		return vertices;
+
+	}
+
 }
