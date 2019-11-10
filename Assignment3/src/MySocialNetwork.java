@@ -53,11 +53,11 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	@Override
 	public int furthestDistanceInFriendshipRelationships(int vertexIndex) {
 		int furthestFriend = 0;
-		
+
 		for (int i = 0; i < vertices.size(); i++) {
 			for (int j = 0; j < vertices.size(); j++) {
-				if (vertices.get(i).get(j) == 1 && vertices.get(j).get(vertexIndex) != 1) {
-					if (i >= furthestFriend) {
+				if (vertices.get(i).get(j) == 1) {
+					if (i > furthestFriend) {
 						furthestFriend = i;
 					}
 				}
