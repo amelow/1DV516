@@ -15,7 +15,7 @@ public class GraphTest {
 		// Adding edges between the vertices in the graph
 //		System.out.println("Edges in graph:");
 		undirectedGraph.addEdge(0, 1);
-		undirectedGraph.addEdge(0, 3);
+//		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
 		undirectedGraph.addEdge(2, 3);
 		undirectedGraph.addEdge(3, 4);

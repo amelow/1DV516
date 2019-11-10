@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -70,7 +71,7 @@ public class MyUndirectedGraph implements A3Graph {
 	public boolean isAcyclic() {
 		boolean[] visited = new boolean[numOfVertices];
 		int parent = 0;
-		boolean acyclic = false;
+		// boolean acyclic = false;
 
 		for (int i = 0; i < vertices.size(); i++) { // vertices
 			parent = i;
@@ -79,21 +80,24 @@ public class MyUndirectedGraph implements A3Graph {
 				if (vertices.get(i).get(j) == 1) { // if they have a connection
 					visited[j] = true;
 
-					for (int k = 0; k < vertices.size(); k++) {
-						parent = j;
-
-						// if(visited[k] == true && k != parent) {
-						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
-							return acyclic;
-						} else {
-							acyclic = true;
-						}
-					}
+//					for (int k = 0; k < vertices.size(); k++) {
+//						parent = j;
+//						System.out.println(" Visited: " + Arrays.toString(visited));
+//						// if(visited[k] == true && k != parent) {
+//						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
+//							
+//							return false;
+//
+//						}
+//					}
 //					vertices.get(j);
+//					System.out.println(" Visited: " + Arrays.toString(visited));
 				}
 			}
+			System.out.println(" Visited: " + Arrays.toString(visited));
 		}
-		return acyclic;
+
+		return true;
 
 	}
 
