@@ -7,20 +7,17 @@ public class GraphTest {
 		TestSocialNetwork();
 	}
 
-	// New Undirected Graph
 	private static void TestUndirectedGraph() {
-
+		System.out.println("\n" + "---------- UNDIRECTEDGRAPH ----------" + "\n");
 		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(5);
 
 		// Adding edges between the vertices in the graph
-
 		undirectedGraph.addEdge(0, 1);
 //		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
 		undirectedGraph.addEdge(2, 3);
 		undirectedGraph.addEdge(3, 4);
 
-		System.out.println("\n" + "----------UNDIRECTEDGRAPH----------" + "\n");
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
 
@@ -37,18 +34,14 @@ public class GraphTest {
 		System.out.println("Connected Components: " + undirectedGraph.connectedComponents());
 	}
 
-	// New directed Graph
 	private static void TestDirectedGraph() {
-
+		System.out.println("\n" + "---------- DIRECTEDGRAPH ----------" + "\n");
 		MyDirectedGraph directedGraph = new MyDirectedGraph(5);
-
 		// Adding edges between the vertices in the graph
 		directedGraph.addEdge(0, 1);
 		directedGraph.addEdge(0, 3);
 		directedGraph.addEdge(1, 2);
 		directedGraph.addEdge(2, 3);
-
-		System.out.println("\n" + "----------DIRECTEDGRAPH----------" + "\n");
 
 		// Checking if the directed graph is acyclic
 		System.out.println("Is Acyclic: " + directedGraph.isAcyclic());
@@ -61,10 +54,15 @@ public class GraphTest {
 	}
 
 	private static void TestSocialNetwork() {
-		MySocialNetwork network = new MySocialNetwork(5);
+		System.out.println("\n" + "---------- MYSOCIALNETWORK ----------" + "\n");
+		MySocialNetwork network = new MySocialNetwork(15);
 		network.addEdge(0, 1);
 		network.addEdge(0, 3);
 		network.addEdge(1, 2);
-		System.out.println("\n" + "----------MYSOCIALNETWORK----------" + "\n");
+
+		System.out.println("NumberOfPeopleAtFriendshipDistance: " + network.numberOfPeopleAtFriendshipDistance(5, 2));
+//		System.out.println(
+//				"FurthestDistanceInFriendshipRelationships: " + network.furthestDistanceInFriendshipRelationships(7));
+
 	}
 }
