@@ -2,7 +2,7 @@
 public class GraphTest {
 
 	public static void main(String[] args) {
-		//TestUndirectedGraph();
+		// TestUndirectedGraph();
 //		TestDirectedGraph();
 		TestSocialNetwork();
 	}
@@ -71,9 +71,8 @@ public class GraphTest {
 		network.addEdge(8, 4);
 		network.addEdge(9, 8);
 
-		System.out.println("NumberOfPeopleAtFriendshipDistance: " + network.numberOfPeopleAtFriendshipDistance(0, 2));
-//		System.out.println(
-//				"FurthestDistanceInFriendshipRelationships: " + network.furthestDistanceInFriendshipRelationships(7));
+		System.out.println("Number Of People: " + network.numberOfPeopleAtFriendshipDistance(0, 2));
+		System.out.println("Furthest Distance : " + network.furthestDistanceInFriendshipRelationships(9));
 
 	}
 }
