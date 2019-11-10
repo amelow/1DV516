@@ -20,6 +20,7 @@ public class GraphTest {
 		undirectedGraph.addEdge(2, 3);
 		undirectedGraph.addEdge(3, 4);
 
+		System.out.println("\n" + "----------UNDIRECTEDGRAPH----------" + "\n");
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
 
@@ -47,6 +48,8 @@ public class GraphTest {
 		directedGraph.addEdge(1, 2);
 		directedGraph.addEdge(2, 3);
 
+		System.out.println("\n" + "----------DIRECTEDGRAPH----------" + "\n");
+
 		// Checking if the directed graph is acyclic
 		System.out.println("Is Acyclic: " + directedGraph.isAcyclic());
 
@@ -62,6 +65,6 @@ public class GraphTest {
 		network.addEdge(0, 1);
 		network.addEdge(0, 3);
 		network.addEdge(1, 2);
-
+		System.out.println("\n" + "----------MYSOCIALNETWORK----------" + "\n");
 	}
 }
