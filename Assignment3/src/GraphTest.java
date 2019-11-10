@@ -2,18 +2,18 @@
 public class GraphTest {
 
 	public static void main(String[] args) {
-		TestUndirected();
-//		TestDirected();
-
+		TestUndirectedGraph();
+		TestDirectedGraph();
+		TestSocialNetwork();
 	}
 
 	// New Undirected Graph
-	private static void TestUndirected() {
+	private static void TestUndirectedGraph() {
 
 		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(5);
 
 		// Adding edges between the vertices in the graph
-//		System.out.println("Edges in graph:");
+
 		undirectedGraph.addEdge(0, 1);
 //		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
@@ -37,7 +37,7 @@ public class GraphTest {
 	}
 
 	// New directed Graph
-	private static void TestDirected() {
+	private static void TestDirectedGraph() {
 
 		MyDirectedGraph directedGraph = new MyDirectedGraph(5);
 
@@ -56,5 +56,8 @@ public class GraphTest {
 		// The connected Components list
 		System.out.println("Connected Components: " + directedGraph.connectedComponents());
 	}
+		private static void TestSocialNetwork() {
+		
 
+	}
 }

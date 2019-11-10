@@ -1,6 +1,9 @@
 
 import java.util.List;
 
+/*
+ * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
+ */
 public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwork {
 
 	MySocialNetwork(int size) {
