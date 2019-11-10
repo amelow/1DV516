@@ -56,8 +56,12 @@ public class GraphTest {
 		// The connected Components list
 		System.out.println("Connected Components: " + directedGraph.connectedComponents());
 	}
-		private static void TestSocialNetwork() {
-		
+
+	private static void TestSocialNetwork() {
+		MySocialNetwork network = new MySocialNetwork(5);
+		network.addEdge(0, 1);
+		network.addEdge(0, 3);
+		network.addEdge(1, 2);
 
 	}
 }
