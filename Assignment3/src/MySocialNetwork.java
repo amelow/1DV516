@@ -28,7 +28,7 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		boolean[] discovered = new boolean[amount];
 		for (int i = 0; i < vertices.size(); i++) {
 			if (!discovered[i]) {
-				DFS.DepthFirstSearch(vertexIndex, discovered);
+				Search.DepthFirstSearch(vertexIndex, discovered);
 
 			}
 		}
@@ -96,12 +96,4 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		return null;
 	}
 
-	static class DFS {
-
-		public static void DepthFirstSearch(int vertexIndex, boolean[] discovered) {
-			System.out.println("In DFS class");
-
-		}
-
-	}
 }

@@ -171,4 +171,12 @@ public class MyUndirectedGraph implements A3Graph {
 
 	}
 
+	static class Search {
+
+		public static void DepthFirstSearch(int vertexIndex, boolean[] discovered) {
+			System.out.println("In DFS class");
+
+		}
+
+	}
 }
