@@ -25,41 +25,38 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	 */
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
+		boolean[] isVisited = new boolean[amount];
+		Integer[] arr = new Integer[amount];
 		int friends = 0;
-		int depthOfGraph = 0;
-		boolean[] checked = new boolean[amount];
-		ArrayList testArr = new ArrayList();
-		for (int i = 0; i < list.size(); i++) {
-			if (!checked[i] && list.get(i) != null) {
-				Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
-			} else if (i == distance) {
-				testArr.add(i);
+		arr = Search.dfsRecursive(vertexIndex, isVisited);
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == distance) {
 				friends++;
-
 			}
 
 		}
-		System.out.println("WHO IS IN FRIEND ARR: " + testArr.toString());
-		return friends;
 
+		return friends;
 	}
 
 //		int friends = 0;
-//		ArrayList olle = new ArrayList();
-//		System.out.println("Size: " + amount);
-//		System.out.println("Vertice Array: " + vertices);
+//		int depthOfGraph = 0;
+//		boolean[] checked = new boolean[amount];
+//		ArrayList testArr = new ArrayList();
+//		for (int i = 0; i < list.size(); i++) {
+//			if (!checked[i] && list.get(i) != null) {
+//				Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
+//			} else if (i == distance) {
+//				testArr.add(i);
+//				friends++;
 //
-//		for (int i = 0; i < vertices.size(); i++) {
-//			for (int j = 0; j < vertices.size(); j++) {
-//				if (vertices.get(i).get(j) == 1) { // && vertices.get(j).get(vertexIndex) != 1) {
-//					if (j == distance) {
-//						friends++;
-//						olle.add(i);
-//					}
-//				}
 //			}
-//			System.out.println(olle.toString());
+//
 //		}
+//		System.out.println("WHO IS IN FRIEND ARR: " + testArr.toString());
+//		return friends;
+//
+//	}
 
 	/*
 	 * public int furthestDistanceInFriendshipRelationships(int vertexIndex). Given
