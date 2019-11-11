@@ -12,13 +12,11 @@ public class MyUndirectedGraph implements A3Graph {
 
 	MyUndirectedGraph(int amountOfVertices) {
 		numOfVertices = amountOfVertices;
-
 		adjacency = new ArrayList<ArrayList<Integer>>();
 
 		for (int i = 0; i < amountOfVertices; i++) {
 			adjacency.add(new ArrayList<Integer>());
 		}
-
 	}
 
 	public List<ArrayList<Integer>> getAdjacency() {
@@ -43,59 +41,54 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public boolean isConnected() {
+		boolean[] isVisited = new boolean[numOfVertices];
+		connectionDFS(0, isVisited);
+
+		for (int i = 0; i < numOfVertices; i++) {
+			if (!isVisited[i]) {
+				return false;
+			}
+
+		}
+
 		return true;
 	}
 
-//		for (int i = 0; i < adjacency.size(); i++) {
-//			int count = 0;
-//			for (int j = 0; j < adjacency.get(i).size(); j++) {
-//				if (adjacency.get(i).get(j) == 0) {
-//					count++;
-//				}
-//			}
-//			if (count == numOfVertices) {
-//				return false;
-//			}
-//		}
-//
-//		return true;
-//	}
+	/*
+	 * The depth first search algorithm is built of pseudo code found in this video:
+	 *
+	 * https://www.youtube.com/watch?v=7fujbpJ0LB4&fbclid=
+	 * IwAR3MMPIKkuYTyCc7Cx3GZDnKXO4mfZrnhpsUs7Pice_Dh6oKiOeKkK6D58o
+	 */
+	public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited) {
+		isVisited[vertexIndex] = true;
+		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = adjacency.get(vertexIndex).get(i);
+		}
+		for (int curr : adjacency.get(vertexIndex)) {
+			if (!isVisited[curr])
+				arr = connectionDFS(curr, isVisited);
+		}
+
+		return arr;
+	}
 
 	@Override
 	public boolean isAcyclic() {
+		Integer[] arr = new Integer[numOfVertices];
+		boolean[] checked = new boolean[numOfVertices];
+		for (int i = 0; i < numOfVertices; i++) {
+			if (checked[i] == false) {
+				arr = connectionDFS(i, checked);
+
+				return true;
+			}
+		}
+
 		return false;
+
 	}
-//		boolean[] visited = new boolean[numOfVertices];
-//		int parent = 0;
-//		// boolean acyclic = false;
-//
-//		for (int i = 0; i < adjacency.size(); i++) { // vertices
-//			parent = i;
-//			visited[i] = true;
-//			for (int j = 0; j < adjacency.size(); j++) { // connections
-//				if (adjacency.get(i).get(j) == 1) { // if they have a connection
-//					visited[j] = true;
-//
-////					for (int k = 0; k < vertices.size(); k++) {
-////						parent = j;
-////						System.out.println(" Visited: " + Arrays.toString(visited));
-////						// if(visited[k] == true && k != parent) {
-////						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
-////							
-////							return false;
-////
-////						}
-////					}
-////					vertices.get(j);
-////					System.out.println(" Visited: " + Arrays.toString(visited));
-//				}
-//			}
-//			System.out.println(" Visited: " + Arrays.toString(visited));
-//		}
-//
-//		return true;
-//
-//	}
 
 	/*
 	 * Each component is represented by a list. For component 0, the first element
@@ -115,26 +108,51 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean hasEulerPath() {
 		int amountOfOddVertices = 0;
+
 		if (!isConnected()) {
 			return false;
 		}
+
 		for (int i = 0; i < adjacency.size(); i++) {
 			int connections = 0;
-			for (int j = 0; j < adjacency.get(i).size(); j++) {
-				if (adjacency.get(i).get(j) == 1) {
-					connections++;
-				}
+			if (!isConnected()) {
+				return false;
 			}
-			if (connections % 2 == 1) {
+			if (adjacency.get(i).size() % 2 == 1) {
 				amountOfOddVertices++;
 			}
-			if (amountOfOddVertices <= 2) {
-				return true;
-			}
+		}
+
+		if (amountOfOddVertices <= 2) {
+			return true;
 		}
 
 		return false;
 	}
+
+//	@Override
+//	public boolean hasEulerPath() {
+//		int amountOfOddVertices = 0;
+//		if (!isConnected()) {
+//			return false;
+//		}
+//		for (int i = 0; i < adjacency.size(); i++) {
+//			int connections = 0;
+//			for (int j = 0; j < adjacency.get(i).size(); j++) {
+//				if (adjacency.get(i).get(j) == 1) {
+//					connections++;
+//				}
+//			}
+//			if (connections % 2 == 1) {
+//				amountOfOddVertices++;
+//			}
+//			if (amountOfOddVertices <= 2) {
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	}
 
 	/*
 	 * Returns a list of vertices of length |E|+1. The vertices in the list
@@ -161,39 +179,45 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
-	static class Search {
+//		public static Integer[] socialDFS(int vertexIndex, int depth, Integer[] arr, boolean[] checked) {
+//			checkDepth(vertexIndex, arr, depth);
+//			checked[vertexIndex] = true;
+//			for (int i = 0; i < adjacency.get(vertexIndex).size(); i++) {
+//				int curr = adjacency.get(vertexIndex).get(i);
+//				if (!checked[curr]) {
+//					depth = depth + 1;
+//					arr = socialDFS(curr, depth, arr, checked);
+//				} else if (arr[curr] > depth + 1) {
+//					depth = depth + 1;
+//					arr = socialDFS(curr, depth, arr, checked);
+//				}
+//			}
+//			return arr;
+//		}
+//
+//		private static void checkDepth(int vertexIndex, Integer[] arr, int depth) {
+//			if (arr[vertexIndex] != null) {
+//				arr[vertexIndex] = depth;
+//			} else {
+//				arr[vertexIndex] = depth;
+//			}
+//
+//		}
 
-		public static Integer[] socialDFS(int vertexIndex, boolean[] isVisited, int depth) {
-			isVisited[vertexIndex] = true;
-			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
-			for (int i = 0; i < arr.length; i++) {
-				arr[i] = adjacency.get(vertexIndex).get(i);
-			}
-			System.out.println(Arrays.toString(arr));
-			// System.out.println(Arrays.toString(isVisited));
-			for (int curr : adjacency.get(vertexIndex)) {
-				if (!isVisited[curr])
-					socialDFS(curr, isVisited, depth++);
-			}
+//		public static Integer[] socialDFS(int vertexIndex, boolean[] isVisited, int depth) {
+//			isVisited[vertexIndex] = true;
+//			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+//			for (int i = 0; i < arr.length; i++) {
+//				arr[i] = adjacency.get(vertexIndex).get(i);
+//			}
+//			System.out.println(Arrays.toString(arr));
+//			// System.out.println(Arrays.toString(isVisited));
+//			for (int curr : adjacency.get(vertexIndex)) {
+//				if (!isVisited[curr])
+//					socialDFS(curr, isVisited, depth++);
+//			}
+//
+//			return arr;
+//		}
 
-			return arr;
-		}
-
-		public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited, int depth) {
-			isVisited[vertexIndex] = true;
-			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
-			for (int i = 0; i < arr.length; i++) {
-				arr[i] = adjacency.get(vertexIndex).get(i);
-			}
-			// System.out.println(Arrays.toString(arr));
-			System.out.println(Arrays.toString(isVisited));
-			for (int curr : adjacency.get(vertexIndex)) {
-				if (!isVisited[curr])
-					arr = connectionDFS(curr, isVisited, depth + 1);
-			}
-
-			return arr;
-		}
-
-	}
 }

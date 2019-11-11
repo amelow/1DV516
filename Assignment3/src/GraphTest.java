@@ -2,9 +2,9 @@
 public class GraphTest {
 
 	public static void main(String[] args) {
-//		 TestUndirectedGraph();
+		 TestUndirectedGraph();
 //		TestDirectedGraph();
-		TestSocialNetwork();
+	//	TestSocialNetwork();
 	}
 
 	private static void TestUndirectedGraph() {
@@ -15,8 +15,10 @@ public class GraphTest {
 		undirectedGraph.addEdge(0, 1);
 		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
-		undirectedGraph.addEdge(2, 3);
-		undirectedGraph.addEdge(3, 4);
+//		undirectedGraph.addEdge(2, 3);
+		//undirectedGraph.addEdge(3, 4);
+		undirectedGraph.addEdge(1, 4);
+//		undirectedGraph.addEdge(2, 4);
 
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
@@ -63,23 +65,7 @@ public class GraphTest {
 		network.addEdge(2, 3);
 		network.addEdge(4, 3);
 
-//
-//		network.addEdge(0, 1);
-//		network.addEdge(0, 4);
-//		network.addEdge(0, 6);
-//		network.addEdge(1, 6);
-//		network.addEdge(1, 2);
-//		network.addEdge(2, 7);
-//		network.addEdge(3, 7);
-//		network.addEdge(4, 6);
-//		network.addEdge(4, 2);
-//		network.addEdge(5, 6);
-//		network.addEdge(5, 8);
-//		network.addEdge(7, 6);
-//		network.addEdge(8, 4);
-//		network.addEdge(9, 8);
-
-		System.out.println("Number Of People: " + network.numberOfPeopleAtFriendshipDistance(0, 2));
+		System.out.println("Number Of People: " + network.numberOfPeopleAtFriendshipDistance(5, 2));
 		// System.out.println("Furthest Distance : " +
 		// network.furthestDistanceInFriendshipRelationships(1));
 
