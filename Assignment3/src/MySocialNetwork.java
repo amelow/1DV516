@@ -39,25 +39,6 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		return friends;
 	}
 
-//		int friends = 0;
-//		int depthOfGraph = 0;
-//		boolean[] checked = new boolean[amount];
-//		ArrayList testArr = new ArrayList();
-//		for (int i = 0; i < list.size(); i++) {
-//			if (!checked[i] && list.get(i) != null) {
-//				Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
-//			} else if (i == distance) {
-//				testArr.add(i);
-//				friends++;
-//
-//			}
-//
-//		}
-//		System.out.println("WHO IS IN FRIEND ARR: " + testArr.toString());
-//		return friends;
-//
-//	}
-
 	/*
 	 * public int furthestDistanceInFriendshipRelationships(int vertexIndex). Given
 	 * a person in "vertexIndex", it returns the distance to furthest person in the

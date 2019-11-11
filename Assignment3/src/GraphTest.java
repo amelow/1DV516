@@ -56,22 +56,28 @@ public class GraphTest {
 
 	private static void TestSocialNetwork() {
 		System.out.println("\n" + "---------- MYSOCIALNETWORK ----------" + "\n");
-		MySocialNetwork network = new MySocialNetwork(10);
-
+		MySocialNetwork network = new MySocialNetwork(5);
 		network.addEdge(0, 1);
-		network.addEdge(0, 4);
-		network.addEdge(0, 6);
-		network.addEdge(1, 6);
 		network.addEdge(1, 2);
-		network.addEdge(2, 7);
-		network.addEdge(3, 7);
-		network.addEdge(4, 6);
-		network.addEdge(4, 2);
-		network.addEdge(5, 6);
-		network.addEdge(5, 8);
-		network.addEdge(7, 6);
-		network.addEdge(8, 4);
-		network.addEdge(9, 8);
+		network.addEdge(0, 3);
+		network.addEdge(2, 3);
+		network.addEdge(4, 3);
+
+//
+//		network.addEdge(0, 1);
+//		network.addEdge(0, 4);
+//		network.addEdge(0, 6);
+//		network.addEdge(1, 6);
+//		network.addEdge(1, 2);
+//		network.addEdge(2, 7);
+//		network.addEdge(3, 7);
+//		network.addEdge(4, 6);
+//		network.addEdge(4, 2);
+//		network.addEdge(5, 6);
+//		network.addEdge(5, 8);
+//		network.addEdge(7, 6);
+//		network.addEdge(8, 4);
+//		network.addEdge(9, 8);
 
 		System.out.println("Number Of People: " + network.numberOfPeopleAtFriendshipDistance(0, 2));
 		// System.out.println("Furthest Distance : " +
