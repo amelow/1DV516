@@ -78,12 +78,14 @@ public class MyUndirectedGraph implements A3Graph {
 	public boolean isAcyclic() {
 		Integer[] arr = new Integer[numOfVertices];
 		boolean[] checked = new boolean[numOfVertices];
-		for (int i = 0; i < numOfVertices; i++) {
+		int parent = 0;
+		for (int i = 1; i < numOfVertices; i++) {
 			if (checked[i] == false) {
 				arr = connectionDFS(i, checked);
-
-				return true;
+				if (arr[i]!= arr[parent])
+					return true;
 			}
+			parent = i;
 		}
 
 		return false;
