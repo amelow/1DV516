@@ -31,7 +31,7 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		ArrayList testArr = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			if (!checked[i] && list.get(i) != null) {
-				// Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
+				Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
 			} else if (i == distance) {
 				testArr.add(i);
 				friends++;

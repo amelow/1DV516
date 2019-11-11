@@ -34,8 +34,8 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		adjacency.get(sourceVertex).set(targetVertex, 1);
-		adjacency.get(targetVertex).set(sourceVertex, 1);
+		adjacency.get(sourceVertex).add(targetVertex);
+		adjacency.get(targetVertex).add(sourceVertex);
 	}
 
 	/*
@@ -43,55 +43,59 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public boolean isConnected() {
-
-		for (int i = 0; i < adjacency.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < adjacency.get(i).size(); j++) {
-				if (adjacency.get(i).get(j) == 0) {
-					count++;
-				}
-			}
-			if (count == numOfVertices) {
-				return false;
-			}
-		}
-
 		return true;
 	}
+
+//		for (int i = 0; i < adjacency.size(); i++) {
+//			int count = 0;
+//			for (int j = 0; j < adjacency.get(i).size(); j++) {
+//				if (adjacency.get(i).get(j) == 0) {
+//					count++;
+//				}
+//			}
+//			if (count == numOfVertices) {
+//				return false;
+//			}
+//		}
+//
+//		return true;
+//	}
 
 	@Override
 	public boolean isAcyclic() {
-		boolean[] visited = new boolean[numOfVertices];
-		int parent = 0;
-		// boolean acyclic = false;
-
-		for (int i = 0; i < adjacency.size(); i++) { // vertices
-			parent = i;
-			visited[i] = true;
-			for (int j = 0; j < adjacency.size(); j++) { // connections
-				if (adjacency.get(i).get(j) == 1) { // if they have a connection
-					visited[j] = true;
-
-//					for (int k = 0; k < vertices.size(); k++) {
-//						parent = j;
-//						System.out.println(" Visited: " + Arrays.toString(visited));
-//						// if(visited[k] == true && k != parent) {
-//						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
-//							
-//							return false;
-//
-//						}
-//					}
-//					vertices.get(j);
-//					System.out.println(" Visited: " + Arrays.toString(visited));
-				}
-			}
-			System.out.println(" Visited: " + Arrays.toString(visited));
-		}
-
-		return true;
-
+		return false;
 	}
+//		boolean[] visited = new boolean[numOfVertices];
+//		int parent = 0;
+//		// boolean acyclic = false;
+//
+//		for (int i = 0; i < adjacency.size(); i++) { // vertices
+//			parent = i;
+//			visited[i] = true;
+//			for (int j = 0; j < adjacency.size(); j++) { // connections
+//				if (adjacency.get(i).get(j) == 1) { // if they have a connection
+//					visited[j] = true;
+//
+////					for (int k = 0; k < vertices.size(); k++) {
+////						parent = j;
+////						System.out.println(" Visited: " + Arrays.toString(visited));
+////						// if(visited[k] == true && k != parent) {
+////						if (vertices.get(j).get(k) == 1 && k != parent && visited[k] == true) {
+////							
+////							return false;
+////
+////						}
+////					}
+////					vertices.get(j);
+////					System.out.println(" Visited: " + Arrays.toString(visited));
+//				}
+//			}
+//			System.out.println(" Visited: " + Arrays.toString(visited));
+//		}
+//
+//		return true;
+//
+//	}
 
 	/*
 	 * Each component is represented by a list. For component 0, the first element
@@ -164,17 +168,13 @@ public class MyUndirectedGraph implements A3Graph {
 
 	static class Search {
 		public static ArrayList DepthFirstSearch(int vertexIndex, int depthOfGraph, boolean[] checked) {
+			checked[vertexIndex] = true;
 			ArrayList list = new ArrayList();
-			System.out.println("In DFS class");
 			for (int i = 0; i < adjacency.size(); i++) {
-				for (int j = 0; j < adjacency.size(); j++) {
-					checked[vertexIndex] = true;
-					if (!checked[adjacency.get(vertexIndex).get(i)]) {
-						depthOfGraph++;
-						list = DepthFirstSearch(adjacency.get(vertexIndex).get(i), depthOfGraph, checked);
-
-					}
-
+				if (!checked[vertexIndex]){
+					depthOfGraph++;
+					list = DepthFirstSearch(adjacency.get(vertexIndex).get(i), depthOfGraph, checked);
+					System.out.println("List"+ list.toString());
 				}
 
 			}
