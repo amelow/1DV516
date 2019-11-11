@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -26,24 +25,33 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	 */
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
-		int friends = 0;
-		ArrayList olle = new ArrayList();
-		System.out.println("Size: " + amount);
-		System.out.println("Vertice Array: " + vertices);
-
+		boolean[] discovered = new boolean[amount];
 		for (int i = 0; i < vertices.size(); i++) {
-			for (int j = 0; j < vertices.size(); j++) {
-				if (vertices.get(i).get(j) == 1) { // && vertices.get(j).get(vertexIndex) != 1) {
-					if (j == distance) {
-						friends++;
-						olle.add(i);
-					}
-				}
+			if (!discovered[i]) {
+				DFS.DepthFirstSearch(vertexIndex, discovered);
+
 			}
-			System.out.println(olle.toString());
 		}
-		return friends;
+		return distance;
+
 	}
+
+//		int friends = 0;
+//		ArrayList olle = new ArrayList();
+//		System.out.println("Size: " + amount);
+//		System.out.println("Vertice Array: " + vertices);
+//
+//		for (int i = 0; i < vertices.size(); i++) {
+//			for (int j = 0; j < vertices.size(); j++) {
+//				if (vertices.get(i).get(j) == 1) { // && vertices.get(j).get(vertexIndex) != 1) {
+//					if (j == distance) {
+//						friends++;
+//						olle.add(i);
+//					}
+//				}
+//			}
+//			System.out.println(olle.toString());
+//		}
 
 	/*
 	 * public int furthestDistanceInFriendshipRelationships(int vertexIndex). Given
@@ -88,4 +96,12 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		return null;
 	}
 
+	static class DFS {
+
+		public static void DepthFirstSearch(int vertexIndex, boolean[] discovered) {
+			System.out.println("In DFS class");
+
+		}
+
+	}
 }

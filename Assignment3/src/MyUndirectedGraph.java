@@ -155,7 +155,6 @@ public class MyUndirectedGraph implements A3Graph {
 		} else {
 
 		}
-
 		return null;
 	}
 
