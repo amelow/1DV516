@@ -1,13 +1,13 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwork {
-	// private int friends = 0;
 	private int amount = getNumOfVertices();
-	private List<List<Integer>> vertices = getVerticeArray();
+	private List<ArrayList<Integer>> list = getAdjacency();
 
 	MySocialNetwork(int size) {
 		super(size);
@@ -25,14 +25,22 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	 */
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
-		boolean[] discovered = new boolean[amount];
-		for (int i = 0; i < vertices.size(); i++) {
-			if (!discovered[i]) {
-				Search.DepthFirstSearch(vertexIndex, discovered);
+		int friends = 0;
+		int depthOfGraph = 0;
+		boolean[] checked = new boolean[amount];
+		ArrayList testArr = new ArrayList();
+		for (int i = 0; i < list.size(); i++) {
+			if (!checked[i] && list.get(i) != null) {
+				// Search.DepthFirstSearch(vertexIndex, depthOfGraph, checked);
+			} else if (i == distance) {
+				testArr.add(i);
+				friends++;
 
 			}
+
 		}
-		return distance;
+		System.out.println("WHO IS IN FRIEND ARR: " + testArr.toString());
+		return friends;
 
 	}
 
@@ -64,19 +72,8 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	 */
 	@Override
 	public int furthestDistanceInFriendshipRelationships(int vertexIndex) {
-		int furthestFriend = 0;
 
-		for (int i = 0; i < vertices.size(); i++) {
-			for (int j = 0; j < vertices.size(); j++) {
-				if (vertices.get(i).get(j) == 1) {
-					if (i > furthestFriend) {
-						furthestFriend = i;
-					}
-				}
-
-			}
-		}
-		return furthestFriend;
+		return vertexIndex;
 	}
 
 	/*

@@ -7,43 +7,35 @@ import java.util.List;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyUndirectedGraph implements A3Graph {
-	List<List<Integer>> vertices = new ArrayList<List<Integer>>();
+	private static List<ArrayList<Integer>> adjacency;
 	private int numOfVertices;
 
 	MyUndirectedGraph(int amountOfVertices) {
-		setNumOfVertices(amountOfVertices);
+		numOfVertices = amountOfVertices;
+
+		adjacency = new ArrayList<ArrayList<Integer>>();
 
 		for (int i = 0; i < amountOfVertices; i++) {
-			ArrayList<Integer> v = new ArrayList<Integer>();
-			for (int j = 0; j < amountOfVertices; j++) {
-				v.add(0);
-			}
-			vertices.add(v);
+			adjacency.add(new ArrayList<Integer>());
 		}
 
 	}
 
+	public List<ArrayList<Integer>> getAdjacency() {
+		return adjacency;
+	}
+
 	@Override
 	public void addVertex(int vertex) {
-		for (int i = 0; i < numOfVertices; i++) {
-			vertices.get(i).add(0);
-		}
-
-		ArrayList<Integer> v = new ArrayList<Integer>();
-
+		adjacency.add(new ArrayList<Integer>());
 		numOfVertices++;
-
-		for (int i = 0; i < numOfVertices; i++) {
-			v.add(0);
-		}
-		vertices.add(v);
 
 	}
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		vertices.get(sourceVertex).set(targetVertex, 1);
-		vertices.get(targetVertex).set(sourceVertex, 1);
+		adjacency.get(sourceVertex).set(targetVertex, 1);
+		adjacency.get(targetVertex).set(sourceVertex, 1);
 	}
 
 	/*
@@ -52,10 +44,10 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean isConnected() {
 
-		for (int i = 0; i < vertices.size(); i++) {
+		for (int i = 0; i < adjacency.size(); i++) {
 			int count = 0;
-			for (int j = 0; j < vertices.get(i).size(); j++) {
-				if (vertices.get(i).get(j) == 0) {
+			for (int j = 0; j < adjacency.get(i).size(); j++) {
+				if (adjacency.get(i).get(j) == 0) {
 					count++;
 				}
 			}
@@ -73,11 +65,11 @@ public class MyUndirectedGraph implements A3Graph {
 		int parent = 0;
 		// boolean acyclic = false;
 
-		for (int i = 0; i < vertices.size(); i++) { // vertices
+		for (int i = 0; i < adjacency.size(); i++) { // vertices
 			parent = i;
 			visited[i] = true;
-			for (int j = 0; j < vertices.size(); j++) { // connections
-				if (vertices.get(i).get(j) == 1) { // if they have a connection
+			for (int j = 0; j < adjacency.size(); j++) { // connections
+				if (adjacency.get(i).get(j) == 1) { // if they have a connection
 					visited[j] = true;
 
 //					for (int k = 0; k < vertices.size(); k++) {
@@ -108,7 +100,7 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
-		return vertices;
+		return null;
 	}
 
 	/*
@@ -119,14 +111,13 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean hasEulerPath() {
 		int amountOfOddVertices = 0;
-
 		if (!isConnected()) {
 			return false;
 		}
-		for (int i = 0; i < vertices.size(); i++) {
+		for (int i = 0; i < adjacency.size(); i++) {
 			int connections = 0;
-			for (int j = 0; j < vertices.get(i).size(); j++) {
-				if (vertices.get(i).get(j) == 1) {
+			for (int j = 0; j < adjacency.get(i).size(); j++) {
+				if (adjacency.get(i).get(j) == 1) {
 					connections++;
 				}
 			}
@@ -166,17 +157,28 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
-	public List<List<Integer>> getVerticeArray() {
-		return vertices;
-
-	}
+//	public List<List<Integer>> getVerticeArray() {
+//		return adjacency;
+//
+//	}
 
 	static class Search {
-
-		public static void DepthFirstSearch(int vertexIndex, boolean[] discovered) {
+		public static ArrayList DepthFirstSearch(int vertexIndex, int depthOfGraph, boolean[] checked) {
+			ArrayList list = new ArrayList();
 			System.out.println("In DFS class");
+			for (int i = 0; i < adjacency.size(); i++) {
+				for (int j = 0; j < adjacency.size(); j++) {
+					checked[vertexIndex] = true;
+					if (!checked[adjacency.get(vertexIndex).get(i)]) {
+						depthOfGraph++;
+						list = DepthFirstSearch(adjacency.get(vertexIndex).get(i), depthOfGraph, checked);
 
+					}
+
+				}
+
+			}
+			return list;
 		}
-
 	}
 }

@@ -13,7 +13,7 @@ public class GraphTest {
 
 		// Adding edges between the vertices in the graph
 		undirectedGraph.addEdge(0, 1);
-//		undirectedGraph.addEdge(0, 3);
+		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
 		undirectedGraph.addEdge(2, 3);
 		undirectedGraph.addEdge(3, 4);
@@ -37,6 +37,7 @@ public class GraphTest {
 	private static void TestDirectedGraph() {
 		System.out.println("\n" + "---------- DIRECTEDGRAPH ----------" + "\n");
 		MyDirectedGraph directedGraph = new MyDirectedGraph(5);
+
 		// Adding edges between the vertices in the graph
 		directedGraph.addEdge(0, 1);
 		directedGraph.addEdge(0, 3);
@@ -56,6 +57,7 @@ public class GraphTest {
 	private static void TestSocialNetwork() {
 		System.out.println("\n" + "---------- MYSOCIALNETWORK ----------" + "\n");
 		MySocialNetwork network = new MySocialNetwork(10);
+
 		network.addEdge(0, 1);
 		network.addEdge(0, 4);
 		network.addEdge(0, 6);
