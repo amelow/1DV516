@@ -162,29 +162,39 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	static class Search {
-		public static Integer[] dfsRecursive(int vertexIndex, boolean[] isVisited) {
-			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+
+		public static Integer[] socialDFS(int vertexIndex, boolean[] isVisited, int depth) {
+
 			isVisited[vertexIndex] = true;
+			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = adjacency.get(vertexIndex).get(i);
 			}
 			System.out.println(Arrays.toString(arr));
-			System.out.println(Arrays.toString(isVisited));
-//			for (int i = 0; i < adjacency.size(); i++) {
-				for (int curr : adjacency.get(vertexIndex)) {
-					if (!isVisited[curr])
-						dfsRecursive(curr, isVisited);
-					
-				}
-//			}
+			// System.out.println(Arrays.toString(isVisited));
+			for (int curr : adjacency.get(vertexIndex)) {
+				if (!isVisited[curr])
+					socialDFS(curr, isVisited, depth++);
+			}
+
 			return arr;
-
 		}
 
-		public static int[] neighbours() {
-			return null;
+		public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited, int depth) {
+			isVisited[vertexIndex] = true;
+			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+			for (int i = 0; i < arr.length; i++) {
+				arr[i] = adjacency.get(vertexIndex).get(i);
+			}
+			// System.out.println(Arrays.toString(arr));
+			System.out.println(Arrays.toString(isVisited));
+			for (int curr : adjacency.get(vertexIndex)) {
+				if (!isVisited[curr])
+					arr = connectionDFS(curr, isVisited, depth + 1);
+			}
 
+			return arr;
 		}
+
 	}
-
 }

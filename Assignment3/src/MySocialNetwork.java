@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -28,14 +29,13 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		boolean[] isVisited = new boolean[amount];
 		Integer[] arr = new Integer[amount];
 		int friends = 0;
-		arr = Search.dfsRecursive(vertexIndex, isVisited);
+		arr = Search.socialDFS(vertexIndex, isVisited, 0);
 		for (int i = 0; i < arr.length; i++) {
+			System.out.println("ARRAY:" + Arrays.toString(arr));
 			if (arr[i] == distance) {
 				friends++;
 			}
-
 		}
-
 		return friends;
 	}
 
