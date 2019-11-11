@@ -161,35 +161,20 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
-	class Search {
-		public Integer[] dfsRecursive(int vertexIndex, boolean[] isVisited) {
-			Integer[] arr = new Integer[getNumOfVertices()];
+	static class Search {
+		public static Integer[] dfsRecursive(int vertexIndex, boolean[] isVisited) {
+			Integer[] arr = new Integer[adjacency.size()];
 			isVisited[vertexIndex] = true;
-			System.out.println(adjacency.toString());
+			// System.out.println(adjacency.toString());
 			for (int i = 0; i < adjacency.size(); i++) {
-				for (int dest : adjacency.get(vertexIndex)) {
-					if (!isVisited[dest])
-						dfsRecursive(dest, isVisited);
+				for (int curr : adjacency.get(vertexIndex)) {
+					if (!isVisited[curr])
+						arr = dfsRecursive(curr, isVisited);
+					System.out.println(curr);
 				}
 			}
+
 			return arr;
-			
-		}
-
-		public ArrayList DepthFirstSearch(int vertexIndex, int depthOfGraph, boolean[] checked) {
-			checked[vertexIndex] = true;
-			ArrayList list = new ArrayList();
-			System.out.println(adjacency.toString());
-			for (int i = 0; i < adjacency.size(); i++) {
-
-				if (!checked[vertexIndex]) {
-					depthOfGraph++;
-					list = DepthFirstSearch(adjacency.get(vertexIndex).get(i), depthOfGraph, checked);
-					System.out.println("List" + list.toString());
-				}
-
-			}
-			return list;
 		}
 	}
 }
