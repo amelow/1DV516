@@ -164,7 +164,6 @@ public class MyUndirectedGraph implements A3Graph {
 	static class Search {
 
 		public static Integer[] socialDFS(int vertexIndex, boolean[] isVisited, int depth) {
-
 			isVisited[vertexIndex] = true;
 			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
 			for (int i = 0; i < arr.length; i++) {
