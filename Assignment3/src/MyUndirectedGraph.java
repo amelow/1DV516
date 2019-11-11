@@ -161,20 +161,22 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
-	static class Search {
-		public static Integer[] dfsRecursive(int vertexIndex, boolean[] isVisited) {
+	class Search {
+		public Integer[] dfsRecursive(int vertexIndex, boolean[] isVisited) {
+			Integer[] arr = new Integer[getNumOfVertices()];
 			isVisited[vertexIndex] = true;
 			System.out.println(adjacency.toString());
 			for (int i = 0; i < adjacency.size(); i++) {
 				for (int dest : adjacency.get(vertexIndex)) {
 					if (!isVisited[dest])
 						dfsRecursive(dest, isVisited);
+				}
 			}
-			}
-			return null;
+			return arr;
+			
 		}
 
-		public static ArrayList DepthFirstSearch(int vertexIndex, int depthOfGraph, boolean[] checked) {
+		public ArrayList DepthFirstSearch(int vertexIndex, int depthOfGraph, boolean[] checked) {
 			checked[vertexIndex] = true;
 			ArrayList list = new ArrayList();
 			System.out.println(adjacency.toString());
