@@ -88,6 +88,25 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 	@Override
 	public List<Integer> possibleFriends(int vertexIndex) {
-		return null;
+		
+		Integer[] distances = socialBFS(vertexIndex);
+		List<Integer> myFriends = list.get(vertexIndex);
+		List<Integer> eligibleFriendsFriends = new ArrayList<Integer>();		
+		List<Integer> potentialFriendsFriends = new ArrayList<Integer>();
+		for (int n = 0; n < distances.length; n++) {
+			if (n == vertexIndex)
+				continue;
+			if (distances[n] == 2)
+				potentialFriendsFriends.add(n);
+		}
+		Iterator<Integer> it = potentialFriendsFriends.iterator();
+		while (it.hasNext()) {
+			int n = it.next();
+			List<Integer> commonFriends = (List<Integer>) list.get(n).clone();
+			commonFriends.retainAll(myFriends);
+			if (commonFriends.size()>=3)
+				eligibleFriendsFriends.add(n);
+		}
+		return eligibleFriendsFriends;
 	}
 }

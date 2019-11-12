@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /*
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
@@ -31,31 +32,56 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
-		adjacency.get(targetVertex).add(sourceVertex);
+		adjacency.get(sourceVertex).add(targetVertex);
 
 	}
 
 	@Override
 	public boolean isConnected() {
-		for (int i = 0; i < adjacency.size(); i++) {
-			int count = 0;
-			for (int j = 0; j < adjacency.get(i).size(); j++) {
-				if (adjacency.get(i).get(j) == 0) {
-					count++;
-				}
-			}
-			if (count == numOfVertices) {
+
+		boolean[] isVisited = new boolean[numOfVertices];
+		connectionDFS(0, isVisited);
+
+		// System.out.println("hej: " + Arrays.toString(isVisited));
+		for (int i = 0; i < numOfVertices; i++) {
+			if (!isVisited[i]) {
 				return false;
 			}
 		}
-
-		return true;
-
+		return false;
 	}
 
 	@Override
 	public boolean isAcyclic() {
-		return false;
+		Stack stack = new Stack();
+
+		boolean[] visited = new boolean[numOfVertices];
+		int n = 0;
+		while (n < visited.length) {
+			if (!visited[n])
+				if (!isAcyclicDFS(n, visited, stack))
+					return false;
+			n++;
+		}
+
+		return true;
+	}
+
+	public static boolean isAcyclicDFS(int n, boolean[] isVisited, Stack stack) {
+		if (stack.contains(n))
+			return false;
+		isVisited[n] = true;
+		stack.push(n);
+		for (int curr : adjacency.get(n)) {
+			if (n==curr)
+				return false;
+			if (isVisited[curr])
+				continue;
+			if (!isAcyclicDFS(curr, isVisited, stack))
+				return false;
+		}
+		stack.pop();
+		return true;
 	}
 
 	@Override
@@ -69,6 +95,20 @@ public class MyDirectedGraph implements A3Graph {
 
 	public void setNumOfVertices(int numOfVertices) {
 		this.numOfVertices = numOfVertices;
+	}
+
+	public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited) {
+		isVisited[vertexIndex] = true;
+		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = adjacency.get(vertexIndex).get(i);
+		}
+		for (int curr : adjacency.get(vertexIndex)) {
+			if (!isVisited[curr])
+				arr = connectionDFS(curr, isVisited);
+		}
+
+		return arr;
 	}
 
 }

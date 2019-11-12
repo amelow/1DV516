@@ -73,20 +73,6 @@ public class MyUndirectedGraph implements A3Graph {
 		return arr;
 	}
 
-	public static boolean acyclicDFS(int from, int to, boolean[] isVisited) {
-		if (isVisited[to])
-			return false;
-		isVisited[to] = true;
-
-		for (int curr : adjacency.get(to)) {
-			if (from == curr)
-				continue;
-			if (!acyclicDFS(to, curr, isVisited))
-				return false;
-		}
-		return true;
-	}
-
 	/*
 	 * If an unexplored edge leads to a node visited before, then the graph contains
 	 * a cycle. The existence of a cycle in directed and undirected graphs can be
@@ -100,8 +86,30 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean isAcyclic() {
 		boolean[] visited = new boolean[numOfVertices];
-		return acyclicDFS(-1, 0, visited);
 
+		int n = 0;
+		while (n < visited.length) {
+			if (!visited[n])
+				if (!isAcyclicDFS(-1, n, visited))
+					return false;
+			n++;
+		}
+
+		return true;
+	}
+
+	public static boolean isAcyclicDFS(int from, int to, boolean[] isVisited) {
+		if (isVisited[to])
+			return false;
+		isVisited[to] = true;
+
+		for (int curr : adjacency.get(to)) {
+			if (from == curr)
+				continue;
+			if (!isAcyclicDFS(to, curr, isVisited))
+				return false;
+		}
+		return true;
 	}
 
 	/*
@@ -122,11 +130,9 @@ public class MyUndirectedGraph implements A3Graph {
 	@Override
 	public boolean hasEulerPath() {
 		int amountOfOddVertices = 0;
-
 		if (!isConnected()) {
 			return false;
 		}
-
 		for (int i = 0; i < adjacency.size(); i++) {
 			int connections = 0;
 			if (!isConnected()) {
@@ -136,11 +142,9 @@ public class MyUndirectedGraph implements A3Graph {
 				amountOfOddVertices++;
 			}
 		}
-
 		if (amountOfOddVertices <= 2) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -152,7 +156,6 @@ public class MyUndirectedGraph implements A3Graph {
 	public List<Integer> eulerPath() {
 		List<Integer> eulerPath = new ArrayList<Integer>();
 		boolean[] visited = new boolean[numOfVertices];
-
 		if (!hasEulerPath()) {
 			return null;
 		} else {
@@ -168,16 +171,4 @@ public class MyUndirectedGraph implements A3Graph {
 	public void setNumOfVertices(int numOfVertices) {
 		this.numOfVertices = numOfVertices;
 	}
-	/*
-	 * @Override public boolean isAcyclic() { Integer[] arr = new
-	 * Integer[numOfVertices]; boolean[] checked = new boolean[numOfVertices]; int
-	 * parent = 0; for (int i = 1; i < numOfVertices; i++) { if (checked[i] ==
-	 * false) { arr = connectionDFS(i, checked); if (arr[i] != arr[parent]) return
-	 * false; } parent = i; }
-	 * 
-	 * return false;
-	 * 
-	 * }
-	 * 
-	 */
 }
