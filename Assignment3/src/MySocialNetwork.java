@@ -43,13 +43,13 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 		while (queue.size() != 0) {
 			vertexIndex = queue.poll();
-			Iterator<Integer> i = list.get(vertexIndex).listIterator();
-			while (i.hasNext()) {
-				int n = i.next();
-				if (!checked[n]) {
-					checked[n] = true;
-					distances[n] = distances[vertexIndex] + 1;
-					queue.add(n);
+			Iterator<Integer> curr = list.get(vertexIndex).listIterator();
+			while (curr.hasNext()) {
+				int newCurr = curr.next();
+				if (!checked[newCurr]) {
+					checked[newCurr] = true;
+					distances[newCurr] = distances[vertexIndex] + 1;
+					queue.add(newCurr);
 				}
 			}
 		}
