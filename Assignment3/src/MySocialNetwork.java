@@ -37,7 +37,6 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 		distances[vertexIndex] = 0;
 		checked[vertexIndex] = true;
-
 		LinkedList<Integer> queue = new LinkedList<Integer>();
 		queue.add(vertexIndex);
 
@@ -66,19 +65,4 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	public List<Integer> possibleFriends(int vertexIndex) {
 		return null;
 	}
-//	@Override
-//	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
-//		int friends = 0;
-//		boolean[] checked = new boolean[amount];
-//		Integer[] arr = new Integer[amount];
-//		arr = Search.socialDFS(vertexIndex, 0, arr, checked);
-//		for (int i = 0; i < arr.length; i++) {
-//			if (arr[i] != null && arr[i] == distance) {
-//				friends++;
-//			}
-//		}
-//		System.out.println("ARRAY:" + Arrays.toString(arr));
-//		return friends;
-//	}
-
 }
