@@ -36,6 +36,10 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		return friends;
 	}
 
+	/*
+	 * The Breadth first search used in the SocialNetworks class is Inspired
+	 * by:https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+	 */
 	private Integer[] socialBFS(int vertexIndex) {
 		boolean[] checked = new boolean[amount];
 		Integer[] distances = new Integer[amount];
