@@ -55,7 +55,6 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-
 		return false;
 	}
 

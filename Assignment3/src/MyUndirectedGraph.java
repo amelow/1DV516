@@ -74,6 +74,16 @@ public class MyUndirectedGraph implements A3Graph {
 		return arr;
 	}
 
+	/*
+	 * If an unexplored edge leads to a node visited before, then the graph contains
+	 * a cycle. The existence of a cycle in directed and undirected graphs can be
+	 * determined by whether depth-first search (DFS) finds an edge that points to
+	 * an ancestor of the current vertex (it contains a back edge).[4]All the back
+	 * edges which DFS skips over are part of cycles.[5] In an undirected graph, the
+	 * edge to the parent of a node should not be counted as a back edge, but
+	 * finding any other already visited vertex will indicate a back edge.
+	 */
+
 	@Override
 	public boolean isAcyclic() {
 		Integer[] arr = new Integer[numOfVertices];
@@ -82,8 +92,8 @@ public class MyUndirectedGraph implements A3Graph {
 		for (int i = 1; i < numOfVertices; i++) {
 			if (checked[i] == false) {
 				arr = connectionDFS(i, checked);
-				if (arr[i]!= arr[parent])
-					return true;
+				if (arr[i] != arr[parent])
+					return false;
 			}
 			parent = i;
 		}
@@ -131,30 +141,6 @@ public class MyUndirectedGraph implements A3Graph {
 
 		return false;
 	}
-
-//	@Override
-//	public boolean hasEulerPath() {
-//		int amountOfOddVertices = 0;
-//		if (!isConnected()) {
-//			return false;
-//		}
-//		for (int i = 0; i < adjacency.size(); i++) {
-//			int connections = 0;
-//			for (int j = 0; j < adjacency.get(i).size(); j++) {
-//				if (adjacency.get(i).get(j) == 1) {
-//					connections++;
-//				}
-//			}
-//			if (connections % 2 == 1) {
-//				amountOfOddVertices++;
-//			}
-//			if (amountOfOddVertices <= 2) {
-//				return true;
-//			}
-//		}
-//
-//		return false;
-//	}
 
 	/*
 	 * Returns a list of vertices of length |E|+1. The vertices in the list

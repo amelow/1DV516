@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -19,10 +21,26 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
 		boolean[] checked = new boolean[amount];
 		Integer[] arr = new Integer[amount];
-//		arr = socialBFS(vertexIndex, arr, checked);
+		arr = socialBFS(vertexIndex, arr, checked);
 		return 0;
 	}
 
+	private Integer[] socialBFS(int vertexIndex, Integer[] arr, boolean[] checked) {
+		
+		
+		return arr;
+	}
+
+	@Override
+	public int furthestDistanceInFriendshipRelationships(int vertexIndex) {
+		return vertexIndex;
+
+	}
+
+	@Override
+	public List<Integer> possibleFriends(int vertexIndex) {
+		return null;
+	}
 //	@Override
 //	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
 //		int friends = 0;
@@ -37,16 +55,5 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 //		System.out.println("ARRAY:" + Arrays.toString(arr));
 //		return friends;
 //	}
-
-	@Override
-	public int furthestDistanceInFriendshipRelationships(int vertexIndex) {
-		return vertexIndex;
-
-	}
-
-	@Override
-	public List<Integer> possibleFriends(int vertexIndex) {
-		return null;
-	}
 
 }
