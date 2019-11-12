@@ -56,7 +56,6 @@ public class MyUndirectedGraph implements A3Graph {
 
 	/*
 	 * The depth first search algorithm is built of pseudo code found in this video:
-	 *
 	 * https://www.youtube.com/watch?v=7fujbpJ0LB4&fbclid=
 	 * IwAR3MMPIKkuYTyCc7Cx3GZDnKXO4mfZrnhpsUs7Pice_Dh6oKiOeKkK6D58o
 	 */
@@ -74,6 +73,20 @@ public class MyUndirectedGraph implements A3Graph {
 		return arr;
 	}
 
+	public static boolean acyclicDFS(int from, int to, boolean[] isVisited) {
+		if (isVisited[to])
+			return false;
+		isVisited[to] = true;
+
+		for (int curr : adjacency.get(to)) {
+			if (from == curr)
+				continue;
+			if (!acyclicDFS(to, curr, isVisited))
+				return false;
+		}
+		return true;
+	}
+
 	/*
 	 * If an unexplored edge leads to a node visited before, then the graph contains
 	 * a cycle. The existence of a cycle in directed and undirected graphs can be
@@ -86,19 +99,8 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-		Integer[] arr = new Integer[numOfVertices];
-		boolean[] checked = new boolean[numOfVertices];
-		int parent = 0;
-		for (int i = 1; i < numOfVertices; i++) {
-			if (checked[i] == false) {
-				arr = connectionDFS(i, checked);
-				if (arr[i] != arr[parent])
-					return false;
-			}
-			parent = i;
-		}
-
-		return false;
+		boolean[] visited = new boolean[numOfVertices];
+		return acyclicDFS(-1, 0, visited);
 
 	}
 
@@ -166,5 +168,16 @@ public class MyUndirectedGraph implements A3Graph {
 	public void setNumOfVertices(int numOfVertices) {
 		this.numOfVertices = numOfVertices;
 	}
-
+	/*
+	 * @Override public boolean isAcyclic() { Integer[] arr = new
+	 * Integer[numOfVertices]; boolean[] checked = new boolean[numOfVertices]; int
+	 * parent = 0; for (int i = 1; i < numOfVertices; i++) { if (checked[i] ==
+	 * false) { arr = connectionDFS(i, checked); if (arr[i] != arr[parent]) return
+	 * false; } parent = i; }
+	 * 
+	 * return false;
+	 * 
+	 * }
+	 * 
+	 */
 }

@@ -2,9 +2,9 @@
 public class GraphTest {
 
 	public static void main(String[] args) {
-//		TestUndirectedGraph();
+		TestUndirectedGraph();
 //		TestDirectedGraph();
-		TestSocialNetwork();
+		// TestSocialNetwork();
 	}
 
 	private static void TestUndirectedGraph() {
@@ -15,25 +15,25 @@ public class GraphTest {
 		undirectedGraph.addEdge(0, 1);
 		undirectedGraph.addEdge(0, 3);
 		undirectedGraph.addEdge(1, 2);
-//		undirectedGraph.addEdge(2, 3);
-		// undirectedGraph.addEdge(3, 4);
 		undirectedGraph.addEdge(1, 4);
-//		undirectedGraph.addEdge(2, 4);
+		undirectedGraph.addEdge(3, 4);
+		// undirectedGraph.addEdge(2, 4);
+		// undirectedGraph.addEdge(2, 3);
 
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
 
 		// Checking if the undirected graph is connected
-		System.out.println("Is Connected: " + undirectedGraph.isConnected());
+		//System.out.println("Is Connected: " + undirectedGraph.isConnected());
 
 		// Checking if the undirected graph has a Euler path
-		System.out.println("Has a Euler path: " + undirectedGraph.hasEulerPath());
+		//System.out.println("Has a Euler path: " + undirectedGraph.hasEulerPath());
 
 		// Returning the Euler path
-		System.out.println("Euler path list: " + undirectedGraph.eulerPath());
+		//System.out.println("Euler path list: " + undirectedGraph.eulerPath());
 
 		// The connected Components list
-		System.out.println("Connected Components: " + undirectedGraph.connectedComponents());
+		//System.out.println("Connected Components: " + undirectedGraph.connectedComponents());
 	}
 
 	private static void TestDirectedGraph() {
