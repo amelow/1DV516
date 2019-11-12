@@ -167,45 +167,4 @@ public class MyUndirectedGraph implements A3Graph {
 		this.numOfVertices = numOfVertices;
 	}
 
-//		public static Integer[] socialDFS(int vertexIndex, int depth, Integer[] arr, boolean[] checked) {
-//			checkDepth(vertexIndex, arr, depth);
-//			checked[vertexIndex] = true;
-//			for (int i = 0; i < adjacency.get(vertexIndex).size(); i++) {
-//				int curr = adjacency.get(vertexIndex).get(i);
-//				if (!checked[curr]) {
-//					depth = depth + 1;
-//					arr = socialDFS(curr, depth, arr, checked);
-//				} else if (arr[curr] > depth + 1) {
-//					depth = depth + 1;
-//					arr = socialDFS(curr, depth, arr, checked);
-//				}
-//			}
-//			return arr;
-//		}
-//
-//		private static void checkDepth(int vertexIndex, Integer[] arr, int depth) {
-//			if (arr[vertexIndex] != null) {
-//				arr[vertexIndex] = depth;
-//			} else {
-//				arr[vertexIndex] = depth;
-//			}
-//
-//		}
-
-//		public static Integer[] socialDFS(int vertexIndex, boolean[] isVisited, int depth) {
-//			isVisited[vertexIndex] = true;
-//			Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
-//			for (int i = 0; i < arr.length; i++) {
-//				arr[i] = adjacency.get(vertexIndex).get(i);
-//			}
-//			System.out.println(Arrays.toString(arr));
-//			// System.out.println(Arrays.toString(isVisited));
-//			for (int curr : adjacency.get(vertexIndex)) {
-//				if (!isVisited[curr])
-//					socialDFS(curr, isVisited, depth++);
-//			}
-//
-//			return arr;
-//		}
-
 }

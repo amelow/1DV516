@@ -10,7 +10,6 @@ import java.util.List;
 public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwork {
 	private int amount = getNumOfVertices();
 	private List<ArrayList<Integer>> list = getAdjacency();
-	private int friends;
 
 	MySocialNetwork(int size) {
 		super(size);
@@ -19,16 +18,42 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
-		boolean[] checked = new boolean[amount];
-		Integer[] arr = new Integer[amount];
-		arr = socialBFS(vertexIndex, arr, checked);
-		return 0;
+		int friends = 0;
+		Integer[] distances = socialBFS(vertexIndex);
+		for (int i = 0; i < distances.length; i++) {
+			if (distances[i] != null && distances[i] == distance) {
+				friends++;
+			}
+
+		}
+		return friends;
 	}
 
-	private Integer[] socialBFS(int vertexIndex, Integer[] arr, boolean[] checked) {
-		
-		
-		return arr;
+	private Integer[] socialBFS(int vertexIndex) {
+		boolean[] checked = new boolean[amount];
+		Integer[] distances = new Integer[amount];
+		for (int i = 0; i < distances.length; i++)
+			distances[i] = -1;
+
+		distances[vertexIndex] = 0;
+		checked[vertexIndex] = true;
+
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		queue.add(vertexIndex);
+
+		while (queue.size() != 0) {
+			vertexIndex = queue.poll();
+			Iterator<Integer> i = list.get(vertexIndex).listIterator();
+			while (i.hasNext()) {
+				int n = i.next();
+				if (!checked[n]) {
+					checked[n] = true;
+					distances[n] = distances[vertexIndex] + 1;
+					queue.add(n);
+				}
+			}
+		}
+		return distances;
 	}
 
 	@Override
