@@ -15,6 +15,13 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		super(size);
 
 	}
+	/*
+	 * 
+	 * It returns the number of people that are at distance "distance" of the person
+	 * given by "vertexIndex". For instance, for distance=2, it returns the number
+	 * of people who are friends of my friends (but who are not directly my friends
+	 * or myself).
+	 */
 
 	@Override
 	public int numberOfPeopleAtFriendshipDistance(int vertexIndex, int distance) {
@@ -55,9 +62,23 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		return distances;
 	}
 
+	/*
+	 * Given a person in "vertexIndex", it returns the distance to furthest person
+	 * in the graph from vertexIndex (this is, returns the highest value of the
+	 * shortest paths between "vertexIndex" and the rest of nodes).
+	 */
 	@Override
 	public int furthestDistanceInFriendshipRelationships(int vertexIndex) {
-		return vertexIndex;
+		Integer[] distances = socialBFS(vertexIndex);
+		int amountOfHopps = 0;
+		for (int i = 0; i < distances.length; i++) {
+			if (distances[i] != null && distances[i] >= amountOfHopps) {
+				amountOfHopps = distances[i];
+				System.out.println("Hopps: " + amountOfHopps);
+			}
+		}
+
+		return amountOfHopps;
 
 	}
 
