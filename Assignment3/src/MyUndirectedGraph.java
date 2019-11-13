@@ -145,8 +145,9 @@ public class MyUndirectedGraph implements A3Graph {
 	}
 
 	/*
-	 * Returns a list of vertices of length |E|+1. The vertices in the list
-	 * represent how to traverse the graph to complete an Euler path.
+	 * The EulerPath method was based on the algorithmic explanations on the
+	 * following website: https://cp-algorithms.com/graph/euler_path.html?fbclid=
+	 * IwAR3caGQ1fDliAFfzlru3lOLCtjbJMu8bE63pOzxKV3VuSxSt2dz3bJQyGFI/
 	 */
 	@Override
 	public List<Integer> eulerPath() {
