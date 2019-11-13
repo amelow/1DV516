@@ -112,11 +112,7 @@ public class MyUndirectedGraph implements A3Graph {
 		return true;
 	}
 
-	/*
-	 * Each component is represented by a list. For component 0, the first element
-	 * is always 0, since an element cannot be connected to itself. If an element is
-	 * connected to another, then the value is set to be 1.
-	 */
+	
 	@Override
 	public List<List<Integer>> connectedComponents() {
 		return null;
@@ -163,7 +159,6 @@ public class MyUndirectedGraph implements A3Graph {
 		}
 		return null;
 	}
-
 	public int getNumOfVertices() {
 		return numOfVertices;
 	}

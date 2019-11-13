@@ -78,7 +78,6 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		for (int i = 0; i < distances.length; i++) {
 			if (distances[i] != null && distances[i] >= amountOfHopps) {
 				amountOfHopps = distances[i];
-				System.out.println("Hopps: " + amountOfHopps);
 			}
 		}
 
