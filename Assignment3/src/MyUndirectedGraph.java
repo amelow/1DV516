@@ -1,15 +1,18 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /*
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyUndirectedGraph implements A3Graph {
-	private static List<ArrayList<Integer>> adjacency;
+	private List<ArrayList<Integer>> adjacency;
 	private int numOfVertices;
 
 	MyUndirectedGraph(int amountOfVertices) {
@@ -61,7 +64,7 @@ public class MyUndirectedGraph implements A3Graph {
 	 * https://www.youtube.com/watch?v=7fujbpJ0LB4&fbclid=
 	 * IwAR3MMPIKkuYTyCc7Cx3GZDnKXO4mfZrnhpsUs7Pice_Dh6oKiOeKkK6D58o
 	 */
-	public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited) {
+	public Integer[] connectionDFS(int vertexIndex, boolean[] isVisited) {
 		isVisited[vertexIndex] = true;
 		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
 		for (int i = 0; i < arr.length; i++) {
@@ -100,7 +103,7 @@ public class MyUndirectedGraph implements A3Graph {
 		return true;
 	}
 
-	public static boolean isAcyclicDFS(int from, int to, boolean[] isVisited) {
+	public boolean isAcyclicDFS(int from, int to, boolean[] isVisited) {
 		if (isVisited[to])
 			return false;
 		isVisited[to] = true;
@@ -131,15 +134,11 @@ public class MyUndirectedGraph implements A3Graph {
 			return false;
 		}
 		for (int i = 0; i < adjacency.size(); i++) {
-			// int connections = 0;
-			if (!isConnected()) {
-				return false;
-			}
 			if (adjacency.get(i).size() % 2 == 1) {
 				amountOfOddVertices++;
 			}
 		}
-		if (amountOfOddVertices <= 2) {
+		if (amountOfOddVertices == 0 || amountOfOddVertices == 2) {
 			return true;
 		}
 		return false;
@@ -151,33 +150,77 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<Integer> eulerPath() {
-		int vertexIndex;
-		List<Integer> list = new ArrayList();
-		Integer[] eulerPath = new Integer[numOfVertices];
-		boolean[] visited = new boolean[numOfVertices];
+		if (!hasEulerPath())
+			return null;
+
+		List<Integer> eulerPath = new ArrayList<Integer>();
+		int start = 0;
 		for (int i = 0; i < adjacency.size(); i++) {
-			if (adjacency.get(i).size() % 2 == 1 && adjacency.get(i).size() == 1) {
-				vertexIndex = i;
-				eulerPath = EulersPathDFS(vertexIndex, visited);
+			if (adjacency.get(i).size() % 2 == 1) {
+				start = i;
 			}
-
-			list = Arrays.asList(eulerPath);
 		}
-
-		return list;
-
+		findEuler(start, eulerPath, new HashMap<Integer, Set<Integer>>());
+		return eulerPath;
 	}
 
-	public static Integer[] EulersPathDFS(int vertexIndex, boolean[] visited) {
+	private void findEuler(int start, List<Integer> eulerPath, Map<Integer, Set<Integer>> deleted) {
+		for (int n : adjacency.get(start)) {
+			if (isDeleted(start, n, deleted))
+				continue;
+			deleteTarget(start, n, deleted);
+			findEuler(n, eulerPath, deleted);
+		}
+		eulerPath.add(start);
+	}
+
+	private boolean isDeleted(int fromNode, int toNode, Map<Integer, Set<Integer>> deleted) {
+		Set<Integer> targets = getDeletedTargets(fromNode, deleted);
+		return targets.contains(toNode);
+	}
+
+	private Set<Integer> getDeletedTargets(int aNode, Map<Integer, Set<Integer>> deleted) {
+		if (!deleted.containsKey(aNode)) {
+			deleted.put(aNode, new HashSet<Integer>());
+		}
+		return deleted.get(aNode);
+	}
+
+	private void deleteTarget(int fromNode, int toNode, Map<Integer, Set<Integer>> deleted) {
+		if (!deleted.containsKey(fromNode)) {
+			deleted.put(fromNode, new HashSet<Integer>());
+		}
+		deleted.get(fromNode).add(toNode);
+		if (!deleted.containsKey(toNode)) {
+			deleted.put(toNode, new HashSet<Integer>());
+		}
+		deleted.get(toNode).add(fromNode);
+	}
+
+	public Integer[] EulersPathDFS(int vertexIndex, boolean[] visited) {
 		System.out.println("vertexindex " + vertexIndex);
 		visited[vertexIndex] = true;
+
 		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = adjacency.get(vertexIndex).get(i);
-			System.out.println("ARR" + Arrays.toString(arr));
 		}
-		return arr;
 
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		queue.add(vertexIndex);
+
+		while (queue.size() != 0) {
+			vertexIndex = queue.poll();
+			Iterator<Integer> curr = adjacency.get(vertexIndex).listIterator();
+			while (curr.hasNext()) {
+				int newCurr = curr.next();
+				if (!visited[newCurr]) {
+					visited[newCurr] = true;
+					queue.add(newCurr);
+				}
+			}
+		}
+		return null;
 
 	}
 

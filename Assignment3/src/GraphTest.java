@@ -9,17 +9,26 @@ public class GraphTest {
 
 	private static void TestUndirectedGraph() {
 		System.out.println("\n" + "---------- UNDIRECTEDGRAPH ----------" + "\n");
-		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(7);
+//		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(7);
+//
+//		// Adding edges between the vertices in the graph
+//		undirectedGraph.addEdge(0, 1);
+//		undirectedGraph.addEdge(0, 3);
+//		undirectedGraph.addEdge(1, 4);
+//		undirectedGraph.addEdge(2, 5);
+//		undirectedGraph.addEdge(5, 6);
+//		undirectedGraph.addEdge(1, 2);
+//		undirectedGraph.addEdge(6, 3);
+
+		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(4);
 
 		// Adding edges between the vertices in the graph
 		undirectedGraph.addEdge(0, 1);
-		undirectedGraph.addEdge(0, 3);
-		undirectedGraph.addEdge(1, 4);
-		undirectedGraph.addEdge(2, 5);
-		undirectedGraph.addEdge(5, 6);
 		undirectedGraph.addEdge(1, 2);
-		undirectedGraph.addEdge(6, 3);
+		undirectedGraph.addEdge(2, 3);
+		undirectedGraph.addEdge(3, 1);
 
+		
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
 
