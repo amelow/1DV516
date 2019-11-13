@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -112,7 +114,6 @@ public class MyUndirectedGraph implements A3Graph {
 		return true;
 	}
 
-	
 	@Override
 	public List<List<Integer>> connectedComponents() {
 		return null;
@@ -130,7 +131,7 @@ public class MyUndirectedGraph implements A3Graph {
 			return false;
 		}
 		for (int i = 0; i < adjacency.size(); i++) {
-			int connections = 0;
+			// int connections = 0;
 			if (!isConnected()) {
 				return false;
 			}
@@ -150,15 +151,41 @@ public class MyUndirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<Integer> eulerPath() {
-		List<Integer> eulerPath = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList();
+		Integer[] eulerPath = new Integer[numOfVertices];
 		boolean[] visited = new boolean[numOfVertices];
-		if (!hasEulerPath()) {
-			return null;
-		} else {
+		for (int i = 0; i < adjacency.size(); i++) {
+			if (adjacency.get(i).size() % 2 == 1 && adjacency.get(i).size() == 1) {
+				int vertexIndex = i;
+				// System.out.println("vertexindex " + vertexIndex)
+				eulerPath = EulersPathDFS(vertexIndex, visited);
+				// System.out.println("eulerPath" + Arrays.toString(eulerPath));
+			}
 
+			list = Arrays.asList(eulerPath);
 		}
-		return null;
+
+		return list;
+
 	}
+
+	public static Integer[] EulersPathDFS(int vertexIndex, boolean[] visited) {
+		System.out.println("vertexindex " + vertexIndex);
+		visited[vertexIndex] = true;
+		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = i;
+		System.out.println(Arrays.toString(arr));
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		queue.add(vertexIndex);
+		while (queue.size() != 0) {
+			vertexIndex = queue.poll();
+			Iterator<Integer> curr = adjacency.get(vertexIndex).listIterator();
+		}
+		return arr;
+
+	}
+
 	public int getNumOfVertices() {
 		return numOfVertices;
 	}

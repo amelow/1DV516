@@ -38,17 +38,31 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isConnected() {
+		boolean[] visited = new boolean[numOfVertices];
+		Stack<Integer> s = new Stack<Integer>();
 
-		boolean[] isVisited = new boolean[numOfVertices];
-		connectionDFS(0, isVisited);
-
-		// System.out.println("hej: " + Arrays.toString(isVisited));
 		for (int i = 0; i < numOfVertices; i++) {
-			if (!isVisited[i]) {
-				return false;
+			if (!visited[i] && adjacency.get(i).size() != 0) {
+				connectionDFS(i, visited, s);
 			}
+
 		}
-		return false;
+
+		System.out.println(s.toString());
+		return s.size() == numOfVertices;
+	}
+
+	public void connectionDFS(int pos, boolean[] visited, Stack<Integer> s) {
+		visited[pos] = true;
+
+		for (int i = 0; i < adjacency.get(pos).size(); i++) {
+			if (!visited[pos]) {
+				connectionDFS(i, visited, s);
+			}
+
+		}
+		s.push(pos);
+
 	}
 
 	@Override
@@ -73,7 +87,7 @@ public class MyDirectedGraph implements A3Graph {
 		isVisited[n] = true;
 		stack.push(n);
 		for (int curr : adjacency.get(n)) {
-			if (n==curr)
+			if (n == curr)
 				return false;
 			if (isVisited[curr])
 				continue;

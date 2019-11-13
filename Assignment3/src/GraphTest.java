@@ -18,6 +18,7 @@ public class GraphTest {
 		undirectedGraph.addEdge(2, 5);
 		undirectedGraph.addEdge(5, 6);
 		undirectedGraph.addEdge(1, 2);
+		undirectedGraph.addEdge(6, 3);
 
 		// Checking if the undirected graph is acyclic
 		System.out.println("Is Acyclic: " + undirectedGraph.isAcyclic());
