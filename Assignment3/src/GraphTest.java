@@ -27,10 +27,10 @@ public class GraphTest {
 		System.out.println("Is Connected: " + undirectedGraph.isConnected());
 
 		// Checking if the undirected graph has a Euler path
-		 System.out.println("Has a Euler path: " + undirectedGraph.hasEulerPath());
+		System.out.println("Has a Euler path: " + undirectedGraph.hasEulerPath());
 
 		// Returning the Euler path
-		 System.out.println("Euler path list: " + undirectedGraph.eulerPath());
+		System.out.println("Euler path list: " + undirectedGraph.eulerPath());
 
 		// The connected Components list
 		// System.out.println("Connected Components: " +
