@@ -2,8 +2,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -138,7 +136,7 @@ public class MyUndirectedGraph implements A3Graph {
 				amountOfOddVertices++;
 			}
 		}
-		if (amountOfOddVertices == 0 || amountOfOddVertices == 2) {
+		if (amountOfOddVertices <= 2) {
 			return true;
 		}
 		return false;
@@ -196,33 +194,6 @@ public class MyUndirectedGraph implements A3Graph {
 			deleted.put(toNode, new HashSet<Integer>());
 		}
 		deleted.get(toNode).add(fromNode);
-	}
-
-	public Integer[] EulersPathDFS(int vertexIndex, boolean[] visited) {
-		System.out.println("vertexindex " + vertexIndex);
-		visited[vertexIndex] = true;
-
-		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = adjacency.get(vertexIndex).get(i);
-		}
-
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-		queue.add(vertexIndex);
-
-		while (queue.size() != 0) {
-			vertexIndex = queue.poll();
-			Iterator<Integer> curr = adjacency.get(vertexIndex).listIterator();
-			while (curr.hasNext()) {
-				int newCurr = curr.next();
-				if (!visited[newCurr]) {
-					visited[newCurr] = true;
-					queue.add(newCurr);
-				}
-			}
-		}
-		return null;
-
 	}
 
 	public int getNumOfVertices() {

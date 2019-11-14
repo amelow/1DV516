@@ -37,8 +37,8 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 	}
 
 	/*
-	 * The Breadth first search used in the SocialNetworks class is Inspired
-	 * by:https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+	 * The Breadth first search used in the SocialNetworks class is Inspired by:
+	 * https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 	 */
 	private Integer[] socialBFS(int vertexIndex) {
 		boolean[] checked = new boolean[amount];
@@ -87,10 +87,9 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 	@Override
 	public List<Integer> possibleFriends(int vertexIndex) {
-		
 		Integer[] distances = socialBFS(vertexIndex);
 		List<Integer> myFriends = list.get(vertexIndex);
-		List<Integer> eligibleFriendsFriends = new ArrayList<Integer>();		
+		List<Integer> eligibleFriendsFriends = new ArrayList<Integer>();
 		List<Integer> potentialFriendsFriends = new ArrayList<Integer>();
 		for (int n = 0; n < distances.length; n++) {
 			if (n == vertexIndex)
@@ -103,7 +102,7 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 			int n = it.next();
 			List<Integer> commonFriends = (List<Integer>) list.get(n).clone();
 			commonFriends.retainAll(myFriends);
-			if (commonFriends.size()>=3)
+			if (commonFriends.size() >= 3)
 				eligibleFriendsFriends.add(n);
 		}
 		return eligibleFriendsFriends;
