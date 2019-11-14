@@ -218,10 +218,45 @@ public class MyUndirectedGraph implements A3Graph {
 
 	/*
 	 * Returns a List of Lists of integers, that returns the nodes in each connected
-	 * component of the graph
+	 * component of the graph. This solution is inspired by:
+	 * geeksforgeeks.org/connected-components-in-an-undirected-graph/?fbclid=
+	 * IwAR16OZfIxHjg3Y-mfTSCp7HUbZtemAaG3yqO4Tcgsl4yOAb1fhRfPopAPYA
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
-		return null;
+		boolean[] visited = new boolean[numOfVertices];
+		List<List<Integer>> connections = new ArrayList<List<Integer>>();
+		List<Integer> components = new ArrayList<Integer>();
+
+		for (int i = 0; i < numOfVertices; i++) {
+			if (!visited[i] && adjacency.get(i).size() > 0) {
+				componentsDFS(i, visited);
+
+			}
+			if (adjacency.get(i).size() == 0) {
+				List<Integer> alone = new ArrayList<Integer>();
+				alone.add(i);
+				connections.add(alone);
+			} else {
+				components.add(i);
+			}
+
+		}
+		connections.add(components);
+		return connections;
+	}
+
+	// Recursive helper method for traversing the graph used by the
+	// connectedComponents() method
+	public void componentsDFS(int vertexIndex, boolean[] isVisited) {
+		isVisited[vertexIndex] = true;
+
+		for (int i = 0; i < adjacency.get(i).size(); i++) {
+			if (!isVisited[i]) {
+				componentsDFS(i, isVisited);
+
+			}
+
+		}
 	}
 }

@@ -3,13 +3,13 @@ public class GraphTest {
 
 	public static void main(String[] args) {
 		TestUndirectedGraph();
-		//TestDirectedGraph();
-		//TestSocialNetwork();
+		// TestDirectedGraph();
+		// TestSocialNetwork();
 	}
 
 	private static void TestUndirectedGraph() {
 		System.out.println("\n" + "---------- UNDIRECTEDGRAPH ----------" + "\n");
-		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(4);
+		MyUndirectedGraph undirectedGraph = new MyUndirectedGraph(5);
 
 		// Adding edges between the vertices in the graph
 		undirectedGraph.addEdge(0, 1);
