@@ -73,12 +73,12 @@ public class MyDirectedGraph implements A3Graph {
 	/*
 	 * Recursive help method for traversing thru the graph
 	 */
-	public void connectionDFS(int pos, boolean[] visited, Stack<Integer> s) {
-		visited[pos] = true;
+	public void connectionDFS(int pos, boolean[] isVisited, Stack<Integer> s) {
+		isVisited[pos] = true;
 
 		for (int i = 0; i < adjacency.get(pos).size(); i++) {
-			if (!visited[pos]) {
-				connectionDFS(i, visited, s);
+			if (!isVisited[pos]) {
+				connectionDFS(i, isVisited, s);
 			}
 
 		}
@@ -93,11 +93,11 @@ public class MyDirectedGraph implements A3Graph {
 	@Override
 	public boolean isAcyclic() {
 		Stack<Integer> stack = new Stack<Integer>();
-		boolean[] visited = new boolean[numOfVertices];
+		boolean[] isVisited = new boolean[numOfVertices];
 		int n = 0;
-		while (n < visited.length) {
-			if (!visited[n]) // checks which are set to true(aka visited) or false
-				if (!isAcyclicDFS(n, visited, stack)) // recursive help method
+		while (n < isVisited.length) {
+			if (!isVisited[n]) // checks which are set to true(aka visited) or false
+				if (!isAcyclicDFS(n, isVisited, stack)) // recursive help method
 					return false;
 			n++;
 		}
@@ -126,8 +126,10 @@ public class MyDirectedGraph implements A3Graph {
 	}
 
 	/*
-	 * Returns a List of Lists of integers,that returns the nodes in each strongly
-	 * connected component of the graph
+	 * Returns a List of Lists of integers (List<List<Integer>>
+	 * connectedComponents()) that returns the nodes in each connected component of
+	 * the graph
+	 * 
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
