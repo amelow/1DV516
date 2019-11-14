@@ -133,7 +133,77 @@ public class MyDirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
-		return null;
+		boolean[] isVisited = new boolean[numOfVertices];
+		System.out.println("hej");
+		List<Integer> list = componentsDFS(numOfVertices, isVisited);
+
+		List<List<Integer>> connections = new ArrayList<List<Integer>>();
+
+//	      List<Integer> temp = new ArrayList<Integer>();
+		//
+//	      List<List<Integer>> connections = new ArrayList<List<Integer>>();
+////	        System.out.println(connectionDFS(numOfVertices, isVisited, temp));
+//	     
+		//
+		for (int i = 0; i < numOfVertices; i++) {
+			if (!isVisited[i]) {
+				connectionDFS(i, isVisited, list);
+			}
+		}
+		//
+////	        System.out.println("Stack components: " + s.toString());
+//	      List<List<Integer>> reverseEdges = reverseGraph();
+		//
+		for (int i = 0; i < isVisited.length; i++) {
+			isVisited[i] = false;
+		}
+		//
+////	        List<Integer> temp = new ArrayList<Integer>();
+		System.out.println("uuuuuuuuu " + list.toString());
+		for (int i = 0; i < list.size(); i++) {
+
+			int n = list.get(i);
+
+			if (!isVisited[n]) {
+				List<Integer> temp = new ArrayList<Integer>();
+				connectionDFS(n, isVisited, temp);
+				connections.add(temp);
+			}
+
+		}
+////	        connections.add(temp);
+		return connections;
+
 	}
 
+	public List<Integer> componentsDFS(int vertexIndex, boolean[] isVisited) {
+//	      isVisited[vertexIndex] = true;
+
+		List<Integer> list = new ArrayList<Integer>();
+		System.out.println("qqqqqqqq " + list.toString());
+		for (int i = 0; i < adjacency.get(vertexIndex).size(); i++) {
+			int temp = adjacency.get(vertexIndex).get(i);
+			if (!isVisited[temp]) {
+				connectionDFS(temp, isVisited, list);
+
+			}
+
+		}
+
+		return list;
+	}
+
+	public void connectionDFS(int pos, boolean[] isVisited, List<Integer> list) {
+		isVisited[pos] = true;
+		for (int i = 0; i < adjacency.get(pos).size(); i++) {
+
+			if (!isVisited[pos]) {
+				connectionDFS(i, isVisited, list);
+			}
+
+		}
+
+		list.add(pos);
+
+	}
 }
