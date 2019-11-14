@@ -15,12 +15,12 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 		super(size);
 
 	}
+
 	/*
-	 * 
-	 * It returns the number of people that are at distance "distance" of the person
-	 * given by "vertexIndex". For instance, for distance=2, it returns the number
-	 * of people who are friends of my friends (but who are not directly my friends
-	 * or myself).
+	 * The numberOfPeopleAtFriendshipDistance() method returns the number of people
+	 * that are at distance "distance" of the person given by "vertexIndex". For
+	 * instance, for distance=2, it returns the number of people who are friends of
+	 * my friends (but who are not directly my friends or myself).
 	 */
 
 	@Override
@@ -85,6 +85,12 @@ public class MySocialNetwork extends MyUndirectedGraph implements A3SocialNetwor
 
 	}
 
+	/*
+	 * Given a person in "vertexIndex", it returns the list vertices that are at
+	 * distance 2 of "vertexIndex" (this is, they are friends of friends), where
+	 * each of these vertices shares at least three common friends with
+	 * "vertexIndex". I
+	 */
 	@Override
 	public List<Integer> possibleFriends(int vertexIndex) {
 		Integer[] distances = socialBFS(vertexIndex);
