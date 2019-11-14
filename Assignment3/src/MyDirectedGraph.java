@@ -10,6 +10,10 @@ public class MyDirectedGraph implements A3Graph {
 	private static List<ArrayList<Integer>> adjacency;
 	private int numOfVertices;
 
+	/*
+	 * Constructor which loops thru the amount of vertices and calls upon the add
+	 * function. The vertices will always start from zero.
+	 */
 	MyDirectedGraph(int amountOfVertices) {
 		numOfVertices = amountOfVertices;
 		adjacency = new ArrayList<ArrayList<Integer>>();
@@ -30,6 +34,9 @@ public class MyDirectedGraph implements A3Graph {
 
 	}
 
+	/*
+	 * Adds only a edge from source to target to set an direction
+	 */
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		adjacency.get(sourceVertex).add(targetVertex);
@@ -47,8 +54,6 @@ public class MyDirectedGraph implements A3Graph {
 			}
 
 		}
-
-		System.out.println(s.toString());
 		return s.size() == numOfVertices;
 	}
 
@@ -67,8 +72,7 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-		Stack stack = new Stack();
-
+		Stack<Integer> stack = new Stack<Integer>();
 		boolean[] visited = new boolean[numOfVertices];
 		int n = 0;
 		while (n < visited.length) {
