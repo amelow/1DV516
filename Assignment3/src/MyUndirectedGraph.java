@@ -13,6 +13,10 @@ public class MyUndirectedGraph implements A3Graph {
 	private List<ArrayList<Integer>> adjacency;
 	private int numOfVertices;
 
+	/*
+	 * Constructor which loops thru the amount of vertices and calls upon the add
+	 * function. The vertices will always start from zero.
+	 */
 	MyUndirectedGraph(int amountOfVertices) {
 		numOfVertices = amountOfVertices;
 		adjacency = new ArrayList<ArrayList<Integer>>();
@@ -20,6 +24,15 @@ public class MyUndirectedGraph implements A3Graph {
 		for (int i = 0; i < amountOfVertices; i++) {
 			adjacency.add(new ArrayList<Integer>());
 		}
+	}
+
+	// Getter and setter functions
+	public void setNumOfVertices(int numOfVertices) {
+		this.numOfVertices = numOfVertices;
+	}
+
+	public int getNumOfVertices() {
+		return numOfVertices;
 	}
 
 	public List<ArrayList<Integer>> getAdjacency() {
@@ -33,6 +46,10 @@ public class MyUndirectedGraph implements A3Graph {
 
 	}
 
+	/*
+	 * Adds edges from source to target vertex and from target to source vertex so
+	 * simulate an undirected graph
+	 */
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		adjacency.get(sourceVertex).add(targetVertex);
@@ -88,12 +105,11 @@ public class MyUndirectedGraph implements A3Graph {
 
 	@Override
 	public boolean isAcyclic() {
-		boolean[] visited = new boolean[numOfVertices];
-
+		boolean[] isVisited = new boolean[numOfVertices];
 		int n = 0;
-		while (n < visited.length) {
-			if (!visited[n])
-				if (!isAcyclicDFS(-1, n, visited))
+		while (n < isVisited.length) {
+			if (!isVisited[n])
+				if (!isAcyclicDFS(-1, n, isVisited))
 					return false;
 			n++;
 		}
@@ -194,13 +210,5 @@ public class MyUndirectedGraph implements A3Graph {
 			deleted.put(toNode, new HashSet<Integer>());
 		}
 		deleted.get(toNode).add(fromNode);
-	}
-
-	public int getNumOfVertices() {
-		return numOfVertices;
-	}
-
-	public void setNumOfVertices(int numOfVertices) {
-		this.numOfVertices = numOfVertices;
 	}
 }
