@@ -23,6 +23,16 @@ public class MyDirectedGraph implements A3Graph {
 		}
 	}
 
+	// Getter and Setter functions
+
+	public void setNumOfVertices(int numOfVertices) {
+		this.numOfVertices = numOfVertices;
+	}
+
+	public int getNumOfVertices() {
+		return numOfVertices;
+	}
+
 	public List<ArrayList<Integer>> getAdjacency() {
 		return adjacency;
 	}
@@ -31,7 +41,6 @@ public class MyDirectedGraph implements A3Graph {
 	public void addVertex(int vertex) {
 		adjacency.add(new ArrayList<Integer>());
 		numOfVertices++;
-
 	}
 
 	/*
@@ -43,6 +52,10 @@ public class MyDirectedGraph implements A3Graph {
 
 	}
 
+	/*
+	 * Checks if the graph is connected by using a Depth first search method called
+	 * connectionDFS
+	 */
 	@Override
 	public boolean isConnected() {
 		boolean[] visited = new boolean[numOfVertices];
@@ -57,6 +70,9 @@ public class MyDirectedGraph implements A3Graph {
 		return s.size() == numOfVertices;
 	}
 
+	/*
+	 * Recursive help method for traversing thru the graph
+	 */
 	public void connectionDFS(int pos, boolean[] visited, Stack<Integer> s) {
 		visited[pos] = true;
 
@@ -70,14 +86,18 @@ public class MyDirectedGraph implements A3Graph {
 
 	}
 
+	/*
+	 * Traverses thru the graph by using the isAcyclicDFS() method and returns true
+	 * if the graph is acyclic.
+	 */
 	@Override
 	public boolean isAcyclic() {
 		Stack<Integer> stack = new Stack<Integer>();
 		boolean[] visited = new boolean[numOfVertices];
 		int n = 0;
 		while (n < visited.length) {
-			if (!visited[n])
-				if (!isAcyclicDFS(n, visited, stack))
+			if (!visited[n]) // checks which are set to true(aka visited) or false
+				if (!isAcyclicDFS(n, visited, stack)) // recursive help method
 					return false;
 			n++;
 		}
@@ -85,13 +105,16 @@ public class MyDirectedGraph implements A3Graph {
 		return true;
 	}
 
+	/*
+	 * Recursive help method for traversing thru the graph
+	 */
 	public static boolean isAcyclicDFS(int n, boolean[] isVisited, Stack stack) {
 		if (stack.contains(n))
 			return false;
 		isVisited[n] = true;
 		stack.push(n);
 		for (int curr : adjacency.get(n)) {
-			if (n == curr)
+			if (n == curr) // if they get back to the same vertice by taking another way it must be cyclic
 				return false;
 			if (isVisited[curr])
 				continue;
@@ -102,31 +125,15 @@ public class MyDirectedGraph implements A3Graph {
 		return true;
 	}
 
+	/*
+	 * Returns a List of Lists of integers (List<List<Integer>>
+	 * connectedComponents()) that returns the nodes in each connected component of
+	 * the graph
+	 * 
+	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
 		return null;
-	}
-
-	public int getNumOfVertices() {
-		return numOfVertices;
-	}
-
-	public void setNumOfVertices(int numOfVertices) {
-		this.numOfVertices = numOfVertices;
-	}
-
-	public static Integer[] connectionDFS(int vertexIndex, boolean[] isVisited) {
-		isVisited[vertexIndex] = true;
-		Integer[] arr = new Integer[adjacency.get(vertexIndex).size()];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = adjacency.get(vertexIndex).get(i);
-		}
-		for (int curr : adjacency.get(vertexIndex)) {
-			if (!isVisited[curr])
-				arr = connectionDFS(curr, isVisited);
-		}
-
-		return arr;
 	}
 
 }
