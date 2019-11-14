@@ -60,7 +60,7 @@ public class MyDirectedGraph implements A3Graph {
 	public boolean isConnected() {
 		boolean[] visited = new boolean[numOfVertices];
 		Stack<Integer> s = new Stack<Integer>();
-
+		
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!visited[i] && adjacency.get(i).size() != 0) {
 				connectionDFS(i, visited, s);
@@ -75,7 +75,7 @@ public class MyDirectedGraph implements A3Graph {
 	 */
 	public void connectionDFS(int pos, boolean[] isVisited, Stack<Integer> s) {
 		isVisited[pos] = true;
-
+		
 		for (int i = 0; i < adjacency.get(pos).size(); i++) {
 			if (!isVisited[pos]) {
 				connectionDFS(i, isVisited, s);
@@ -95,6 +95,7 @@ public class MyDirectedGraph implements A3Graph {
 		Stack<Integer> stack = new Stack<Integer>();
 		boolean[] isVisited = new boolean[numOfVertices];
 		int n = 0;
+		
 		while (n < isVisited.length) {
 			if (!isVisited[n]) // checks which are set to true(aka visited) or false
 				if (!isAcyclicDFS(n, isVisited, stack)) // recursive help method
@@ -113,6 +114,7 @@ public class MyDirectedGraph implements A3Graph {
 			return false;
 		isVisited[n] = true;
 		stack.push(n);
+		
 		for (int curr : adjacency.get(n)) {
 			if (n == curr) // if they get back to the same vertice by taking another way it must be cyclic
 				return false;
@@ -133,37 +135,21 @@ public class MyDirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
+		
 		boolean[] isVisited = new boolean[numOfVertices];
-		System.out.println("hej");
 		List<Integer> list = componentsDFS(numOfVertices, isVisited);
-
 		List<List<Integer>> connections = new ArrayList<List<Integer>>();
-
-//	      List<Integer> temp = new ArrayList<Integer>();
-		//
-//	      List<List<Integer>> connections = new ArrayList<List<Integer>>();
-////	        System.out.println(connectionDFS(numOfVertices, isVisited, temp));
-//	     
-		//
+		
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!isVisited[i]) {
 				connectionDFS(i, isVisited, list);
 			}
 		}
-		//
-////	        System.out.println("Stack components: " + s.toString());
-//	      List<List<Integer>> reverseEdges = reverseGraph();
-		//
 		for (int i = 0; i < isVisited.length; i++) {
 			isVisited[i] = false;
 		}
-		//
-////	        List<Integer> temp = new ArrayList<Integer>();
-		System.out.println("uuuuuuuuu " + list.toString());
 		for (int i = 0; i < list.size(); i++) {
-
 			int n = list.get(i);
-
 			if (!isVisited[n]) {
 				List<Integer> temp = new ArrayList<Integer>();
 				connectionDFS(n, isVisited, temp);
@@ -171,16 +157,12 @@ public class MyDirectedGraph implements A3Graph {
 			}
 
 		}
-////	        connections.add(temp);
 		return connections;
 
 	}
 
 	public List<Integer> componentsDFS(int vertexIndex, boolean[] isVisited) {
-//	      isVisited[vertexIndex] = true;
-
 		List<Integer> list = new ArrayList<Integer>();
-		System.out.println("qqqqqqqq " + list.toString());
 		for (int i = 0; i < adjacency.get(vertexIndex).size(); i++) {
 			int temp = adjacency.get(vertexIndex).get(i);
 			if (!isVisited[temp]) {
@@ -195,8 +177,8 @@ public class MyDirectedGraph implements A3Graph {
 
 	public void connectionDFS(int pos, boolean[] isVisited, List<Integer> list) {
 		isVisited[pos] = true;
+		
 		for (int i = 0; i < adjacency.get(pos).size(); i++) {
-
 			if (!isVisited[pos]) {
 				connectionDFS(i, isVisited, list);
 			}

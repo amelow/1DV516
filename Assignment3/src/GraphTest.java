@@ -6,7 +6,7 @@ public class GraphTest {
 	public static void main(String[] args) {
 		TestUndirectedGraph();
 		TestDirectedGraph();
-		TestSocialNetwork();
+		//TestSocialNetwork();
 	}
 
 	private static void TestUndirectedGraph() {
