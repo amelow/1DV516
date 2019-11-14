@@ -126,10 +126,8 @@ public class MyDirectedGraph implements A3Graph {
 	}
 
 	/*
-	 * Returns a List of Lists of integers (List<List<Integer>>
-	 * connectedComponents()) that returns the nodes in each connected component of
-	 * the graph
-	 * 
+	 * Returns a List of Lists of integers,that returns the nodes in each strongly
+	 * connected component of the graph
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {

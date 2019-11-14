@@ -117,6 +117,10 @@ public class MyUndirectedGraph implements A3Graph {
 		return true;
 	}
 
+	/*
+	 * Recursuve helper method for the is acyclic method, used to traverse thru the
+	 * graph
+	 */
 	public boolean isAcyclicDFS(int from, int to, boolean[] isVisited) {
 		if (isVisited[to])
 			return false;
@@ -129,11 +133,6 @@ public class MyUndirectedGraph implements A3Graph {
 				return false;
 		}
 		return true;
-	}
-
-	@Override
-	public List<List<Integer>> connectedComponents() {
-		return null;
 	}
 
 	/*
@@ -161,7 +160,9 @@ public class MyUndirectedGraph implements A3Graph {
 	/*
 	 * The EulerPath method was based on the algorithmic explanations on the
 	 * following website: https://cp-algorithms.com/graph/euler_path.html?fbclid=
-	 * IwAR3caGQ1fDliAFfzlru3lOLCtjbJMu8bE63pOzxKV3VuSxSt2dz3bJQyGFI/
+	 * IwAR3caGQ1fDliAFfzlru3lOLCtjbJMu8bE63pOzxKV3VuSxSt2dz3bJQyGFI/ Instead of
+	 * copying the graph and then to do the deletions of the edges, a set i used to
+	 * store the deleted edges to avoid ruining the original graph.
 	 */
 	@Override
 	public List<Integer> eulerPath() {
@@ -171,7 +172,7 @@ public class MyUndirectedGraph implements A3Graph {
 		List<Integer> eulerPath = new ArrayList<Integer>();
 		int start = 0;
 		for (int i = 0; i < adjacency.size(); i++) {
-			if (adjacency.get(i).size() % 2 == 1) {
+			if (adjacency.get(i).size() % 2 == 1) { // starts at a vertice with odd degrees if there is one
 				start = i;
 			}
 		}
@@ -189,18 +190,21 @@ public class MyUndirectedGraph implements A3Graph {
 		eulerPath.add(start);
 	}
 
+	// Method to check if a path from StartNode to TargetNode already is deleted
 	private boolean isDeleted(int fromNode, int toNode, Map<Integer, Set<Integer>> deleted) {
 		Set<Integer> targets = getDeletedTargets(fromNode, deleted);
 		return targets.contains(toNode);
 	}
 
-	private Set<Integer> getDeletedTargets(int aNode, Map<Integer, Set<Integer>> deleted) {
-		if (!deleted.containsKey(aNode)) {
-			deleted.put(aNode, new HashSet<Integer>());
+	// Returns deleted targets
+	private Set<Integer> getDeletedTargets(int testVertex, Map<Integer, Set<Integer>> deleted) {
+		if (!deleted.containsKey(testVertex)) {
+			deleted.put(testVertex, new HashSet<Integer>());
 		}
-		return deleted.get(aNode);
+		return deleted.get(testVertex);
 	}
 
+	// Method to "delete"(add) a path
 	private void deleteTarget(int fromNode, int toNode, Map<Integer, Set<Integer>> deleted) {
 		if (!deleted.containsKey(fromNode)) {
 			deleted.put(fromNode, new HashSet<Integer>());
@@ -210,5 +214,14 @@ public class MyUndirectedGraph implements A3Graph {
 			deleted.put(toNode, new HashSet<Integer>());
 		}
 		deleted.get(toNode).add(fromNode);
+	}
+
+	/*
+	 * Returns a List of Lists of integers, that returns the nodes in each connected
+	 * component of the graph
+	 */
+	@Override
+	public List<List<Integer>> connectedComponents() {
+		return null;
 	}
 }
