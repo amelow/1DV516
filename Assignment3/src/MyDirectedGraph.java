@@ -60,7 +60,7 @@ public class MyDirectedGraph implements A3Graph {
 	public boolean isConnected() {
 		boolean[] visited = new boolean[numOfVertices];
 		Stack<Integer> s = new Stack<Integer>();
-		
+
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!visited[i] && adjacency.get(i).size() != 0) {
 				connectionDFS(i, visited, s);
@@ -75,7 +75,7 @@ public class MyDirectedGraph implements A3Graph {
 	 */
 	public void connectionDFS(int pos, boolean[] isVisited, Stack<Integer> s) {
 		isVisited[pos] = true;
-		
+
 		for (int i = 0; i < adjacency.get(pos).size(); i++) {
 			if (!isVisited[pos]) {
 				connectionDFS(i, isVisited, s);
@@ -95,7 +95,7 @@ public class MyDirectedGraph implements A3Graph {
 		Stack<Integer> stack = new Stack<Integer>();
 		boolean[] isVisited = new boolean[numOfVertices];
 		int n = 0;
-		
+
 		while (n < isVisited.length) {
 			if (!isVisited[n]) // checks which are set to true(aka visited) or false
 				if (!isAcyclicDFS(n, isVisited, stack)) // recursive help method
@@ -114,7 +114,7 @@ public class MyDirectedGraph implements A3Graph {
 			return false;
 		isVisited[n] = true;
 		stack.push(n);
-		
+
 		for (int curr : adjacency.get(n)) {
 			if (n == curr) // if they get back to the same vertice by taking another way it must be cyclic
 				return false;
@@ -135,16 +135,18 @@ public class MyDirectedGraph implements A3Graph {
 	 */
 	@Override
 	public List<List<Integer>> connectedComponents() {
-		
+
 		boolean[] isVisited = new boolean[numOfVertices];
 		List<Integer> list = componentsDFS(numOfVertices, isVisited);
+
 		List<List<Integer>> connections = new ArrayList<List<Integer>>();
-		
+
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!isVisited[i]) {
 				connectionDFS(i, isVisited, list);
 			}
 		}
+
 		for (int i = 0; i < isVisited.length; i++) {
 			isVisited[i] = false;
 		}
@@ -177,7 +179,7 @@ public class MyDirectedGraph implements A3Graph {
 
 	public void connectionDFS(int pos, boolean[] isVisited, List<Integer> list) {
 		isVisited[pos] = true;
-		
+
 		for (int i = 0; i < adjacency.get(pos).size(); i++) {
 			if (!isVisited[pos]) {
 				connectionDFS(i, isVisited, list);
