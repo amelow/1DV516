@@ -56,24 +56,23 @@ public class MyUndirectedGraph implements A3Graph {
 		adjacency.get(targetVertex).add(sourceVertex);
 	}
 
-	/*
-	 * Check whether or not there is a vertex with no edges connected.
-	 */
-	@Override
-	public boolean isConnected() {
-		boolean[] isVisited = new boolean[numOfVertices];
-		connectionDFS(0, isVisited);
-
-		for (int i = 0; i < numOfVertices; i++) {
-			if (!isVisited[i]) {
-				return false;
-			}
-
-		}
-
-		return true;
-	}
-
+	 /*
+     * Check whether or not there is a vertex with no edges connected.
+     */
+    @Override
+    public boolean isConnected() {
+//      boolean[] isVisited = new boolean[numOfVertices];
+//      connectionDFS(0, isVisited);
+//
+//      for (int i = 0; i < numOfVertices; i++) {
+//          if (!isVisited[i]) {
+//              return false;
+//          }
+//
+//      }
+       
+        return connectedComponents().size() == 1;
+    }
 	/*
 	 * The depth first search algorithm is built of pseudo code found in this video:
 	 * https://www.youtube.com/watch?v=7fujbpJ0LB4&fbclid=
