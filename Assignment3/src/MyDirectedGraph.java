@@ -96,6 +96,8 @@ public class MyDirectedGraph implements A3Graph {
 		return true;
 	}
 
+	// The steps are found on
+	// : https://www.geeksforgeeks.org/strongly-connected-components/
 	@Override
 	public List<List<Integer>> connectedComponents() {
 		// Step 1 add all nodes to stack in first DFS

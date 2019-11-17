@@ -4,9 +4,9 @@ public class GraphTest {
 	 * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
 	 */
 	public static void main(String[] args) {
-		//TestUndirectedGraph();
+		TestUndirectedGraph();
 		TestDirectedGraph();
-		//TestSocialNetwork();
+		TestSocialNetwork();
 	}
 
 	private static void TestUndirectedGraph() {
