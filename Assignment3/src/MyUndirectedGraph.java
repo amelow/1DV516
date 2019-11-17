@@ -61,16 +61,6 @@ public class MyUndirectedGraph implements A3Graph {
      */
     @Override
     public boolean isConnected() {
-//      boolean[] isVisited = new boolean[numOfVertices];
-//      connectionDFS(0, isVisited);
-//
-//      for (int i = 0; i < numOfVertices; i++) {
-//          if (!isVisited[i]) {
-//              return false;
-//          }
-//
-//      }
-       
         return connectedComponents().size() == 1;
     }
 	/*

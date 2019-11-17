@@ -48,19 +48,6 @@ public class MyDirectedGraph implements A3Graph {
 	@Override
 	public boolean isConnected() {
 		List<List<Integer>> Components = connectedComponents();
-
-		/*
-		 * boolean[] visited = new boolean[numOfVertices]; List<Integer> s = new
-		 * ArrayList<Integer>();
-		 * 
-		 * for (int i = 0; i < numOfVertices; i++) { if (!visited[i] &&
-		 * adjacency.get(i).size() != 0) { connectionDFS(i, visited, s); }
-		 * 
-		 * }
-		 * 
-		 * return s.size() == numOfVertices;
-		 */
-
 		return (Components.size() == 1);
 	}
 
