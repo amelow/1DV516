@@ -227,7 +227,6 @@ public class MyUndirectedGraph implements A3Graph {
 		boolean[] visited = new boolean[numOfVertices];
 		List<List<Integer>> connections = new ArrayList<List<Integer>>();
 		List<Integer> components = new ArrayList<Integer>();
-
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!visited[i] && adjacency.get(i).size() > 0) {
 				componentsDFS(i, visited);

@@ -8,7 +8,7 @@ import java.util.Stack;
  * Authors: Håkan Johansson and Amelie Löwe for the 1DV516 course
  */
 public class MyDirectedGraph implements A3Graph {
-	private static List<List<Integer>> adjacency;
+	private List<List<Integer>> adjacency;
 	private int numOfVertices;
 
 	MyDirectedGraph(int amountOfVertices) {
@@ -21,8 +21,15 @@ public class MyDirectedGraph implements A3Graph {
 	}
 
 	public List<List<Integer>> getAdjacency() {
-		// System.out.println(adjacency.toString());
 		return adjacency;
+	}
+
+	public int getNumOfVertices() {
+		return numOfVertices;
+	}
+
+	public void setNumOfVertices(int numOfVertices) {
+		this.numOfVertices = numOfVertices;
 	}
 
 	@Override
@@ -35,11 +42,6 @@ public class MyDirectedGraph implements A3Graph {
 	@Override
 	public void addEdge(int sourceVertex, int targetVertex) {
 		adjacency.get(sourceVertex).add(targetVertex);
-
-	}
-
-	public void addReverseEdge(int sourceVertex, int targetVertex) {
-		adjacency.get(targetVertex).add(sourceVertex);
 
 	}
 
@@ -58,89 +60,13 @@ public class MyDirectedGraph implements A3Graph {
 		 * 
 		 * return s.size() == numOfVertices;
 		 */
+
 		return (Components.size() == 1);
-	}
-
-	/*
-	 * Reverse the edges of the graph.
-	 */
-
-	/*
-	 * Reverse the edges of the graph.
-	 */
-	public List<List<Integer>> reverseGraph() {
-		// MyDirectedGraph reverse = new MyDirectedGraph(numOfVertices);
-		Stack<List<Integer>> reverse = new Stack<List<Integer>>();
-		List<List<Integer>> matrix = new ArrayList<List<Integer>>();
-		List<List<Integer>> transpose = new ArrayList<List<Integer>>();
-		// reverse.addEdge(0, targetVertex);
-
-		for (int i = 0; i < numOfVertices; i++) {
-			List<Integer> row = new ArrayList<Integer>();
-			for (int j = 0; j < numOfVertices; j++) {
-				row.add(0);
-			}
-			matrix.add(row);
-			// transpose.add(row);
-		}
-
-		for (int i = 0; i < numOfVertices; i++) {
-			List<Integer> row = new ArrayList<Integer>();
-			for (int j = 0; j < numOfVertices; j++) {
-				row.add(0);
-			}
-			transpose.add(row);
-		}
-
-		for (int i = 0; i < numOfVertices; i++) {
-
-			for (int j = 0; j < getAdjacency().get(i).size(); j++) {
-				matrix.get(i).set(getAdjacency().get(i).get(j), 1);
-			}
-
-		}
-
-		System.out.println(matrix.toString());
-
-		/*
-		 * Transpose the matrix
-		 */
-
-		for (int i = 0; i < numOfVertices; i++) {
-
-			for (int j = 0; j < numOfVertices; j++) {
-				if (matrix.get(i).get(j) == 1) {
-					transpose.get(j).set(i, 1);
-				}
-
-			}
-
-		}
-
-		for (int i = 0; i < numOfVertices; i++) {
-			reverse.add(new ArrayList<Integer>());
-		}
-
-		System.out.println("Hej: " + reverse.toString());
-		System.out.println("Transpose: " + transpose.toString());
-
-		for (int i = 0; i < numOfVertices; i++) {
-			for (int j = 0; j < numOfVertices; j++) {
-				if (transpose.get(i).get(j) == 1) {
-					reverse.get(i).add(j);
-				}
-			}
-		}
-
-		
-		return reverse;
-
 	}
 
 	@Override
 	public boolean isAcyclic() {
 		Stack<Integer> stack = new Stack<Integer>();
-
 		boolean[] visited = new boolean[numOfVertices];
 		int n = 0;
 		while (n < visited.length) {
@@ -153,7 +79,7 @@ public class MyDirectedGraph implements A3Graph {
 		return true;
 	}
 
-	public static boolean isAcyclicDFS(int n, boolean[] isVisited, Stack<Integer> stack) {
+	public boolean isAcyclicDFS(int n, boolean[] isVisited, Stack<Integer> stack) {
 		if (stack.contains(n))
 			return false;
 		isVisited[n] = true;
@@ -172,132 +98,54 @@ public class MyDirectedGraph implements A3Graph {
 
 	@Override
 	public List<List<Integer>> connectedComponents() {
+		// Step 1 add all nodes to stack in first DFS
 		boolean[] isVisited = new boolean[numOfVertices];
-		List<Integer> list = componentsDFS(numOfVertices - 1, isVisited, adjacency);
-
-		List<List<Integer>> connections = new ArrayList<List<Integer>>();
-
-		Collections.reverse(list);
+		List<Integer> stack = new ArrayList<Integer>();
 		for (int i = 0; i < numOfVertices; i++) {
 			if (!isVisited[i]) {
-				connectionDFS(i, isVisited, list, adjacency);
+				sccDFS(i, isVisited, stack, adjacency);
 			}
 		}
+		Collections.reverse(stack);
 
-		List<List<Integer>> reverseEdges = reverseGraph();
+		// Step 2 reverse edges
+		MyDirectedGraph reversedGraph = reverseGraph();
 
+		// Step 3 pop nodes and add SCC for nodes in second DFS
 		for (int i = 0; i < isVisited.length; i++) {
 			isVisited[i] = false;
 		}
-
-		List<List<Integer>> reverseconnections = new ArrayList<List<Integer>>();
-
-		for (int i = 0; i < list.size(); i++) {
-
-			int n = list.get(i);
-
+		List<List<Integer>> connectedComponents = new ArrayList<List<Integer>>();
+		for (int i = 0; i < stack.size(); i++) {
+			int n = stack.get(i);
 			if (!isVisited[n]) {
 				List<Integer> temp = new ArrayList<Integer>();
-				connectionDFS(n, isVisited, temp, adjacency);
-				connections.add(temp);
+				sccDFS(n, isVisited, temp, reversedGraph.adjacency);
+				connectedComponents.add(temp);
 			}
-
 		}
-
-		isVisited = new boolean[numOfVertices];
-		for (int i = 0; i < list.size(); i++) {
-
-			int n = list.get(i);
-
-			if (!isVisited[n]) {
-				List<Integer> temp = new ArrayList<Integer>();
-				connectionDFS(n, isVisited, temp, reverseEdges);
-				reverseconnections.add(temp);
-			}
-
-		}
-
-		//// connections.add(temp);
-		return FixConnected(connections, reverseconnections);
+		return connectedComponents;
 	}
 
-	public List<List<Integer>> FixConnected(List<List<Integer>> connections, List<List<Integer>> reverseconnections) {
-		List<List<Integer>> fixedList = new ArrayList<List<Integer>>();
-		boolean connectionsIsBigger = false;
-		if (connections.size() >= reverseconnections.size()) {
-			connectionsIsBigger = true;
-		}
-		if (connectionsIsBigger) {
-			for (int i = 0; i < connections.size(); i++) {
-				List<Integer> TempList = connections.get(i);
-				List<Integer> TempList2 = null;
-				if (i <= reverseconnections.size() - 1) {
-					TempList2 = reverseconnections.get(i);
-					if (TempList.retainAll(TempList2))
-						fixedList.add(TempList);
-					else {
-						fixedList.add(TempList);
-					}
-				}
-
-			}
-		} else {
-			for (int i = 0; i < reverseconnections.size(); i++) {
-				List<Integer> TempList = reverseconnections.get(i);
-				List<Integer> TempList2 = null;
-				if (i <= connections.size() - 1) {
-					TempList2 = connections.get(i);
-					if (TempList.retainAll(TempList2))
-						fixedList.add(TempList);
-					else {
-						fixedList.add(TempList);
-					}
-				}
-
-			}
-
-		}
-		return fixedList;
-	}
-
-	public int getNumOfVertices() {
-		return numOfVertices;
-	}
-
-	public void setNumOfVertices(int numOfVertices) {
-		this.numOfVertices = numOfVertices;
-	}
-
-	public List<Integer> componentsDFS(int vertexIndex, boolean[] isVisited, List<List<Integer>> adjL) {
-
-		List<Integer> list = new ArrayList<Integer>();
-
-		for (int curr : adjL.get(vertexIndex)) {
-
-			if (!isVisited[curr]) {
-				connectionDFS(curr, isVisited, list, adjL);
-
-			}
-
-		}
-
-		return list;
-	}
-
-	public void connectionDFS(int pos, boolean[] isVisited, List<Integer> list, List<List<Integer>> adjL) {
+	public void sccDFS(int pos, boolean[] isVisited, List<Integer> list, List<List<Integer>> adjL) {
 		isVisited[pos] = true;
-
-		List<Integer> ost = adjL.get(pos);
-		for (int i = 0; i < ost.size(); i++) {
-			if (!isVisited[ost.get(i)]) {
-
-				connectionDFS(ost.get(i), isVisited, list, adjL);
+		List<Integer> targets = adjL.get(pos);
+		for (int i = 0; i < targets.size(); i++) {
+			if (!isVisited[targets.get(i)]) {
+				sccDFS(targets.get(i), isVisited, list, adjL);
 			}
-
 		}
-
 		list.add(pos);
+	}
 
+	public MyDirectedGraph reverseGraph() {
+		MyDirectedGraph reversedGraph = new MyDirectedGraph(numOfVertices);
+		for (int n = 0; n < numOfVertices; n++) {
+			for (int target : adjacency.get(n)) {
+				reversedGraph.addEdge(target, n);
+			}
+		}
+		return reversedGraph;
 	}
 
 }
